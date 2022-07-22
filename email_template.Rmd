@@ -1,0 +1,45 @@
+---
+output: blastula::blastula_email
+params:
+  name: there
+  type: "gene"
+  query: "ROCK1"
+  private: TRUE
+title: "`r params$content` Report"
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(include = FALSE)
+library(tidyverse)
+library(lubridate)
+library(blastula)
+library(htmltools)
+
+#load functions
+
+search_button <- function(private, 
+                          type, 
+                          query){
+  tld <- dplyr::if_else(private == TRUE, "com", "org")
+  cta_button <-
+    add_cta_button(
+      url = glue::glue('http://www.datadrivenhypothesis.{tld}/?show={type}&query={query}'),
+      text = "Explore"
+    )
+  return(cta_button)
+}
+```
+#### Hey `r params$name`,  
+Attached is the `r params$type` report you requested for `r {params$query}`. The attached report file contains a zipped directory of:  
+
+- REPORT.html  
+- image.pngs for each of the images in the report, for easy inclusion in presentations or manuscripts  
+- graph.html files for dynamic exploration of graphs  
+
+Alternatively, you can head back to the data-driven hypothesis website to explore further by clicking the button below.
+
+`r search_button(private = params$private, type = params$type, query = params$query)`
+
+
+Stay curious,  
+Your friends at Data-Driven Hypothesis
+
