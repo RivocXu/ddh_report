@@ -1,5 +1,5 @@
 # start from the rocker/r-ver:3.5.0 image
-FROM rocker/r-ver:3.5.0
+FROM rocker/tidyverse
 
 # install the linux libraries needed for plumber
 RUN apt-get update -qq && apt-get install -y \
