@@ -1,19 +1,11 @@
-# start from the rocker/r-ver:3.5.0 image
+# start from the rocker/tidyverse:latest image, not a base r-ver:3.5.0 image
 FROM rocker/tidyverse
 
-# install the linux libraries needed for plumber
-RUN apt-get update -qq && apt-get install -y \
-  libssl-dev \
-  libcurl4-gnutls-dev
-
-# install plumber
-RUN R -e "install.packages(c('plumber', 'tidyverse', 'blastula', 'glue'))"
+# install packages
+RUN R -e "install.packages(c('blastula', 'glue', 'jsonlite', 'paws'))"
 
 # copy everything from the current directory into the container
 COPY / /
-
-# open port 80 to traffic
-EXPOSE 80
 
 # when the container starts, start the main.R script
 ENTRYPOINT ["Rscript", "main.R"]

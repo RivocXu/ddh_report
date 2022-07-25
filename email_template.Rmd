@@ -23,19 +23,19 @@ search_button <- function(private,
   cta_button <-
     add_cta_button(
       url = glue::glue('http://www.datadrivenhypothesis.{tld}/?show={type}&query={query}'),
-      text = "Explore"
+      text = glue::glue('Explore {query}')
     )
   return(cta_button)
 }
 ```
 #### Hey `r params$name`,  
-Attached is the `r params$type` report you requested for `r {params$query}`. The attached report file contains a zipped directory of:  
+Attached is the `r params$type` report you requested for `r params$query`. The attached report file contains a zipped directory of:  
 
 - REPORT.html  
 - image.pngs for each of the images in the report, for easy inclusion in presentations or manuscripts  
 - graph.html files for dynamic exploration of graphs  
 
-Alternatively, you can head back to the data-driven hypothesis website to explore further by clicking the button below.
+Also, you can always head back to the data-driven hypothesis website to explore `r params$query` further by clicking the button below.
 
 `r search_button(private = params$private, type = params$type, query = params$query)`
 

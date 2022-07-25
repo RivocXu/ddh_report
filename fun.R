@@ -1,27 +1,44 @@
-#load the libraries
-library(blastula)
-library(glue)
-library(plumber)
 library(tidyverse)
 
-#https://medium.com/@skyetetra/using-docker-to-deploy-an-r-plumber-api-863ccf91516d
+library(blastula)
+library(glue)
+library(jsonlite)
+library(paws)
 
-#* Send a report email
-#* @param first_name first name of email recipient
-#* @param email_address email address of recipient
-#* @param path gotta figure out this path business
-#* @param report_file the attachment to sent
-#* @param input query parameters if no file
-#* @param private variable to determine which data to sent
-#* @get /send_email
+send_tmp_message <- function(){ #for teting only
+  sqs <- paws::sqs()
+  json <- '["there", "matthew@hirschey.org", "gene", "ROCK1", "ROCK1", "TRUE"]'
+  sqs$send_message(
+    QueueUrl = "https://sqs.us-east-1.amazonaws.com/344055253315/emailer",
+    MessageBody = json
+  )
+}
+# send_tmp_message()
+
+get_message <- function(){
+  #https://github.com/paws-r/paws/blob/main/examples/sqs.R
+  sqs <- paws::sqs()
+  sqs$receive_message(
+    QueueUrl = "https://sqs.us-east-1.amazonaws.com/344055253315/emailer"
+  )
+  
+}
+
+delete_message <- function(receipt_handle){
+  sqs <- paws::sqs()
+  sqs$delete_message(
+    QueueUrl = "https://sqs.us-east-1.amazonaws.com/344055253315/emailer",
+    ReceiptHandle = receipt_handle
+  )
+  message(glue::glue('Message {str_sub(receipt_handle, 1, 6)} deleted'))
+}
 
 send_email <- function(first_name = "there",
                        email_address = "matthew@hirschey.org",
-                       path = NULL, #not sure
-                       report_file = NULL, #only needs to be internal
-                       input = list(), #only include query, and figure out rest?
-                       private = FALSE #deconvolute from where GET came from
-                       ){
+                       input = list(),
+                       private = FALSE, 
+                       path = NULL #not sure
+){
   
   #logic for path
   if(is.null(path)){path <- getwd()}
@@ -32,10 +49,27 @@ send_email <- function(first_name = "there",
                                                                   overwrite = TRUE)}
   setwd(path)
   
-  #if report file doesn't exist, make it (and copy it to wd)
-  # if(!file.exists(report_file)){report_file <- make_report(input = input, 
-  #                                                          private = private)}
-  #consider writing the report file to db so others can use it (i.e. we don't have to make it again)
+  #looks to see if report exists
+  report_file <- NULL
+  # s3 <- paws::s3()
+  # report_file <- 
+  #   s3$get_object(
+  #     Bucket = "ddh-reports", 
+  #     Key = glue::glue('{input$content}.zip')) #"ADCK3.zip"
+  # if(is.null(report_file)){
+  #   #if report doesn't exist, then report_file remains null and makes a report
+  #   #report_file <- make_report(input = input, private = private)
+  #   
+  #   
+  #   #Upload file to s3 so others can use it (i.e. we don't have to make it again)
+  #   if(length(input$content) == 1){ #but only for single queries
+  #     s3$put_object(
+  #       Body = report_file,
+  #       Bucket = "ddh-reports", 
+  #       Key = glue::glue('{input$content}.zip')
+  #     )
+  #   }
+  # }
   
   #make pretty https://pkgs.rstudio.com/blastula/reference/index.html#section-email-sending-through-smtp
   email_body <- 
@@ -92,10 +126,8 @@ send_email <- function(first_name = "there",
         #pass_envvar = Sys.getenv("SMTP_PASSWORD"), #use default
       )
     )
-  message <- glue::glue("sent an email to {first_name} at {email_address}")
-  return(message)
 }
 
 # send_email(first_name = "John", 
 #            input = list(type = "gene", query = "ROCK2", content = "ROCK2"), 
-#  
+#            private = TRUE)
