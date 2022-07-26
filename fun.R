@@ -227,10 +227,10 @@ send_email <- function(first_name,
   on.exit(unlink(temp_dirs, recursive = TRUE))
 }
 
-send_email(first_name = "Matthew",
-           email_address = "matthew@hirschey.org",
-           input = list(type = "gene", subtype = "gene", query = "ROCK1", content = "ROCK1"),
-           private = TRUE)
+# send_email(first_name = "Matthew",
+#            email_address = "matthew@hirschey.org",
+#            input = list(type = "gene", subtype = "gene", query = "ROCK1", content = "ROCK1"),
+#            private = TRUE)
 
 #get sqs report-----
 get_sqs_report <- function(){
