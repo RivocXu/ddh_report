@@ -1,9 +1,0 @@
-```{r}
-#| label: literature
-#| echo: false
-#| message: false
-#| warning: false
-
-make_pubmed(input = list(type = params$type, content = params$content))
-```
-The literature plot is a...

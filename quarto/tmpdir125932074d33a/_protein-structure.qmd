@@ -1,9 +1,0 @@
-```{r}
-#| label: protein-structure
-#| echo: false
-#| message: false
-#| warning: false
-
-path <- make_structure(input = list(content = params$content))
-```
-The size plot is a ...   

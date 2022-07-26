@@ -5,3 +5,6 @@
 .Renviron
 *.html
 tmp/
+*_cache/
+*_files/
+/site_libs/
