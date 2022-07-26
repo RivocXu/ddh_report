@@ -145,7 +145,7 @@ get_sqs_report <- function(){
   
   query_table <- tibble()
   
-  for (i in 1:seq_along(sqs_list)) {
+  for (i in seq_along(sqs_list)) {
     id <- sqs_list[[i]][["Key"]]
     
     csv_object <- 
@@ -165,5 +165,7 @@ get_sqs_report <- function(){
   }
   
   message("finished retreiving queries")
+  return(query_table)
   
 }
+# query_table <- get_sqs_report()
