@@ -1,0 +1,54 @@
+---
+format: 
+  html:
+    self-contained: true
+params:
+  type: "cell"
+  subtype: "cell"
+  content: "HEPG2"
+  private: "true"
+title: "`r params$content` Report"
+---
+
+{{< include _setup.qmd >}}
+
+### from `r dplyr::if_else(params$private == "true", paste0("datadrivenhypothesis.com"), paste0("datadrivenhypothesis.org"))`  
+`r lubridate::stamp("Report generated December 31, 1979")(now())`  
+  
+## Project Summary  
+{{< include _project-summary.qmd >}}  
+{{< pagebreak >}}  
+  
+## Cell Line Summary  
+<!-- {{< include _cell-summary.qmd >}}   -->
+{{< pagebreak >}}  
+  
+## Literature {#sec-literature}
+{{< include _literature.qmd >}}
+{{< pagebreak >}}  
+  
+## Expression  
+### Gene Expression
+{{< include _cell-gene-expression.qmd >}}  
+{{< pagebreak >}}  
+  
+### Protein Expression
+{{< include _cell-protein-expression.qmd >}}  
+{{< pagebreak >}}  
+  
+### Gene v. Protein Expression  
+{{< include _cell-gene-v-protein-expression.qmd >}}  
+{{< pagebreak >}}  
+  
+## Dependencies
+### Dependency Plot
+{{< include _cell-dependency.qmd >}}  
+{{< pagebreak >}} 
+  
+### Dependency Density Plot  
+{{< include _cell-dependency-density.qmd >}}  
+{{< pagebreak >}} 
+  
+### Dependency Table
+{{< include _cell-dependency-table.qmd >}}  
+{{< pagebreak >}} 

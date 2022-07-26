@@ -1,8 +1,8 @@
-source("fun.R")
+source(here::here("fun.R"))
 message("waiting for messages...")
 repeat {
   #check for message in sqs queue
-  sqs_message <- get_message()
+  sqs_message <- get_message() #in fun.R
   
   #if no message, wait
   if(length(sqs_message$Messages) == 0){
@@ -10,30 +10,21 @@ repeat {
   }
   #if message, then send email, log, and delete message
   if(length(sqs_message$Messages) == 1){
-    #get json body attributes
+    #get json body attributes as df
     attributes <- jsonlite::fromJSON(sqs_message[["Messages"]][[1]][["Body"]])
     
-    #send email
+    #send email, in fun.R
     send_email(first_name = attributes$first_name,
                email_address = attributes$email_address,
                input = list(type = attributes$type, 
+                            subtype = attributes$subtype,
                             query = attributes$query, 
                             content = attributes$content),
                private = as.logical(attributes$private))
     
-    #make json df
-    json_df <- tibble(
-      first_name = attributes$first_name, 
-      last_name = attributes$last_name, 
-      email_address = attributes$email_address, 
-      type = attributes$type, 
-      query = attributes$query, 
-      content = attributes$content,
-      private = attributes$private)
-
     #log reports as csv
     csv_path <- tempfile(fileext = '.csv')
-    write_csv(json_df, csv_path)
+    write_csv(attributes, csv_path)
     good_csv_name <- glue::glue('{Sys.Date()}-{as.integer(Sys.time())}.csv') #gives it a unique name
     s3 <- paws::s3()
     s3$put_object(
@@ -44,7 +35,7 @@ repeat {
     
     #consume message
     receipt_handle <- sqs_message$Messages[[1]]$ReceiptHandle
-    delete_message(receipt_handle)
+    delete_message(receipt_handle) #in fun.R
     
     #break #for testing only, send a message to break the loop
     Sys.sleep(1) #check for another message right away

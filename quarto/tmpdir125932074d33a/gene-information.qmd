@@ -1,0 +1,26 @@
+# Gene Information {#sec-gene-information}  
+## Gene {#sec-gene}
+{{< include _gene-summary.qmd >}}
+  
+### Ideogram
+{{< include _gene-ideogram.qmd >}}  
+  
+### GO Pathways  
+{{< include _gene-pathways.qmd >}}  
+  
+## Protein {#sec-protein}
+### Size
+{{< include _protein-size.qmd >}}  
+  
+### Sequence
+{{< include _protein-sequence.qmd >}}  
+  
+### Signature
+{{< include _protein-signature.qmd >}}  
+  
+### Structure
+{{< include _protein-structure.qmd >}}  
+  
+## Literature {#sec-literature}
+{{< include _literature.qmd >}}  
+  

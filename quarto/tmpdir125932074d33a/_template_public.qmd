@@ -1,0 +1,10 @@
+```{r}
+#| label: 
+#| echo: false
+#| message: false
+#| warning: false
+
+fun
+
+```
+This plot is a ...

@@ -1,0 +1,401 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Data-driven Hypothesis",
+    "section": "",
+    "text": "Imagine interrogating 100s of GBs of data by simply querying your gene of interest to develop a hypothesis before testing it. This is data-driven hypothesis.\n\n\n\nIdentifying the key functions of human genes is a major biomedical research goal. While some genes are very well-studied, most human genes we know little about. Mapping a broad set of gene functions en masse is currently not possible, and therefore most scientific research proceeds with a one-gene-at-a-time approach. While this reductionist approach has guided the scientific methods for hundreds of years, the volume, complexity, and sophistication of modern science necessitate alternative approaches.\nCurrent incentives in science encourage study of a few genes, where many of the ~20,000 genes remain understudied.\n\n\n\n\n\nNumber of publications per human gene\n\n\n\n\n\n\n\nNew tools in Data Science – a combination of computer programming, math & statistics, and topical expertise – combined with the rapid adoption of open science and data sharing allow scientists to access publicly available datasets and interrogate these data before performing any experiments.\nSuch tools allow researchers to identify new hypotheses for well-studied genes, or new processes for un-annotated genes. Indeed, most human genes are poorly studied, perhaps because of the intractability to study them with no prior knowledge.\nThis project aims to address this challenge. Welcome to data-driven hypothesis.\nThe overall goal of the data-driven hypothesis (DDH) project is to use new tools in Data Science to generate hypotheses supported by data that can be tested in the lab. Several high-quality, publicly available datasets are published online and made available with Creative Commons Attribution 4.0 International (CC BY 4.0) licenses. The advent and rapid adoption of data-sharing platforms, such as figshare.com have provided high-quality data sets for public interrogation.\nThis project began as an extension of a simple and common concept called pattern recognition – looking for patterns in large datasets that might reveal similarities between common genes. As one simple example, common gene expression patterns can be revealed using gene co-expression analysis. When a gene of unknown function is identified, one strategy to learn something about the new gene is to identify shared patterns of expression with other genes. If unknown Gene X is expressed with known genes A, B, and C, then you can infer that Gene X might be part of a functional module with A, B, C. This approach is particularly powerful when genes A, B, and C are part of a known biological pathway, which leads to the hypothesis that Gene X might also be part of that same pathway.\n\n\n\n\n\nHeatmap label\n\n\n\n\nBeyond this simple example, we aim to leverage several different types of data glean information about known and unknown genes. We present here a comprehensive resource for mapping the structure or function of thousands of genes across the human genome. Importantly, this method integrates several data types, including gene essentiality, gene expression, and literature mining to identify candidate functions of known or unknown genes. The DDH project holds tremendous promise to generate hypotheses, data, and knowledge in order to provide a deep understanding of the dynamic properties of an organism. We provide this resource via an intuitive online interface, which will provide the scientific community a platform to query and prioritize experimental hypotheses to test in the lab.\n\n\n\nLike the proverbial man searching for his lost keys under the lamp post because the light shines there, searching for biological truths often occurs under ‘lamp posts’ because that’s where scientists can see. But what if your keys are not under the light? Or your gene is totally unknown? What do you do?\nThe scientific method has guided scientific minds for hundreds of years, starting with a question, followed by a hypothesis, and then an experimental path to test the prediction. While hypotheses are the bedrock of science, the volume, complexity, and sophistication of modern science necessitate new methods to generate hypotheses.\nNew tools in Data Science – a combination of computer programming, math & statistics, and topical expertise – combined with the rapid adoption of open science and data sharing allow scientists to access publicly available datasets and interrogate these data before performing any experiments.\nImagine having strong data to support your new hypothesis before testing it. This is data-driven hypothesis."
+  },
+  {
+    "objectID": "cell-line-query.html",
+    "href": "cell-line-query.html",
+    "title": "Cell Line Query",
+    "section": "",
+    "text": "Placeholder text."
+  },
+  {
+    "objectID": "cell-line-information.html",
+    "href": "cell-line-information.html",
+    "title": "1  Cell Line Information",
+    "section": "",
+    "text": "The purpose of this page is to provide…\nThe data comes from…"
+  },
+  {
+    "objectID": "cell-expression.html",
+    "href": "cell-expression.html",
+    "title": "2  Cell Expression",
+    "section": "",
+    "text": "The purpose of this page is to provide…\nThe data comes from…"
+  },
+  {
+    "objectID": "cell-compounds.html",
+    "href": "cell-compounds.html",
+    "title": "3  Cell Compounds",
+    "section": "",
+    "text": "The purpose of this page is to provide…\nThe data comes from…"
+  },
+  {
+    "objectID": "cell-dependencies.html",
+    "href": "cell-dependencies.html",
+    "title": "4  Cell Dependencies",
+    "section": "",
+    "text": "The purpose of this page is to provide…\nThe data comes from…"
+  },
+  {
+    "objectID": "cell-lineage-query.html",
+    "href": "cell-lineage-query.html",
+    "title": "5  Cell Lineage Query",
+    "section": "",
+    "text": "The purpose of this page is to provide…\nThe data comes from…"
+  },
+  {
+    "objectID": "custom-cells-query.html",
+    "href": "custom-cells-query.html",
+    "title": "6  Custom Cells Query",
+    "section": "",
+    "text": "The purpose of this page is to provide…\nThe data comes from…"
+  },
+  {
+    "objectID": "compound-query.html",
+    "href": "compound-query.html",
+    "title": "Compound Query",
+    "section": "",
+    "text": "Placeholder text."
+  },
+  {
+    "objectID": "compound-information.html",
+    "href": "compound-information.html",
+    "title": "7  Compound Information",
+    "section": "",
+    "text": "The purpose of this page is to provide…\nThe data comes from…"
+  },
+  {
+    "objectID": "compound-expression.html",
+    "href": "compound-expression.html",
+    "title": "8  Compound Expression",
+    "section": "",
+    "text": "The purpose of this page is to provide…\nThe data comes from…"
+  },
+  {
+    "objectID": "compound-metabolites.html",
+    "href": "compound-metabolites.html",
+    "title": "9  Compound Metabolites",
+    "section": "",
+    "text": "The purpose of this page is to provide…\nThe data comes from…"
+  },
+  {
+    "objectID": "compound-dependencies.html",
+    "href": "compound-dependencies.html",
+    "title": "10  Compound Dependencies",
+    "section": "",
+    "text": "The purpose of this page is to provide…\nThe data comes from…"
+  },
+  {
+    "objectID": "moa-query.html",
+    "href": "moa-query.html",
+    "title": "11  MOA Query",
+    "section": "",
+    "text": "The purpose of this page is to provide…\nThe data comes from…"
+  },
+  {
+    "objectID": "custom-compound-query.html",
+    "href": "custom-compound-query.html",
+    "title": "12  Custom Compound Query",
+    "section": "",
+    "text": "The purpose of this page is to provide…\nThe data comes from…"
+  },
+  {
+    "objectID": "downloads.html",
+    "href": "downloads.html",
+    "title": "Downloads",
+    "section": "",
+    "text": "The purpose of this page is to provide…\nThe data comes from…"
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "Summary",
+    "section": "",
+    "text": "Like the proverbial man searching for his lost keys under the lamp post because the light shines there, searching for biological truths often occurs under ‘lamp posts’ because that’s where scientists can see. But what if your keys are not under the light? Or your gene is totally unknown? What do you do?\nThe scientific method has guided scientific minds for hundreds of years, starting with a question, followed by a hypothesis, and then an experimental path to test the prediction. While hypotheses are the bedrock of science, the volume, complexity, and sophistication of modern science necessitate new methods to generate hypotheses.\nNew tools in Data Science – a combination of computer programming, math & statistics, and topical expertise – combined with the rapid adoption of open science and data sharing allow scientists to access publicly available datasets and interrogate these data before performing any experiments.\nImagine having strong data to support your new hypothesis before testing it. This is data-driven hypothesis."
+  },
+  {
+    "objectID": "tools.html",
+    "href": "tools.html",
+    "title": "Appendix A — Tools",
+    "section": "",
+    "text": "The following libraries are used in this project:\nAnnotationDbi, BiocManager, biomaRt, Cairo, caret, clusterProfiler, colorspace, corrr, cowplot, dbscan, doParallel, DT, enrichR, furrr, future, ggdist, gghighlight, ggpubr, ggraph, ggrepel, ggtext, glue, grDevices, gt, here, hexbin, htmltools, httr, igraph, impute, janitor, jespermaag/gganatogram, jsonlite, knitr, lexicon, lubridate, magick, matthewhirschey/tidybiology, mgcv, moderndive, optparse, org.Hs.eg.db, pander, patchwork, plotly, promises, quarto, rayvertex, readxl, remotes, rentrez, reticulate, RISmed, rlang, rmarkdown, rtweet, rvest, scales, shinycssloaders, shinyjs, shinyWidgets, showtext, stopwords, sysfonts, tidygraph, tidyselect, tidytext, tidyverse, tylermorganwall/raymolecule, uwot, vctrs, viridis, visNetwork, vroom, webchem, widyr, and XML"
+  },
+  {
+    "objectID": "resources.html",
+    "href": "resources.html",
+    "title": "Appendix A — Resources",
+    "section": "",
+    "text": "Code is available on the Hirschey Lab github account, including the ability to download the raw data, and run the analyses from scratch."
+  },
+  {
+    "objectID": "resources.html#updated",
+    "href": "resources.html#updated",
+    "title": "Appendix A — Resources",
+    "section": "A.2 Updated",
+    "text": "A.2 Updated\nMethods updated June 05, 2022"
+  },
+  {
+    "objectID": "developer.html",
+    "href": "developer.html",
+    "title": "Appendix B — Devs",
+    "section": "",
+    "text": "Dev resources go here"
+  },
+  {
+    "objectID": "developer.html#organization",
+    "href": "developer.html#organization",
+    "title": "Appendix B — Devs",
+    "section": "B.1 Organization",
+    "text": "B.1 Organization\nGeneral org of code"
+  },
+  {
+    "objectID": "developer.html#data-generation",
+    "href": "developer.html#data-generation",
+    "title": "Appendix B — Devs",
+    "section": "B.2 Data Generation",
+    "text": "B.2 Data Generation\nNotes on data generation (link to vidoe?)"
+  },
+  {
+    "objectID": "developer.html#data-serving",
+    "href": "developer.html#data-serving",
+    "title": "Appendix B — Devs",
+    "section": "B.3 Data Serving",
+    "text": "B.3 Data Serving\nNotes on site"
+  },
+  {
+    "objectID": "developer.html#shiny-modules",
+    "href": "developer.html#shiny-modules",
+    "title": "Appendix B — Devs",
+    "section": "B.4 Shiny modules",
+    "text": "B.4 Shiny modules\nNotes on shiny modules"
+  },
+  {
+    "objectID": "resources.html#tools",
+    "href": "resources.html#tools",
+    "title": "Appendix A — Resources",
+    "section": "A.3 Tools",
+    "text": "A.3 Tools\nThe following libraries are used in this project:\nAnnotationDbi, BiocManager, biomaRt, Cairo, caret, clusterProfiler, colorspace, corrr, cowplot, dbscan, doParallel, DT, enrichR, furrr, future, ggdist, gghighlight, ggpubr, ggraph, ggrepel, ggtext, glue, grDevices, gt, here, hexbin, htmltools, httr, igraph, impute, janitor, jespermaag/gganatogram, jsonlite, knitr, lexicon, lubridate, magick, matthewhirschey/tidybiology, mgcv, moderndive, optparse, org.Hs.eg.db, pander, patchwork, plotly, promises, quarto, rayvertex, readxl, remotes, rentrez, reticulate, RISmed, rlang, rmarkdown, rtweet, rvest, scales, shinycssloaders, shinyjs, shinyWidgets, showtext, stopwords, sysfonts, tidygraph, tidyselect, tidytext, tidyverse, tylermorganwall/raymolecule, uwot, vctrs, viridis, visNetwork, vroom, webchem, widyr, and XML"
+  },
+  {
+    "objectID": "start-here.html",
+    "href": "start-here.html",
+    "title": "Start Here",
+    "section": "",
+    "text": "Data-driven Hypothesis homepage\n“If you didn’t know what your gene does, what’s the first experiment you would do?”\ngoogle it.\nthe future of search is niche\nThe data-driven hypothesis project"
+  },
+  {
+    "objectID": "start-here.html#gene-search",
+    "href": "start-here.html#gene-search",
+    "title": "Start Here",
+    "section": "Gene Search",
+    "text": "Gene Search\nThe easiest way to start is to type a gene (or protein) symbol into the search box. Typing a single gene Into the search panel will then look up this chain against genes and proteins. It will return a list of best matches, which can then be selected for further query. Beyond a single gene, this application can handle pathways or multi gene queries. To search a pathway, type the pathway name into the search just as you would a gene inquiry. If you have a specific GO number for the pathway, you can also type this in. Lastly, you can simply type in a custom set of genes that you want to query."
+  },
+  {
+    "objectID": "start-here.html#cell-line-search",
+    "href": "start-here.html#cell-line-search",
+    "title": "Start Here",
+    "section": "Cell Line Search",
+    "text": "Cell Line Search\nSimilar to a gene query, you can also search for a cell line of interest. Approximately 1000 cell lines are included in this resource. Simply type the name of a single cell line and the app will return a list of best matches. Additionally, users can search for a cell lineage or linear subtype, which is a collection of defined cells. Finally, a custom set of cells can also be queried."
+  },
+  {
+    "objectID": "start-here.html#compound-search",
+    "href": "start-here.html#compound-search",
+    "title": "Start Here",
+    "section": "Compound Search",
+    "text": "Compound Search\nA compound search consists of either a drug or metabolite. This unique search type will return information about the compound. Furthermore, it will return information about the genes that are known to handle the metabolite, or are targeted by the compound. Like the other search types, defined lists of compounds can be queried for a metabolic pathway, or a common mechanism of action for drugs. Lastly a custom set of drugs or metabolites can be queried."
+  },
+  {
+    "objectID": "pathway-query.html",
+    "href": "pathway-query.html",
+    "title": "4  Pathway Query",
+    "section": "",
+    "text": "The purpose of this page is to provide…\nThe data comes from…"
+  },
+  {
+    "objectID": "custom-gene-query.html",
+    "href": "custom-gene-query.html",
+    "title": "5  Custom Gene Query",
+    "section": "",
+    "text": "The purpose of this page is to provide…\nThe data comes from…"
+  },
+  {
+    "objectID": "gene-start-here.html",
+    "href": "gene-start-here.html",
+    "title": "Start Here",
+    "section": "",
+    "text": "As an example, we will query the protein P53. Typing in the given protein name “P53” produces an error, because the official gene symbol needs to be entered. Querying TP53 (official gene symbol) generates a short summary of the gene, its name and list of aliases, and an Entrez gene summary paragraph when available.\n\n\nGene: ROCK1\nName: Rho associated coiled-coil containing protein kinase 1\naka: p160ROCK\nEntrez ID: 6093\nThis gene encodes a protein serine/threonine kinase that is activated when bound to the GTP-bound form of Rho. The small GTPase Rho regulates formation of focal adhesions and stress fibers of fibroblasts, as well as adhesion and aggregation of platelets and lymphocytes by shuttling between the inactive GDP-bound form and the active GTP-bound form. Rho is also essential in cytokinesis and plays a role in transcriptional activation by serum response factor. This protein, a downstream effector of Rho, phosphorylates and activates LIM kinase, which in turn, phosphorylates cofilin, inhibiting its actin-depolymerizing activity. A pseudogene, related to this gene, is also located on chromosome 18. [provided by RefSeq, Aug 2015]"
+  },
+  {
+    "objectID": "gene-start-here.html#query-yfg-your-favorite-gene",
+    "href": "gene-start-here.html#query-yfg-your-favorite-gene",
+    "title": "Start Here",
+    "section": "1. Query YFG (your favorite gene)",
+    "text": "1. Query YFG (your favorite gene)\nAs an example, we will query the protein P53. Typing in the given protein name “P53” produces an error, because the official gene symbol needs to be entered. Querying TP53 (official gene symbol) generates a short summary of the gene, its name and list of aliases, and an Entrez gene summary paragraph when available.\n\nSummary\nGene: ROCK1\nName: Rho associated coiled-coil containing protein kinase 1\naka: p160ROCK\nEntrez ID: 6093\nThis gene encodes a protein serine/threonine kinase that is activated when bound to the GTP-bound form of Rho. The small GTPase Rho regulates formation of focal adhesions and stress fibers of fibroblasts, as well as adhesion and aggregation of platelets and lymphocytes by shuttling between the inactive GDP-bound form and the active GTP-bound form. Rho is also essential in cytokinesis and plays a role in transcriptional activation by serum response factor. This protein, a downstream effector of Rho, phosphorylates and activates LIM kinase, which in turn, phosphorylates cofilin, inhibiting its actin-depolymerizing activity. A pseudogene, related to this gene, is also located on chromosome 18. [provided by RefSeq, Aug 2015]"
+  },
+  {
+    "objectID": "gene-start-here.html#dependencies",
+    "href": "gene-start-here.html#dependencies",
+    "title": "Start Here",
+    "section": "2. Dependencies",
+    "text": "2. Dependencies\nThe first plot shows the distribution of dependency scores across 957 cell lines ranked from lowest (strongest dependencies) to highest (no dependency or inverse). A cell line is represented by a single point on the plot. Generally, values below -1 indicate the gene of interest (ROCK1 in this example) is essential in that cell line; values between -1 and 0, mean that cells lose fitness, but the gene is not essential; values hovering around zero indicate that ablation of ROCK1 has little effect on cell growth; values above 1, indicate that knocking-out the gene leads to a fitness advantage. In the case of ROCK1, several cells have a fitness advantage in its absence, consistent with its role as a tumor suppressor.\nThe second plot is a density plot of dependency scores, showing the distribution of scores for ROCK1. While the majority of cells have little change in cellular growth when ROCK1 is absent (the density plot is centered around zero), some cells require ROCK1 for growth (cells scoring below -1), whereas in other cells ROCK1 functions as a tumor suppressor (cells with a score above 1).\n\n\n\n\n\n\n\n\n\n\n\nTo identify the cells at the tails of the plots, a dependency table will show the ranked cells by dependency score, with cell lineage information appended. In some cases, specific cell types or lineages will show consistent patterns of dependency on a gene.\n\nCells with that lose fitness upon ROCK1 ablation:\n\n\n\n\n\n\n  \n  \n    \n      Cell Line\n      Lineage\n      Dependency Score\n    \n  \n  \n    A3KAW\nLymphocyte\n-1.10\n    SW948\nColorectal\n-0.91\n    LO68\nLung\n-0.90\n    SNUC4\nColorectal\n-0.89\n    KMS18\nPlasma Cell\n-0.72\n    KASUMI1\nBlood\n-0.68\n    KMS20\nPlasma Cell\n-0.66\n    TL1\nLymphocyte\n-0.60\n    OCIAML3\nBlood\n-0.60\n    HS939T\nSkin\n-0.59\n  \n  \n  \n\n\n\n\n\n\nCells with that show no fitness loss (or sometimes gains) upon ROCK1 ablation\n\n\n\n\n\n\n  \n  \n    \n      Cell Line\n      Lineage\n      Dependency Score\n    \n  \n  \n    KMRC2\nKidney\n0.48\n    COV413A\nOvary\n0.46\n    ICC12\nBile Duct\n0.44\n    LCLC97TM1\nLung\n0.42\n    EPLC272H\nLung\n0.39\n    A388\nEpidermoid Carcinoma\n0.39\n    CL11\nColorectal\n0.37\n    MERO82\nLung\n0.36\n    GCIY\nGastric\n0.35\n    A431\nSkin\n0.34\n  \n  \n  \n\n\n\n\nUnderstanding the shape of the curve and distribution of the raw data underlying the patterns is important for interpreting the results."
+  },
+  {
+    "objectID": "gene-start-here.html#similar-patterns",
+    "href": "gene-start-here.html#similar-patterns",
+    "title": "Start Here",
+    "section": "3. Similar Patterns",
+    "text": "3. Similar Patterns\nPositive correlations of dependency scores are ranked for each gene. Recall that these genes show similar patterns of dependencies in the same cell lines. More simply, the cells that care about ROCK1 deletion also care about deletion of these genes, implying a functional relationship. In the Dependency Score Example heatmap schematic above, ROCK1 is gene X, and genes with similar patterns would be genes A, B, and C. The 17 genes that show a similar genetic dependencies as ROCK1 and are above 2 standard deviations away from the resampled mean are displayed.\nOne data source that can help prioritize genes for study is to compare gene-gene associations to known gene-gene relationships based on previous literature. By counting the number of times a p53 was published with each of these top ranked genes, the Relaxin family peptide receptor 2 (RXFP2) emerges as an unexpected connection, based on current literature.\n\n\n\n\n\n\n  \n  \n    \n      Gene\n      Name\n      R^2\n      Concept Count\n    \n  \n  \n    ROCK2\nRho associated coiled-coil containing protein kinase 2\n0.51\n1544\n    PAWR\nPro-apoptotic wt1 regulator\n0.43\n19\n    DAPK3\nDeath associated protein kinase 3\n0.43\n77\n    LUZP1\nLeucine zipper protein 1\n0.39\n7\n    TMOD3\nTropomodulin 3\n0.38\n8\n    STK17B\nSerine/threonine kinase 17b\n0.37\n15\n    ATP1B3\nAtpase na+/k+ transporting subunit beta 3\n0.31\n7\n    NUAK2\nNuak family kinase 2\n0.29\n10\n    H2AZ1\nH2a.z variant histone 1\n0.28\n9\n    STK17A\nSerine/threonine kinase 17a\n0.28\n6\n  \n  \n  \n\n\n\n\nThese 17 genes were queried for gene set enrichment, and the gene sets and pathways with the strongest statistical significance are shown. Simply stated, these are the pathways that best represent the list of genes that share similar genetic dependencies, and suggest that the query gene is part of these pathways.\n\n\n\n\n\n\n  \n  \n    \n      Query\n      Gene Set\n      Gene List\n      Overlap\n      Adjusted p-value\n      Combined Score\n      Genes\n    \n  \n  \n    ROCK1\nDSigDB\nCGP74514A LINCS\n10/125\n2.371159e-06\n351.8274\nNUAK2;ROCK1;ROCK2;STK17A;STK17B;TAOK1;DAPK3;TAOK2;ULK3;PIM2\n    ROCK1\nhuMAP\nTADA2B\n4/10\n6.494366e-06\n1967.3097\nTAF6L;TADA1;SUPT20H;TAF5L\n    ROCK1\nReactome 2016\nRHO GTPases Activate ROCKs Homo sapiens R-HSA-5627117\n5/17\n1.006542e-05\n1391.7779\nROCK1;ROCK2;LIMK2;RHOA;RHOB\n    ROCK1\nDSigDB\nR406 Kinome Scan\n11/203\n1.073618e-05\n207.8819\nNUAK2;ROCK1;ROCK2;STK17A;STK17B;TAOK1;DAPK3;TAOK2;ULK3;TEK;EPHA2\n    ROCK1\nDSigDB\nCEP-701 Kinome Scan\n12/272\n1.510601e-05\n161.6340\nNUAK2;ROCK1;ROCK2;STK17A;STK17B;TAOK1;DAPK3;TAOK2;ULK3;PIM2;TEK;EPHA2\n    ROCK1\nDSigDB\nCrizotinib LINCS\n9/136\n1.603065e-05\n233.5935\nNUAK2;ROCK1;ROCK2;LIMK2;TAOK1;TAOK2;ULK3;TEK;EPHA2\n    ROCK1\nDSigDB\nMomelotinib LINCS\n7/65\n1.603065e-05\n389.0559\nNUAK2;ROCK1;ROCK2;STK17A;STK17B;DAPK3;ULK3\n    ROCK1\nDSigDB\nCrizotinib FDA\n9/138\n1.603065e-05\n228.2062\nNUAK2;ROCK1;ROCK2;LIMK2;TAOK1;TAOK2;ULK3;TEK;EPHA2\n    ROCK1\nDSigDB\nPHA-767491 LINCS\n8/101\n1.689381e-05\n275.6106\nNUAK2;ROCK1;ROCK2;STK17A;TAOK1;DAPK3;TAOK2;PIM2\n    ROCK1\nDSigDB\nR406 LINCS\n10/194\n1.842482e-05\n173.4975\nNUAK2;ROCK2;STK17A;LIMK2;STK17B;TAOK1;DAPK3;ULK3;TEK;EPHA2"
+  },
+  {
+    "objectID": "gene-start-here.html#dissimilar",
+    "href": "gene-start-here.html#dissimilar",
+    "title": "Start Here",
+    "section": "4. Dissimilar",
+    "text": "4. Dissimilar\nLike the analysis for genes that share similar patterns, this analysis can be used to find genes that share distinctly dissimilar patterns; that is, genes that have an inverse correlation of dependences. Simply stated, the cells that care about ROCK1 deletion do not care about deletion of these genes, implying an inverse or opposing relationship. In the Dependency Score Example heatmap schematic above, ROCK1 is gene X, and genes with dissimilar patterns would be genes D, E, and F. The 16 genes that show inverse genetic dependencies to ROCK1 and are below 2 standard deviations away from the resampled mean are:\n\n\n\n\n\n\n  \n  \n    \n      fav_gene\n      gene\n      name\n      z_score\n      r2\n      concept_count\n      concept_index\n    \n  \n  \n    ROCK1\nFAM32A\nFamily with sequence similarity 32 member a\n-2.0\n-0.16\n3\n0\n    ROCK1\nMSN\nMoesin\n-2.0\n-0.16\n165\n13\n    ROCK1\nC1D\nC1d nuclear receptor corepressor\n-2.0\n-0.16\n5\n0\n    ROCK1\nAGAP6\nArfgap with gtpase domain, ankyrin repeat and ph domain 6\n-2.0\n-0.16\n0\n0\n    ROCK1\nNPM1\nNucleophosmin 1\n-2.0\n-0.16\n93\n7\n    ROCK1\nWDR12\nWd repeat domain 12\n-2.2\n-0.17\n5\n0\n    ROCK1\nNEDD8\nNedd8 ubiquitin like modifier\n-2.2\n-0.17\n19\n1\n    ROCK1\nMRE11\nMre11 homolog, double strand break repair nuclease\n-2.2\n-0.17\n25\n2\n    ROCK1\nSSR4\nSignal sequence receptor subunit 4\n-2.3\n-0.18\n2\n0\n    ROCK1\nRABGGTB\nRab geranylgeranyltransferase subunit beta\n-2.3\n-0.18\n7\n1\n  \n  \n  \n\n\n\n\nThese 0 genes were also queried for gene set enrichment, and the gene sets and pathways with the strongest statistical significance are shown. Simply stated, these are the pathways that best represent the list of genes that have inverse genetic dependencies.\n\n\n\n\n\n\n  \n  \n    \n      Gene Set\n      Gene List\n      Overlap\n      Adjusted p-value\n    \n  \n  \n    HomoloGene\nEukaryota: Organisms with membrane bound nuclues and organelles\n110/2484\n1.078989e-23\n    MGI Mammalian Phenotype Level 4 2019\nMP:0011100 preweaning lethality, complete penetrance\n81/1400\n7.512758e-22\n    Jensen TISSUES\nBTO:0005453\n204/7164\n7.706739e-22\n    Jensen COMPARTMENTS\nMacromolecular complex\n154/4527\n7.315059e-21\n    ENCODE and ChEA Consensus TFs from ChIP-X\nTAF1 ENCODE\n122/3346\n2.281769e-18\n    Jensen TISSUES\nBTO:0004410\n229/9290\n1.124728e-17\n    Jensen TISSUES\nB-lymphocyte\n212/8270\n1.730982e-17\n    Jensen TISSUES\nCervical carcinoma cell\n152/4876\n1.730982e-17\n    Jensen TISSUES\nIntestine\n159/5377\n1.792181e-16\n    Jensen TISSUES\nNatural killer cell\n229/9530\n1.792181e-16\n  \n  \n  \n\n\n\n\nHow to interpret these genes and pathways is more variable than the positively correlated genes and pathways. In some cases, a negative regulator of a gene has a negative correlation with that gene, such as in this example with ROCK1 and its negative regulator . In other cases, opposing pathways are shown, contrasting the ROCK1 enriched pathway term “Crizotinib” with the dissimilar enriched pathway term “Protein complex”, revealing two opposing biological pathways."
+  },
+  {
+    "objectID": "gene-start-here.html#graph",
+    "href": "gene-start-here.html#graph",
+    "title": "Start Here",
+    "section": "5. Graph",
+    "text": "5. Graph\nIdentifying genes that share similar patterns of dependency to a queried unknown gene generates strong hypotheses about new functional annotations and maps to new pathways. However, the strength of the hypothesis cannot be fully inferred from single gene list. If a new gene is associated with the queried gene, then you might infer a functional relationship. However, if you inspect the top 10 genes with the queried gene, then inspect the top 10 genes of each of those, building a functional network graph of the top related genes might reveal a stronger association of the new gene with your queried gene and its top ranked genes.\n\n\n\n\n\n\n\nvisNetwork\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe image here is a representative static, albeit busy, network graph; data presented on datadrivenhypothesis.org is an interactive image that can be zoomed, dragged, and manipulated for data exploration."
+  },
+  {
+    "objectID": "gene-query.html",
+    "href": "gene-query.html",
+    "title": "Gene Query",
+    "section": "",
+    "text": "How do we identify new protein functions for proteins? If we have a hypothesis about the little orange protein, we might go to the lab to test it in order to see if it interacts with somebody or see if it participates in a process that we happen to study.\nThere are a lot of different approaches that we can take in order to identify the function for these proteins. But again, all of these are hypothetical and require this direct testing in the lab. Now we can expand this concept from the single orange protein to all of the proteins in the cell, and it turns out that functionally mapping human genes to pathways, it still remains a major biomedical goal.\nI imagine that most readers are working towards a goal that looks something like this: you have a gene, or a protein, or a process that you’re trying to better understand what it could be doing in your system. The question that that is driving this project is how can we save time when testing a new idea?\nThis project is primarily centered around a single question:\nWhat does [insert favorite gene] do?\nOf course, the answers are much more complicated than the single question. But, this question serves as a starting-point for inquiry."
+  },
+  {
+    "objectID": "gene-information.html",
+    "href": "gene-information.html",
+    "title": "1  Gene Information",
+    "section": "",
+    "text": "This section provides details about the information tab for a gene query. In each case, the gene ROCK1 will be used to show an example of the output."
+  },
+  {
+    "objectID": "gene-information.html#sec-gene",
+    "href": "gene-information.html#sec-gene",
+    "title": "1  Gene Information",
+    "section": "1.1 Gene",
+    "text": "1.1 Gene\n\n1.1.1 Summary\nQuerying ROCK1 (official gene symbol) generates a short summary of the gene, its name and list of aliases, and an Entrez gene summary paragraph when available.\nGene: ROCK1\nName: Rho associated coiled-coil containing protein kinase 1\naka: p160ROCK\nEntrez ID: 6093\nThis gene encodes a protein serine/threonine kinase that is activated when bound to the GTP-bound form of Rho. The small GTPase Rho regulates formation of focal adhesions and stress fibers of fibroblasts, as well as adhesion and aggregation of platelets and lymphocytes by shuttling between the inactive GDP-bound form and the active GTP-bound form. Rho is also essential in cytokinesis and plays a role in transcriptional activation by serum response factor. This protein, a downstream effector of Rho, phosphorylates and activates LIM kinase, which in turn, phosphorylates cofilin, inhibiting its actin-depolymerizing activity. A pseudogene, related to this gene, is also located on chromosome 18. [provided by RefSeq, Aug 2015]\n\n\n1.1.2 Ideogram\n\n\n\n\n\nThe ideogram plot is a custom image built to show the location of each gene on the human chromosome. The round gray circle depicts the position of centromere and the banding patterns are depicted in their known positions. The queried gene location is shown.\n\n\n1.1.3 GO Pathways\n\n\n# A tibble: 0 × 5\n# … with 5 variables: pathway <chr>, go <chr>, data <list>, count <int>,\n#   def <chr>\n\n\nThe pathway list is generated by querying the target gene against GO pathways."
+  },
+  {
+    "objectID": "gene-information.html#sec-protein",
+    "href": "gene-information.html#sec-protein",
+    "title": "1  Gene Information",
+    "section": "1.2 Protein",
+    "text": "1.2 Protein\n\n1.2.1 Size\n\n\n\n\n\n\n\n1.2.2 Sequence\n\n\n\n\n\n\n\n\n\n\n1.2.3 Signature\n\n\n\n\n\n\n\n1.2.4 Structure"
+  },
+  {
+    "objectID": "gene-information.html#sec-literature",
+    "href": "gene-information.html#sec-literature",
+    "title": "1  Gene Information",
+    "section": "1.3 Literature",
+    "text": "1.3 Literature"
+  },
+  {
+    "objectID": "gene-query.html#search",
+    "href": "gene-query.html#search",
+    "title": "Gene Query",
+    "section": "Search",
+    "text": "Search\nIn order to identify the functional annotation of a single gene, begin with a query. Entering a single gene in the search box produces a series of tables and plots that identifies a functional map of the processes that gene might be involved in. In some cases, querying a gene with known functions will identify genes with well-established connections to the query gene; in other cases, new genes and new biological process might be identified, suggesting there is more to discover for well-known pathways. Querying unknown genes is especially powerful, as the associated genes and pathways provide a starting point for an otherwise difficult problem to prioritize experimentally."
+  },
+  {
+    "objectID": "start-here.html#search",
+    "href": "start-here.html#search",
+    "title": "Start Here",
+    "section": "Search",
+    "text": "Search\n\nGene Search\nThe easiest way to start is to type a gene (or protein) symbol into the search box. Typing a single gene Into the search panel will then look up this chain against genes and proteins. It will return a list of best matches, which can then be selected for further query. Beyond a single gene, this application can handle pathways or multi gene queries. To search a pathway, type the pathway name into the search just as you would a gene inquiry. If you have a specific GO number for the pathway, you can also type this in. Lastly, you can simply type in a custom set of genes that you want to query.\n\n\nCell Line Search\nSimilar to a gene query, you can also search for a cell line of interest. Approximately 1000 cell lines are included in this resource. Simply type the name of a single cell line and the app will return a list of best matches. Additionally, users can search for a cell lineage or linear subtype, which is a collection of defined cells. Finally, a custom set of cells can also be queried.\n\n\nCompound Search\nA compound search consists of either a drug or metabolite. This unique search type will return information about the compound. Furthermore, it will return information about the genes that are known to handle the metabolite, or are targeted by the compound. Like the other search types, defined lists of compounds can be queried for a metabolic pathway, or a common mechanism of action for drugs. Lastly a custom set of drugs or metabolites can be queried."
+  },
+  {
+    "objectID": "start-here.html#example-searches",
+    "href": "start-here.html#example-searches",
+    "title": "Start Here",
+    "section": "Example Searches",
+    "text": "Example Searches\n\n\n\nSearch for genes\n\n  A single gene, such as TP53 or BRCA1\n  A pathway name, such as cholesterol, which will lead you to Cholesterol Biosynthetic Process\n  The Gene Ontology biological process identifier, such as 1901989, which will find Pathway: Positive Regulation Of Cell Cycle Phase Transition (GO:1901989)\n  A custom list of genes (separated by commas), such as BRCA1, BRCA2, which will search a custom gene list"
+  },
+  {
+    "objectID": "start-here.html#read-the-manual",
+    "href": "start-here.html#read-the-manual",
+    "title": "Start Here",
+    "section": "Read the manual",
+    "text": "Read the manual\nThis manual serves as a guide to queries, and provides deeper context and more robust statistical descriptions of data analysis workflows. This manual can be navigated like the website, focusing on a specific type of query, and then exploring the pre-computed analyses presented to the user."
+  },
+  {
+    "objectID": "start-here.html#get-lucky",
+    "href": "start-here.html#get-lucky",
+    "title": "Start Here",
+    "section": "Get Lucky",
+    "text": "Get Lucky\nIn an homage to Google’s infamous “I’m feeling lucky” button on their homepage, we provide a similar button to randomly pull a gene from a defined list and serve it to the user.\nThe list of genes was chosen based on strong dependency scores, co-essentiality with known genes, and co-essentiality with unknown genes. The known and unknown genes were defined by calculating the co-publication count of each pair of genes for all genes, and then normalizing a co-publication score for a single gene query. To be included in the ‘surprise me’ list, the gene needed to have at least one gene with greater than 0.9 relative co-publication score (serving as a positive control) and one gene with less than 0.1 relative co-publication score. In this way, new associations might be found by clicking “get lucky”"
+  },
+  {
+    "objectID": "gene-expression.html",
+    "href": "gene-expression.html",
+    "title": "2  Gene Expression",
+    "section": "",
+    "text": "This section provides details about the expression tab for a gene query. In each case, the gene ROCK1 will be used to show an example of the output."
+  },
+  {
+    "objectID": "gene-expression.html#sec-subcellular-location",
+    "href": "gene-expression.html#sec-subcellular-location",
+    "title": "2  Gene Expression",
+    "section": "2.1 Subcellular Location",
+    "text": "2.1 Subcellular Location"
+  },
+  {
+    "objectID": "gene-expression.html#sec-cell-line-expression",
+    "href": "gene-expression.html#sec-cell-line-expression",
+    "title": "2  Gene Expression",
+    "section": "2.2 Cell Line Expression",
+    "text": "2.2 Cell Line Expression"
+  },
+  {
+    "objectID": "gene-expression.html#sec-tissue-distribution",
+    "href": "gene-expression.html#sec-tissue-distribution",
+    "title": "2  Gene Expression",
+    "section": "2.3 Tissue Distribution",
+    "text": "2.3 Tissue Distribution"
+  },
+  {
+    "objectID": "gene-compounds.html",
+    "href": "gene-compounds.html",
+    "title": "3  Gene Compounds",
+    "section": "",
+    "text": "This section provides details about the compounds tab for a gene query. In each case, the gene ROCK1 will be used to show an example of the output."
+  },
+  {
+    "objectID": "gene-compounds.html#sec-drugs",
+    "href": "gene-compounds.html#sec-drugs",
+    "title": "3  Gene Compounds",
+    "section": "3.1 Drugs",
+    "text": "3.1 Drugs"
+  },
+  {
+    "objectID": "gene-compounds.html#sec-metabolites",
+    "href": "gene-compounds.html#sec-metabolites",
+    "title": "3  Gene Compounds",
+    "section": "3.2 Metabolites",
+    "text": "3.2 Metabolites\n\n\n# A tibble: 1,280 × 4\n   gene_name metabolite_name        gene_accession metabolite_accession\n   <chr>     <chr>                  <chr>          <chr>               \n 1 ROCK1     Adenosine triphosphate HMDBP01455     HMDB0000538         \n 2 ROCK1     ADP                    HMDBP01455     HMDB0001341         \n 3 ROCK1     DG(14:0/0:0/14:0)      HMDBP01455     HMDB0055952         \n 4 ROCK1     DG(14:0/0:0/14:1n5)    HMDBP01455     HMDB0055959         \n 5 ROCK1     DG(14:0/0:0/15:0)      HMDBP01455     HMDB0055953         \n 6 ROCK1     DG(14:0/0:0/16:0)      HMDBP01455     HMDB0055954         \n 7 ROCK1     DG(14:0/0:0/16:1n7)    HMDBP01455     HMDB0055960         \n 8 ROCK1     DG(14:0/0:0/18:0)      HMDBP01455     HMDB0055955         \n 9 ROCK1     DG(14:0/0:0/18:1n7)    HMDBP01455     HMDB0055961         \n10 ROCK1     DG(14:0/0:0/18:1n9)    HMDBP01455     HMDB0055962         \n# … with 1,270 more rows"
+  },
+  {
+    "objectID": "gene-compounds.html#sec-graph",
+    "href": "gene-compounds.html#sec-graph",
+    "title": "3  Gene Compounds",
+    "section": "3.3 Graph",
+    "text": "3.3 Graph"
+  },
+  {
+    "objectID": "validation.html",
+    "href": "validation.html",
+    "title": "Validation",
+    "section": "",
+    "text": "In order to identify the functional annotation of a single gene, begin with a query. Entering a single gene in the search box produces a series of tables and plots that identifies a functional map of the processes that gene might be involved in. In some cases, querying a gene with known functions will identify genes with well-established connections to the query gene; in other cases, new genes and new biological process might be identified, suggesting there is more to discover for well-known pathways. Querying unknown genes is especially powerful, as the associated genes and pathways provide a starting point for an otherwise difficult problem to prioritize experimentally."
+  }
+]

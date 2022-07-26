@@ -1,0 +1,12 @@
+```{r}
+#| label: 
+#| echo: false
+#| message: false
+#| warning: false
+#| eval: !expr as.logical(params$private)
+
+fun
+
+description <- "This plot is a ..."
+```
+`r if(params$private == "true"){description} else {private_message_md}`  

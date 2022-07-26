@@ -1,0 +1,12 @@
+```{r}
+#| label: cell-dependency-table
+#| echo: false
+#| message: false
+#| warning: false
+#| eval: !expr as.logical(params$private)
+
+make_dep_table(input = list(type = "gene", content = params$content))
+
+description <- "To identify the genes at the tails of the plots, a dependency table will show the ranked genes by dependency score."
+```
+`r if(params$private == "true"){description} else {private_message_md}`  

@@ -1,0 +1,10 @@
+# Gene Compounds {#sec-gene-compounds}
+## Drugs {#sec-drugs}
+{{< include _gene-drugs.qmd >}}  
+  
+## Metabolites {#sec-metabolites}
+{{< include _gene-metabolites.qmd >}}  
+  
+## Graph {#sec-graph}
+{{< include _gene-bipartite.qmd >}}  
+  

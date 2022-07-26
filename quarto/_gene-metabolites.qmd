@@ -1,0 +1,9 @@
+```{r}
+#| label: gene-metabolites
+#| echo: false
+#| message: false
+#| warning: false
+
+make_metabolite_table(input = list(type = "gene", content = params$content))
+```
+The metabolite table is a...

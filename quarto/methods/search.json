@@ -1,0 +1,121 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Data-driven Hypothesis",
+    "section": "",
+    "text": "Imagine interrogating 100s of GBs of data by simply querying your gene of interest to develop a hypothesis before testing it. This is data-driven hypothesis.\n\n\n\nIdentifying the key functions of human genes is a major biomedical research goal. While some genes are very well-studied, most human genes we know little about. Mapping a broad set of gene functions en masse is currently not possible, and therefore most scientific research proceeds with a one-gene-at-a-time approach. While this reductionist approach has guided the scientific methods for hundreds of years, the volume, complexity, and sophistication of modern science necessitate alternative approaches.\nCurrent incentives in science encourage study of a few genes, where many of the ~20,000 genes remain understudied.\n\n\n\n\n\nNumber of publications per human gene\n\n\n\n\n\n\n\nNew tools in Data Science – a combination of computer programming, math & statistics, and topical expertise – combined with the rapid adoption of open science and data sharing allow scientists to access publicly available datasets and interrogate these data before performing any experiments.\nSuch tools allow researchers to identify new hypotheses for well-studied genes, or new processes for un-annotated genes. Indeed, most human genes are poorly studied, perhaps because of the intractability to study them with no prior knowledge.\nThis project aims to address this challenge. Welcome to data-driven hypothesis.\nThe overall goal of the data-driven hypothesis (DDH) project is to use new tools in Data Science to generate hypotheses supported by data that can be tested in the lab. Several high-quality, publicly available datasets are published online and made available with Creative Commons Attribution 4.0 International (CC BY 4.0) licenses. The advent and rapid adoption of data-sharing platforms, such as figshare.com have provided high-quality data sets for public interrogation.\nThis project began as an extension of a simple and common concept called pattern recognition – looking for patterns in large datasets that might reveal similarities between common genes. As one simple example, common gene expression patterns can be revealed using gene co-expression analysis. When a gene of unknown function is identified, one strategy to learn something about the new gene is to identify shared patterns of expression with other genes. If unknown Gene X is expressed with known genes A, B, and C, then you can infer that Gene X might be part of a functional module with A, B, C. This approach is particularly powerful when genes A, B, and C are part of a known biological pathway, which leads to the hypothesis that Gene X might also be part of that same pathway.\n\n\n\n\n\nHeatmap label\n\n\n\n\nBeyond this simple example, we aim to leverage several different types of data glean information about known and unknown genes. We present here a comprehensive resource for mapping the structure or function of thousands of genes across the human genome. Importantly, this method integrates several data types, including gene essentiality, gene expression, and literature mining to identify candidate functions of known or unknown genes. The DDH project holds tremendous promise to generate hypotheses, data, and knowledge in order to provide a deep understanding of the dynamic properties of an organism. We provide this resource via an intuitive online interface, which will provide the scientific community a platform to query and prioritize experimental hypotheses to test in the lab.\n\n\n\nLike the proverbial man searching for his lost keys under the lamp post because the light shines there, searching for biological truths often occurs under ‘lamp posts’ because that’s where scientists can see. But what if your keys are not under the light? Or your gene is totally unknown? What do you do?\nThe scientific method has guided scientific minds for hundreds of years, starting with a question, followed by a hypothesis, and then an experimental path to test the prediction. While hypotheses are the bedrock of science, the volume, complexity, and sophistication of modern science necessitate new methods to generate hypotheses.\nNew tools in Data Science – a combination of computer programming, math & statistics, and topical expertise – combined with the rapid adoption of open science and data sharing allow scientists to access publicly available datasets and interrogate these data before performing any experiments.\nImagine having strong data to support your new hypothesis before testing it. This is data-driven hypothesis."
+  },
+  {
+    "objectID": "start-here.html",
+    "href": "start-here.html",
+    "title": "Start Here",
+    "section": "",
+    "text": "Data-driven Hypothesis homepage\n“If you didn’t know what your gene does, what’s the first experiment you would do?”\ngoogle it.\nthe future of search is niche\nThe data-driven hypothesis project"
+  },
+  {
+    "objectID": "start-here.html#search",
+    "href": "start-here.html#search",
+    "title": "Start Here",
+    "section": "Search",
+    "text": "Search\n\nGene Search\nThe easiest way to start is to type a gene (or protein) symbol into the search box. Typing a single gene Into the search panel will then look up this chain against genes and proteins. It will return a list of best matches, which can then be selected for further query. Beyond a single gene, this application can handle pathways or multi gene queries. To search a pathway, type the pathway name into the search just as you would a gene inquiry. If you have a specific GO number for the pathway, you can also type this in. Lastly, you can simply type in a custom set of genes that you want to query.\n\n\nCell Line Search\nSimilar to a gene query, you can also search for a cell line of interest. Approximately 1000 cell lines are included in this resource. Simply type the name of a single cell line and the app will return a list of best matches. Additionally, users can search for a cell lineage or linear subtype, which is a collection of defined cells. Finally, a custom set of cells can also be queried.\n\n\nCompound Search\nA compound search consists of either a drug or metabolite. This unique search type will return information about the compound. Furthermore, it will return information about the genes that are known to handle the metabolite, or are targeted by the compound. Like the other search types, defined lists of compounds can be queried for a metabolic pathway, or a common mechanism of action for drugs. Lastly a custom set of drugs or metabolites can be queried."
+  },
+  {
+    "objectID": "start-here.html#example-searches",
+    "href": "start-here.html#example-searches",
+    "title": "Start Here",
+    "section": "Example Searches",
+    "text": "Example Searches\n\n\n\nSearch for genes\n\n  A single gene, such as TP53 or BRCA1\n  A pathway name, such as cholesterol, which will lead you to Cholesterol Biosynthetic Process\n  The Gene Ontology biological process identifier, such as 1901989, which will find Pathway: Positive Regulation Of Cell Cycle Phase Transition (GO:1901989)\n  A custom list of genes (separated by commas), such as BRCA1, BRCA2, which will search a custom gene list"
+  },
+  {
+    "objectID": "start-here.html#read-the-manual",
+    "href": "start-here.html#read-the-manual",
+    "title": "Start Here",
+    "section": "Read the manual",
+    "text": "Read the manual\nThis manual serves as a guide to queries, and provides deeper context and more robust statistical descriptions of data analysis workflows. This manual can be navigated like the website, focusing on a specific type of query, and then exploring the pre-computed analyses presented to the user."
+  },
+  {
+    "objectID": "start-here.html#get-lucky",
+    "href": "start-here.html#get-lucky",
+    "title": "Start Here",
+    "section": "Get Lucky",
+    "text": "Get Lucky\nIn an homage to Google’s infamous “I’m feeling lucky” button on their homepage, we provide a similar button to randomly pull a gene from a defined list and serve it to the user.\nThe list of genes was chosen based on strong dependency scores, co-essentiality with known genes, and co-essentiality with unknown genes. The known and unknown genes were defined by calculating the co-publication count of each pair of genes for all genes, and then normalizing a co-publication score for a single gene query. To be included in the ‘surprise me’ list, the gene needed to have at least one gene with greater than 0.9 relative co-publication score (serving as a positive control) and one gene with less than 0.1 relative co-publication score. In this way, new associations might be found by clicking “get lucky”"
+  },
+  {
+    "objectID": "gene-query.html",
+    "href": "gene-query.html",
+    "title": "Gene Query",
+    "section": "",
+    "text": "#| label: setup\n#| include: false\n\nlibrary(here)\n#LOAD LIBRARIES-----\nsource(here::here(\"code\", \"install_libraries.R\"))\n\n#LOAD DATA-----\nsource(here::here(\"code\", \"app_params.R\"))\nsource(here::here(\"code\", \"generate_colors.R\"))\nsource(here::here(\"code\", \"app_data.R\"))\n\n#FUNCTIONS-----\n#common functions\nsource(here::here(\"code\", \"fun_search.R\"), local = TRUE)\nsource(here::here(\"code\", \"fun_helper.R\"), local = TRUE)\nsource(here::here(\"code\", \"fun_tables.R\"), local = TRUE)\nsource(here::here(\"code\", \"fun_plots.R\"), local = TRUE)\nsource(here::here(\"code\", \"fun_graphs.R\"), local = TRUE)\nsource(here::here(\"code\", \"fun_reports.R\"), local = TRUE)\nsource(here::here(\"code\", \"fun_text.R\"), local = TRUE)\nsource(here::here(\"code\", \"fun_colors.R\"), local = TRUE)\nsource(here::here(\"code\", \"fun_ggplot_theme.R\"), local = TRUE)\n\n#CURRENT-RELEASE-----\nsource(here::here(\"code\", \"current_release.R\"), local = TRUE) #this gets me data sources\n\n#GET PRIVATE MESSAGES-----\nsource(here::here(\"code\", \"private.R\"))\nHow do we identify new protein functions for proteins? If we have a hypothesis about the little orange protein, we might go to the lab to test it in order to see if it interacts with somebody or see if it participates in a process that we happen to study.\nThere are a lot of different approaches that we can take in order to identify the function for these proteins. But again, all of these are hypothetical and require this direct testing in the lab. Now we can expand this concept from the single orange protein to all of the proteins in the cell, and it turns out that functionally mapping human genes to pathways, it still remains a major biomedical goal.\nI imagine that most readers are working towards a goal that looks something like this: you have a gene, or a protein, or a process that you’re trying to better understand what it could be doing in your system. The question that that is driving this project is how can we save time when testing a new idea?\nThis project is primarily centered around a single question:\nWhat does [insert favorite gene] do?\nOf course, the answers are much more complicated than the single question. But, this question serves as a starting-point for inquiry."
+  },
+  {
+    "objectID": "gene-query.html#search",
+    "href": "gene-query.html#search",
+    "title": "Gene Query",
+    "section": "Search",
+    "text": "Search\nIn order to identify the functional annotation of a single gene, begin with a query. Entering a single gene in the search box produces a series of tables and plots that identifies a functional map of the processes that gene might be involved in. In some cases, querying a gene with known functions will identify genes with well-established connections to the query gene; in other cases, new genes and new biological process might be identified, suggesting there is more to discover for well-known pathways. Querying unknown genes is especially powerful, as the associated genes and pathways provide a starting point for an otherwise difficult problem to prioritize experimentally."
+  },
+  {
+    "objectID": "gene-information.html",
+    "href": "gene-information.html",
+    "title": "1  Gene Information",
+    "section": "",
+    "text": "#| label: gene-summary\n#| echo: false\n#| message: false\n#| warning: false\n\n\nQuerying r params$content (official gene symbol) generates a short summary of the gene, its name and list of aliases, and an Entrez gene summary paragraph when available.\nGene: r summary_gene(input = list(content = params$content), var = \"approved_symbol\")\nName: r summary_gene(input = list(content = params$content), var = \"approved_name\")\naka: r summary_gene(input = list(content = params$content), var = \"aka\")\nEntrez ID: r as.integer(summary_gene(input = list(content = params$content), var = \"ncbi_gene_id\"))\nr summary_gene(input = list(content = params$content), var = \"entrez_summary\")\n\n\n\n#| label: gene-ideogram-legend\n#| echo: false\n#| message: false\n#| warning: false\n\nfig_legend <- \"make_ideogram(legend = TRUE)\"\n#| label: gene-ideogram\n#| echo: false\n#| message: false\n#| warning: false\n#| fig-cap: !expr fig_legend\n\nmake_ideogram(input = list(type = params$type, content = params$content))\nThe ideogram plot is a custom image built to show the location of each gene on the human chromosome. The round gray circle depicts the position of centromere and the banding patterns are depicted in their known positions. The location of the queried gene, in this example r params$content, is labeled.\n\n\n\n#| label: gene-pathways\n#| echo: false\n#| message: false\n#| warning: false\n\n#pathways\npathways <- make_pathway_list(input = list(content = params$content))\nr gt::gt(pathways) The pathway list is generated by querying the target gene against GO pathways."
+  },
+  {
+    "objectID": "gene-information.html#sec-protein",
+    "href": "gene-information.html#sec-protein",
+    "title": "1  Gene Information",
+    "section": "1.2 Protein",
+    "text": "1.2 Protein\n\n1.2.1 Size\n#| label: protein-size-legend\n#| echo: false\n#| message: false\n#| warning: false\n\nfig_legend <- \"make_proteinsize(legend = TRUE)\"\n#| label: protein-size-height\n#| echo: false\n#| message: false\n#| warning: false\n\nh <- length(unique(params$content)) * 1.36 + .9\n#| label: protein-size\n#| echo: false\n#| message: false\n#| warning: false\n#| fig-height: !expr h\n#| fig-cap: !expr fig_legend\n\nsource(here::here(\"code\", \"fun_plots.R\"))\nmake_proteinsize(input = list(content = params$content))\nThe size plot is a …\n\n\n1.2.2 Sequence\n#| label: protein-sequence-legend\n#| echo: false\n#| message: false\n#| warning: false\n\nfig_legend <- \"make_sequence(legend = TRUE)\"\n#| label: protein-sequence\n#| echo: false\n#| message: false\n#| warning: false\n#| fig-cap: !expr fig_legend\n\nsource(here::here(\"code\", \"fun_plots.R\"))\nmake_sequence(input = list(content = params$content))\nmake_protein_domain(input = list(content = params$content))\nThe size plot is a …\n\n\n1.2.3 Signature\n#| label: protein-signature-legends\n#| echo: false\n#| message: false\n#| warning: false\n\nradial_legend <- \"make_radial(legend = TRUE)\"\n\n#| label: protein-signature\n#| echo: false\n#| message: false\n#| warning: false\n#| eval: !expr as.logical(params$private)\n#| fig-width: 13\n#| fig-height: 9\n#| fig-cap: !expr radial_legend\n\nmake_radial(input = list(content = params$content))\n\ndescription <- \"The size plot is a ...\"\n\n#how to handle multiple images in a child chunk\nr if(params$private == \"true\"){description} else {private_message_md}\n\n\n1.2.4 Structure\n#| label: protein-structure\n#| echo: false\n#| message: false\n#| warning: false\n\npath <- make_structure(input = list(content = params$content))\nThe size plot is a …"
+  },
+  {
+    "objectID": "gene-information.html#sec-literature",
+    "href": "gene-information.html#sec-literature",
+    "title": "1  Gene Information",
+    "section": "1.3 Literature",
+    "text": "1.3 Literature\n#| label: literature\n#| echo: false\n#| message: false\n#| warning: false\n\nmake_pubmed(input = list(type = params$type, content = params$content))\nThe literature plot is a…"
+  },
+  {
+    "objectID": "gene-expression.html",
+    "href": "gene-expression.html",
+    "title": "2  Gene Expression",
+    "section": "",
+    "text": "#| label: gene-cellanatogram\n#| echo: false\n#| message: false\n#| warning: false\n\nmake_cellanatogram(input = list(type = params$type, content = params$content))\n\nThe cellanatogram plot is a …"
+  },
+  {
+    "objectID": "gene-expression.html#sec-cell-line-expression",
+    "href": "gene-expression.html#sec-cell-line-expression",
+    "title": "2  Gene Expression",
+    "section": "2.2 Cell Line Expression",
+    "text": "2.2 Cell Line Expression\n#| label: gene-cellexpression\n#| echo: false\n#| message: false\n#| warning: false\n\nmake_cellexpression(input = list(type = params$type, content = params$content))\n\nThe cell expression plot is a …"
+  },
+  {
+    "objectID": "gene-expression.html#sec-tissue-distribution",
+    "href": "gene-expression.html#sec-tissue-distribution",
+    "title": "2  Gene Expression",
+    "section": "2.3 Tissue Distribution",
+    "text": "2.3 Tissue Distribution\n#| label: gene-tissuedistribution\n#| echo: false\n#| message: false\n#| warning: false\n\n# source(here::here(\"code\", \"fun_plots.R\"))\n# source(here::here(\"code\", \"fun_ggplot_theme.R\"))\nmake_female_anatogram(input = list(type = params$type, content = params$content))\nmake_tissue(input = list(type = params$type, content = params$content))\nThe gene tissue distribution plot is a …"
+  },
+  {
+    "objectID": "gene-compounds.html",
+    "href": "gene-compounds.html",
+    "title": "3  Gene Compounds",
+    "section": "",
+    "text": "#| label: gene-drugs\n#| echo: false\n#| message: false\n#| warning: false\n\n# make_drug_genes_table(input = list(type = \"gene\", content = params$content))\n\nYOU NEED TO FIX THE FUNCTION BEFORE THIS WORKS  The gene drugs table is a…"
+  },
+  {
+    "objectID": "gene-compounds.html#sec-metabolites",
+    "href": "gene-compounds.html#sec-metabolites",
+    "title": "3  Gene Compounds",
+    "section": "3.2 Metabolites",
+    "text": "3.2 Metabolites\n#| label: gene-metabolites\n#| echo: false\n#| message: false\n#| warning: false\n\nmake_metabolite_table(input = list(type = \"gene\", content = params$content))\nThe metabolite table is a…"
+  },
+  {
+    "objectID": "gene-compounds.html#sec-graph",
+    "href": "gene-compounds.html#sec-graph",
+    "title": "3  Gene Compounds",
+    "section": "3.3 Graph",
+    "text": "3.3 Graph\n#| label: gene-bipartite\n#| echo: false\n#| message: false\n#| warning: false\n\nmake_bipartite_graph(input = list(type = \"gene\", content = params$content))\nThe gene bipartite graph is a…"
+  }
+]

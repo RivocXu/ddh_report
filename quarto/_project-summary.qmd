@@ -1,0 +1,1 @@
+Data-driven hypothesis is a resource for identifying novel functions for human genes developed by the [Hirschey Lab](www.hirscheylab.org). This project leverages several high-quality publicly available datasets, including release `r release` of the [Dependency Map](www.depmap.org) from the [Broad Institute](www.broadinstitute.org).  

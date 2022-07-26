@@ -1,0 +1,9 @@
+```{r}
+#| label: gene-literature
+#| echo: false
+#| message: false
+#| warning: false
+
+make_pubmed(input = list(type = "gene", content = params$content))
+```
+The literature plot is a...

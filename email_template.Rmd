@@ -3,7 +3,9 @@ output: blastula::blastula_email
 params:
   name: there
   type: "gene"
+  subtype: "gene"
   query: "ROCK1"
+  content: "ROCK1"
   private: TRUE
 title: "`r params$content` Report"
 ---
@@ -27,14 +29,20 @@ search_button <- function(private,
     )
   return(cta_button)
 }
+
+#good file name
+  good_file_name <- params$content
+  if (params$subtype == "gene_list" | params$subtype == "compound_list" | params$subtype == "cell_list") {
+    good_file_name <- paste0("custom_", paste0(params$content, collapse="_"))
+  }
 ```
 #### Hey `r params$name`,  
 Attached is the `r params$type` report you requested for `r params$query`. The attached report file contains a zipped directory of:  
 
-- REPORT.html  
-- image.pngs for each of the images in the report, for easy inclusion in presentations or manuscripts  
-- graph.html files for dynamic exploration of graphs  
-
+- `r glue::glue("{good_file_name}_REPORT.html")` 
+- a directory of *figures* for each of the images in the report, to easily include in presentations or manuscripts  
+- graph.html files for dynamic exploration of graphs <- NOT YET  
+  
 Also, you can always head back to the data-driven hypothesis website to explore `r params$query` further by clicking the button below.
 
 `r search_button(private = params$private, type = params$type, query = params$query)`

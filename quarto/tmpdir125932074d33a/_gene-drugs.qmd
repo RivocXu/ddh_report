@@ -1,0 +1,11 @@
+```{r}
+#| label: gene-drugs
+#| echo: false
+#| message: false
+#| warning: false
+
+# make_drug_genes_table(input = list(type = "gene", content = params$content))
+
+```
+**YOU NEED TO FIX THE FUNCTION BEFORE THIS WORKS  **
+The gene drugs table is a...

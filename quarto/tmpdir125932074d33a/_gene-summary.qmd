@@ -1,0 +1,17 @@
+```{r}
+#| label: gene-summary
+#| echo: false
+#| message: false
+#| warning: false
+```
+
+### Summary  
+Querying `r params$content` (official gene symbol) generates a short summary of the gene, its name and list of aliases, and an Entrez gene summary paragraph when available.  
+  
+**Gene**: `r summary_gene(input = list(content = params$content), var = "approved_symbol")`  
+**Name**: `r summary_gene(input = list(content = params$content), var = "approved_name")`  
+**aka**: `r summary_gene(input = list(content = params$content), var = "aka")`  
+**Entrez ID**: `r as.integer(summary_gene(input = list(content = params$content), var = "ncbi_gene_id"))`
+  
+`r summary_gene(input = list(content = params$content), var = "entrez_summary")`  
+

@@ -1,0 +1,10 @@
+```{r}
+#| label: gene-coessentiality-table
+#| echo: false
+#| message: false
+#| warning: false
+
+make_top_table(input = list(type = "gene", content = params$content))
+
+```
+This plot is a...

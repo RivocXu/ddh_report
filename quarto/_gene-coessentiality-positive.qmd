@@ -1,0 +1,10 @@
+```{r}
+#| label: gene-coessentiality-positive
+#| echo: false
+#| message: false
+#| warning: false
+
+make_enrichment_top(input = list(type = "gene", content = params$content))
+
+```
+This plot is a...

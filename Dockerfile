@@ -2,7 +2,7 @@
 FROM rocker/tidyverse
 
 # install packages
-RUN R -e "install.packages(c('blastula', 'glue', 'jsonlite', 'paws'))"
+RUN R -e "install.packages(c('blastula', 'glue', 'here', 'jsonlite', 'paws', 'quarto'))"
 
 # copy everything from the current directory into the container
 COPY / /

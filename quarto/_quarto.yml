@@ -1,0 +1,68 @@
+project:
+  type: book
+  output-dir: methods #this puts the entire book in a methods dir
+
+book:
+  title: "Data-driven Hypothesis"
+  search: true
+  toc: 1
+  number-depth: 1
+  chapters:
+    - index.qmd
+    - start-here.qmd
+    - part: gene-query.qmd
+      chapters:
+        - gene-information.qmd
+        - gene-expression.qmd
+        - gene-compounds.qmd
+        - gene-dependencies.qmd
+        - gene-pathway-query.qmd
+        - gene-custom-query.qmd
+    - part: cell-line-query.qmd
+      chapters: 
+        - cell-information.qmd
+        - cell-expression.qmd
+        - cell-compounds.qmd
+        - cell-dependencies.qmd
+        - cell-lineage-query.qmd
+        - custom-cells-query.qmd
+    - part: compound-query.qmd
+      chapters: 
+        - compound-information.qmd
+        - compound-expression.qmd
+        - compound-metabolites.qmd
+        - compound-dependencies.qmd
+        - moa-query.qmd
+        - custom-compound-query.qmd
+    - downloads.qmd
+    - validation.qmd
+  appendices:
+    - references.qmd
+    - resources.qmd
+    - developer.qmd
+  page-navigation: true
+  page-footer: 
+    left: "Copyright CC0" 
+    right: 
+      - icon: github
+        href: https://github.com/matthewhirschey/ddh.org 
+      - icon: twitter 
+        href: https://twitter.com/ddhypothesis 
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+
+execute: 
+  cache: true
+  echo: false
+  message: false
+  warning: false
+
+params:
+  type: "gene"
+  subtype: "gene"
+  content: "ROCK1"
+  private: "true"

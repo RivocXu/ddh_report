@@ -1,0 +1,14 @@
+{
+  "hash": "e896165098ebcd91724737ab8746c40b",
+  "result": {
+    "markdown": "# Gene Expression {#sec-gene-expression}\n\n\n`<!-- quarto-file-metadata: eyJpbmNsdWRlX2RpcmVjdG9yeSI6Ii4ifQ== -->`{=html}\n\n```{=html}\n<!-- quarto-file-metadata: eyJpbmNsdWRlX2RpcmVjdG9yeSI6Ii4ifQ== -->\n```\n\n\n\n\n\n`<!-- quarto-file-metadata: eyJjbGVhcl9pbmNsdWRlX2RpcmVjdG9yeSI6dHJ1ZX0= -->`{=html}\n\n```{=html}\n<!-- quarto-file-metadata: eyJjbGVhcl9pbmNsdWRlX2RpcmVjdG9yeSI6dHJ1ZX0= -->\n```\n\n\n\n`<!-- quarto-file-metadata: eyJpbmNsdWRlX2RpcmVjdG9yeSI6Ii4ifQ== -->`{=html}\n\n```{=html}\n<!-- quarto-file-metadata: eyJpbmNsdWRlX2RpcmVjdG9yeSI6Ii4ifQ== -->\n```\n\n\n\n\n\n`<!-- quarto-file-metadata: eyJjbGVhcl9pbmNsdWRlX2RpcmVjdG9yeSI6dHJ1ZX0= -->`{=html}\n\n```{=html}\n<!-- quarto-file-metadata: eyJjbGVhcl9pbmNsdWRlX2RpcmVjdG9yeSI6dHJ1ZX0= -->\n```\n\n\nThis section provides details about the expression tab for a gene query. In each case, the gene ROCK1 will be used to show an example of the output.\n\n## Subcellular Location {#sec-subcellular-location}\n\n::: {.cell hash='gene-expression_cache/html/gene-cellanatogram_1298dd5e8de40679aa4ddd32b6ee3fa4'}\n::: {.cell-output-display}\n![](gene-expression_files/figure-html/gene-cellanatogram-1.png){width=672}\n:::\n:::\n\n\n## Cell Line Expression {#sec-cell-line-expression}\n\n::: {.cell hash='gene-expression_cache/html/gene-ideogram_eb77717c98050eddaa0a953f4de2d822'}\n::: {.cell-output-display}\n![](gene-expression_files/figure-html/gene-ideogram-1.png){width=672}\n:::\n:::\n\n\n## Tissue Distribution {#sec-tissue-distribution}\n\n::: {.cell hash='gene-expression_cache/html/gene-tissuedistribution_45f3071f435af1c315ae7e8d403bcd29'}\n::: {.cell-output-display}\n![](gene-expression_files/figure-html/gene-tissuedistribution-1.png){width=672}\n:::\n\n::: {.cell-output-display}\n![](gene-expression_files/figure-html/gene-tissuedistribution-2.png){width=672}\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": null
+  }
+}

@@ -1,0 +1,9 @@
+```{r}
+#| label: gene-bipartite
+#| echo: false
+#| message: false
+#| warning: false
+
+make_bipartite_graph(input = list(type = "gene", content = params$content))
+```
+The gene bipartite graph is a...

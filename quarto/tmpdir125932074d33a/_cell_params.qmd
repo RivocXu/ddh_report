@@ -1,0 +1,6 @@
+```{r}
+unlockBinding("params", env = .GlobalEnv)
+params$type <- "cell"
+params$subtype <- "cell"
+params$content <- "HEPG2"
+```

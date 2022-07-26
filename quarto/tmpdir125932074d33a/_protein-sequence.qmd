@@ -1,0 +1,21 @@
+```{r}
+#| label: protein-sequence-legend
+#| echo: false
+#| message: false
+#| warning: false
+
+fig_legend <- "make_sequence(legend = TRUE)"
+```
+
+```{r}
+#| label: protein-sequence
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: !expr fig_legend
+
+source(here::here("code", "fun_plots.R"))
+make_sequence(input = list(content = params$content))
+make_protein_domain(input = list(content = params$content))
+```
+The size plot is a ...   

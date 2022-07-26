@@ -1,0 +1,10 @@
+```{r}
+#| label: gene-dependency-table
+#| echo: false
+#| message: false
+#| warning: false
+
+make_dep_table(input = list(type = "gene", content = params$content))
+
+```
+To identify the cells at the tails of the plots, a dependency table will show the ranked cells by dependency score, with cell lineage information appended. In some cases, specific cell types or lineages will show consistent patterns of dependency on a gene.  
