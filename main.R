@@ -10,27 +10,37 @@ repeat {
   }
   #if message, then send email, log, and delete message
   if(length(sqs_message$Messages) == 1){
-    #get body attributes
+    #get json body attributes
     attributes <- jsonlite::fromJSON(sqs_message[["Messages"]][[1]][["Body"]])
     
     #send email
-    send_email(first_name = attributes[1],
-               email_address = attributes[2],
-               input = list(type = attributes[3], query = attributes[4], content = attributes[5]),
-               private = as.logical(attributes[6]))
+    send_email(first_name = attributes$first_name,
+               email_address = attributes$email_address,
+               input = list(type = attributes$type, 
+                            query = attributes$query, 
+                            content = attributes$content),
+               private = as.logical(attributes$private))
     
-    #log reports
-    report_tibble <- tibble(
-      first_name = attributes[1],
-      email_address = attributes[2],
-      type = attributes[3], 
-      query = attributes[4], 
-      content = attributes[5],
-      private = as.logical(attributes[6])
+    #make json df
+    json_df <- tibble(
+      first_name = attributes$first_name, 
+      last_name = attributes$last_name, 
+      email_address = attributes$email_address, 
+      type = attributes$type, 
+      query = attributes$query, 
+      content = attributes$content,
+      private = attributes$private)
+
+    #log reports as csv
+    csv_path <- tempfile(fileext = '.csv')
+    write_csv(json_df, csv_path)
+    good_csv_name <- glue::glue('{Sys.Date()}-{as.integer(Sys.time())}.csv') #gives it a unique name
+    s3 <- paws::s3()
+    s3$put_object(
+      Bucket = "ddh-sqs-logs", 
+      Body = csv_path,
+      Key = good_csv_name
     )
-    
-    #db connection
-    #write to db
     
     #consume message
     receipt_handle <- sqs_message$Messages[[1]]$ReceiptHandle

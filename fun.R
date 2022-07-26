@@ -51,6 +51,10 @@ send_email <- function(first_name = "there",
   
   #looks to see if report exists
   report_file <- NULL
+  # s3$head_object(
+  #   Bucket = "ddh-reports", 
+  #   Key = "ADCK3.zip"
+  # )
   # s3 <- paws::s3()
   # report_file <- 
   #   s3$get_object(
@@ -131,3 +135,35 @@ send_email <- function(first_name = "there",
 # send_email(first_name = "John", 
 #            input = list(type = "gene", query = "ROCK2", content = "ROCK2"), 
 #            private = TRUE)
+
+
+get_sqs_report <- function(){
+  s3 <- paws::s3()
+  sqs_list <- 
+    s3$list_objects(Bucket = "ddh-sqs-logs") %>% 
+    purrr::pluck("Contents")
+  
+  query_table <- tibble()
+  
+  for (i in 1:seq_along(sqs_list)) {
+    id <- sqs_list[[i]][["Key"]]
+    
+    csv_object <- 
+      s3$get_object(
+        Bucket = "ddh-sqs-logs", 
+        Key = id
+      ) %>% 
+      purrr::pluck("Body") %>% 
+      rawToChar() %>% 
+      readr::read_csv(., show_col_types = FALSE)
+    
+    query_table <-
+      query_table %>% 
+      dplyr::bind_rows(csv_object)
+    
+    message(glue::glue("retreived query {i}"))
+  }
+  
+  message("finished retreiving queries")
+  
+}
