@@ -1,4 +1,4 @@
-source(here::here("fun.R"))
+source("fun.R")
 message("waiting for messages...")
 repeat {
   #check for message in sqs queue
@@ -28,7 +28,7 @@ repeat {
     good_csv_name <- glue::glue('{Sys.Date()}-{as.integer(Sys.time())}.csv') #gives it a unique name
     s3 <- paws::s3()
     s3$put_object(
-      Bucket = "ddh-sqs-logs", 
+      Bucket = Sys.getenv("AWS_SQS_BUCKET_ID"), 
       Body = csv_path,
       Key = good_csv_name
     )

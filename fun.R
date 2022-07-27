@@ -15,7 +15,7 @@ get_message <- function(){
   #https://github.com/paws-r/paws/blob/main/examples/sqs.R
   sqs <- paws::sqs()
   sqs$receive_message(
-    QueueUrl = "https://sqs.us-east-1.amazonaws.com/344055253315/emailer"
+    QueueUrl = Sys.getenv("AWS_SQS_SERVICE_URL")
   )
   
 }
@@ -23,7 +23,7 @@ get_message <- function(){
 delete_message <- function(receipt_handle){
   sqs <- paws::sqs()
   sqs$delete_message(
-    QueueUrl = "https://sqs.us-east-1.amazonaws.com/344055253315/emailer",
+    QueueUrl = Sys.getenv("AWS_SQS_SERVICE_URL"),
     ReceiptHandle = receipt_handle
   )
   message(glue::glue('Message {str_sub(receipt_handle, 1, 6)} deleted'))
@@ -31,17 +31,23 @@ delete_message <- function(receipt_handle){
 
 #REPORTS-----
 render_report <- function(input = list(), 
-                          private){ #removed output_file
-  #render everything in quarto dir
-  report_base_dir = here::here("quarto")
-  
-  # create a temporary directory and make it our working directory
-  temp_dir <- tempfile(pattern="tmpdir", tmpdir=report_base_dir)
-  dir.create(temp_dir)
-  dir.create(glue::glue('{temp_dir}/figures')) #make a pretty folder for figures
-  owd <- setwd(temp_dir)
+                          private, 
+                          report_dir = NULL){ #removed output_file
+  if(is.null(report_dir)){
+    #render everything in quarto dir
+    report_base_dir = here::here("quarto")
+    # create a temporary directory
+    temp_dir <- tempfile(pattern="tmpdir", tmpdir=report_base_dir)
+    dir.create(temp_dir)
+  } else {
+    temp_dir <- report_dir
+  }
+  #make a pretty folder for figures
+  dir.create(glue::glue('{temp_dir}/figures')) 
+  #make tempdir our working directory
+  owd <- getwd()
+  setwd(temp_dir)
   on.exit(setwd(owd))
-  #delete later #on.exit(unlink(temp_dir, recursive = TRUE))
   
   # copy the qmd file into our temporary(current) directory
   qmd_files_from <- list.files(path = report_base_dir, pattern = "\\.qmd", full.names = TRUE)
@@ -64,6 +70,7 @@ render_report <- function(input = list(),
   quarto::quarto_render(input = here::here(temp_dir, report_template),
                         execute_params = list(type = input$type, 
                                               subtype = input$subtype,
+                                              query = input$query,
                                               content = input$content, 
                                               private = private_var),
                         cache_refresh = TRUE, 
@@ -97,11 +104,9 @@ render_report <- function(input = list(),
   return(final_zip_path)
 }
 
-#render_report(input = list(type = "gene", subtype = "gene", content = "ROCK2"), private = TRUE) #output_file = "temp.zip"
-
-
 make_report <- function(input = list(), 
-                        private){
+                        private, 
+                        report_dir = NULL){
   #set report file to NULL
   report_file <- NULL
   good_file_name <- input$content
@@ -110,11 +115,11 @@ make_report <- function(input = list(),
   }
   report_filename <- glue::glue('{good_file_name}.zip') #"ADCK1.zip"
   
-  #try to update file with path
+  #checks to see if report exists by trying to update report_file with path
   s3 <- paws::s3()
   report_file <- 
     tryCatch({
-      s3$head_object(Bucket = "ddh-reports",
+      s3$head_object(Bucket = Sys.getenv("AWS_REPORT_BUCKET_ID"),
                      Key = report_filename) %>% 
         purrr::pluck("ContentType")}, #"application/zip"
       error = function(e) {
@@ -122,16 +127,18 @@ make_report <- function(input = list(),
       })
   
   if(!is.null(report_file)){ #if report exists on S3
-    
-    #make temp dir
-    report_base_dir = here::here("quarto")
-    temp_dir <- tempfile(pattern="tmpdir", tmpdir=report_base_dir)
-    dir.create(temp_dir)
-    #delete later #on.exit(unlink(temp_dir, recursive = TRUE))
+    if(is.null(report_dir)){
+      #make temp dir
+      report_base_dir = here::here("quarto")
+      temp_dir <- tempfile(pattern="tmpdir", tmpdir=report_base_dir)
+      dir.create(temp_dir)
+    } else {
+      temp_dir <- report_dir
+    }
     
     #download file into temp dir
     report_path <- glue::glue("{temp_dir}/{report_filename}")
-    s3$download_file(Bucket = "ddh-reports",
+    s3$download_file(Bucket = Sys.getenv("AWS_REPORT_BUCKET_ID"),
                      Key = report_filename, 
                      Filename = report_path)
     return(report_path)
@@ -145,8 +152,8 @@ make_report <- function(input = list(),
     #Upload file to s3 so others can use it (i.e. we don't have to make it again)
     s3$put_object(
       Body = as.character(report_path),
-      Bucket = "ddh-reports",
-      Key = as.character(glue::glue('{input$content}.zip'))
+      Bucket = Sys.getenv("AWS_REPORT_BUCKET_ID"),
+      Key = as.character(report_filename) #need as.character because of glue::glue
     )
     return(report_path)
   } else {
@@ -160,10 +167,17 @@ make_report <- function(input = list(),
 
 send_email <- function(first_name,
                        email_address,
-                       input = list(),
+                       input = list(), 
                        private){
+  
+  #make temp dir
+  report_base_dir = here::here("quarto")
+  temp_dir <- tempfile(pattern="tmpdir", tmpdir=report_base_dir)
+  dir.create(temp_dir)
+  
   report_file <- make_report(input = input, 
-                             private = private)
+                             private = private, 
+                             report_dir = temp_dir)
   
   #make pretty https://pkgs.rstudio.com/blastula/reference/index.html#section-email-sending-through-smtp
   email_body <- 
@@ -223,8 +237,8 @@ send_email <- function(first_name,
       )
     )
   #remove old tempdirs
-  temp_dirs <- list.files(here::here("quarto"), pattern = "tmpdir")
-  on.exit(unlink(temp_dirs, recursive = TRUE))
+  #temp_dirs <- list.files(here::here("quarto"), pattern = "tmpdir", full.names = TRUE)
+  on.exit(unlink(temp_dir, recursive = TRUE))
 }
 
 # send_email(first_name = "Matthew",
@@ -236,7 +250,7 @@ send_email <- function(first_name,
 get_sqs_report <- function(){
   s3 <- paws::s3()
   sqs_list <- 
-    s3$list_objects(Bucket = "ddh-sqs-logs") %>% 
+    s3$list_objects(Bucket = Sys.getenv("AWS_SQS_BUCKET_ID")) %>% 
     purrr::pluck("Contents")
   
   query_table <- tibble()
@@ -244,14 +258,23 @@ get_sqs_report <- function(){
   for (i in seq_along(sqs_list)) {
     id <- sqs_list[[i]][["Key"]]
     
-    csv_object <- 
+    object <- 
       s3$get_object(
-        Bucket = "ddh-sqs-logs", 
+        Bucket = Sys.getenv("AWS_SQS_BUCKET_ID"), 
         Key = id
-      ) %>% 
+      ) 
+    
+    timestamp <- 
+      object %>% 
+      purrr::pluck("LastModified")
+    
+    csv_object <- 
+      object %>% 
       purrr::pluck("Body") %>% 
       rawToChar() %>% 
-      readr::read_csv(., show_col_types = FALSE)
+      readr::read_csv(., show_col_types = FALSE) %>% 
+      dplyr::bind_cols(timestamp = timestamp) %>% 
+      dplyr::select(timestamp, everything())
     
     query_table <-
       query_table %>% 

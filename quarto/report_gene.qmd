@@ -5,6 +5,7 @@ format:
 params:
   type: "gene"
   subtype: "gene"
+  query: "ROCK1"
   content: "ROCK1"
   private: "true"
 title: "`r params$content` Report"
