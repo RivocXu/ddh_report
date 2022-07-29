@@ -1,4 +1,10 @@
+#load functions
 source("fun.R")
+
+#load data
+#load here one time vs. each time in setup?
+
+#wait for message
 message("waiting for messages...")
 repeat {
   #check for message in sqs queue

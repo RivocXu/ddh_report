@@ -8,85 +8,118 @@ library(jsonlite)
 library(paws)
 library(quarto)
 library(remotes)
+library(ddh)
 
 #remotes::install_github("matthewhirschey/ddh")
 
-# load_ddh_data(aws_download = TRUE,
+# load_ddh_data(aws_download = FALSE,
 #               app_data_dir = here::here("data"),
 #               privateMode = TRUE)
 
-#' Function to Load All DDH Data Including .RDS Files and Colors
+
+#' Function to download all DDH .Rds files
 #'
-#' @param aws_download Boolean to indicate if data should be downloaded from AWS S3 bucket.
-#' @param overwrite Boolean that deletes the app_data_dir thereby removing files, before remaking dir and downloading all files
 #' @param app_data_dir Data directory path.
+#' @param file_name Optional file name to get a single file; default gets all files in bucket
+#' @param overwrite Boolean that deletes the app_data_dir thereby removing files, before remaking dir and downloading all files
 #' @param privateMode Boolean indicating if private data is required.
 #'
 #' @export
-load_ddh_data <- function(aws_download = FALSE, 
-                          overwrite = FALSE,
-                          app_data_dir = NULL,
-                          privateMode = TRUE) {
-  if(aws_download == TRUE){ 
-    #delete dir to overwrite
-    if(overwrite == TRUE) {
-      unlink(app_data_dir, recursive = TRUE)
-    }
-    #make dir
-    if(!dir.exists(app_data_dir)){
-      dir.create(app_data_dir)
-    }
-    #get_data function
-    get_aws_data <- function(bucket_id){
-      s3 <- paws::s3()
-      bucket_name <- Sys.getenv(bucket_id)
+download_ddh_data <- function(app_data_dir,
+                              file_name = NULL,
+                              overwrite = FALSE,
+                              privateMode = TRUE){
+  #delete dir to overwrite
+  if(overwrite == TRUE) {
+    path <- paste0(app_data_dir, "/", file_name)
+    unlink(path, recursive = TRUE)
+  }
+  #make dir
+  if(!dir.exists(app_data_dir)){
+    dir.create(app_data_dir)
+  }
+  #get_data function
+  get_aws_data <- function(bucket_id, 
+                           file_name){
+    s3 <- paws::s3()
+    bucket_name <- Sys.getenv(bucket_id)
+    data_objects <- 
+      s3$list_objects(Bucket = bucket_name) %>% 
+      purrr::pluck("Contents")
+    
+    print(glue::glue('{length(data_objects)} objects in the {bucket_name} bucket'))
+    
+    #filter list for single object
+    if(!is.null(file_name)){
       data_objects <- 
-        s3$list_objects(Bucket = bucket_name) %>% 
-        purrr::pluck("Contents")
-      
-      print(glue::glue('{length(data_objects)} objects in the {bucket_name} bucket'))
-      
-      for (i in 1:length(data_objects)) {
-        file_name <- data_objects[[i]][["Key"]]
-        #check if files exists
-        if(file.exists(glue::glue("{app_data_dir}/{file_name}"))){
-          print(glue::glue("file already exists: {file_name}"))
-        } else {
-          #if not, thne download
-          s3$download_file(Bucket = bucket_name,
-                           Key = file_name,
-                           Filename = glue::glue("{app_data_dir}/{file_name}"))
-          print(glue::glue("file downloaded: {file_name}"))
-        }
+        data_objects %>% #take full list
+        keep(purrr::map_lgl(.x = 1:length(data_objects), ~ data_objects[[.x]][["Key"]] %in% file_name)) #pass map_lgl to keep to filter names to keep
+      print(glue::glue('filtered to keep only {length(data_objects)}'))
+      }
+    
+    for (i in 1:length(data_objects)) {
+      file_name <- data_objects[[i]][["Key"]]
+      #check if files exists
+      if(file.exists(glue::glue("{app_data_dir}/{file_name}"))){
+        print(glue::glue("file already exists: {file_name}"))
+      } else {
+        #if not, thne download
+        s3$download_file(Bucket = bucket_name,
+                         Key = file_name,
+                         Filename = glue::glue("{app_data_dir}/{file_name}"))
+        print(glue::glue("file downloaded: {file_name}"))
       }
     }
-    #get data
-    get_aws_data(bucket_id = "AWS_DATA_BUCKET_ID")
-    
-    #get private data
-    if(privateMode == TRUE){ get_aws_data(bucket_id = "AWS_DATA_PRIVATE_BUCKET_ID")}
   }
+  #get data
+  get_aws_data(file_name, 
+               bucket_id = "AWS_DATA_BUCKET_ID")
+  
+  #get private data
+  if(privateMode == TRUE){ get_aws_data(file_name, 
+                                        bucket_id = "AWS_DATA_PRIVATE_BUCKET_ID")}
+}
+
+
+#' Function to Load All DDH Data Including .RDS Files and Colors
+#'
+#' @param app_data_dir Data directory path.
+#' @param file_name Optional file name to get a single file; default loads all files
+#' @param privateMode Boolean indicating if private data is required.
+#'
+#' @export
+load_ddh_data <- function(app_data_dir,
+                          file_name = NULL,
+                          privateMode = TRUE) {
   # Load .RDS files
-  load_ddh_rds(app_data_dir = app_data_dir)
+  load_ddh_rds(app_data_dir, 
+               file_name)
   
   # Load colors
   load_ddh_colors()
+  print("loaded colors")
   
+  print("everything loaded")
 }
 
 #' Function to load all DDH .RDS files
 #'
 #' @param app_data_dir Data directory path.
+#' @param file_name Optional file name to get a single file; default loads all files
 #'
 #' @export
-load_ddh_rds <- function(app_data_dir = NULL) {
-  
-  data_files <- list.files(app_data_dir)
+load_ddh_rds <- function(app_data_dir, 
+                         file_name = NULL) {
+  if(is.null(file_name)){
+    data_files <- list.files(app_data_dir)
+  } else {
+    data_files <- file_name
+  }
   
   #file loader constructor
-  load_rds_object <- function(file_name){
-    object_name <- stringr::str_remove(file_name, pattern = "\\.Rds")
-    assign(object_name, readRDS(here::here(app_data_dir, file_name)), 
+  load_rds_object <- function(rds_file){
+    object_name <- stringr::str_remove(rds_file, pattern = "\\.Rds")
+    assign(object_name, readRDS(here::here(app_data_dir, rds_file)), 
            envir = .GlobalEnv)
     print(glue::glue("loaded {object_name}"))
   }
@@ -95,81 +128,8 @@ load_ddh_rds <- function(app_data_dir = NULL) {
   data_files %>% purrr::walk(load_rds_object)
   
   #print done
-  print("loaded them all")
+  print("finished loading")
 }
-
-#' Function to load DDH colors
-#'
-#' @export
-load_ddh_colors <- function() {
-  ## MAIN COLORS -----------------------------------------------------------------
-  ##2EC09C  ## cyan
-  ##BE34EF  ## violet
-  ##E06B12  ## orange
-  ##004AAB  ## blue
-  ##F0CE44  ## yellow
-  ##1785A4  ## blend cyan + blue
-  
-  load_colors <- function() {
-    ## Color sets  for genes
-    color_set_gene <- generate_colors("#2EC09C")  ## cyan
-    #CC is the hex alpha conversion for 80%, so the next line adds it; used in graph
-    color_set_gene_alpha <- purrr::map_chr(color_set_gene, ~ glue::glue_collapse(c(.x, "CC"), sep = ""))
-    
-    ## Palette function for genes
-    color_pal_gene <- grDevices::colorRampPalette(color_set_gene)
-    
-    ## Color sets for proteins
-    color_set_protein <- generate_colors("#004AAB")  ## blue
-    color_set_protein_alpha <- purrr::map_chr(color_set_protein, ~ glue::glue_collapse(c(.x, "CC"), sep = ""))
-    
-    ## Palette function for proteins
-    color_pal_protein <- grDevices::colorRampPalette(color_set_protein)
-    
-    ## Color sets for proteins
-    color_set_geneprotein <- generate_colors("#1785A4")  ## blue
-    color_set_geneprotein_alpha <- purrr::map_chr(color_set_geneprotein, ~ glue::glue_collapse(c(.x, "CC"), sep = ""))
-    
-    ## Palette function for proteins
-    color_pal_geneprotein <- grDevices::colorRampPalette(color_set_geneprotein)
-    
-    ## Color sets for cells
-    color_set_cell <- generate_colors("#BE34EF")  ## violet
-    color_set_cell_alpha <- purrr::map_chr(color_set_cell, ~ glue::glue_collapse(c(.x, "CC"), sep = ""))
-    
-    ## Palette function for cells
-    color_pal_cell <- grDevices::colorRampPalette(color_set_cell)
-    
-    ## Color sets for compounds
-    color_set_compound <- generate_colors("#E06B12")  ## orange
-    color_set_compound_alpha <- purrr::map_chr(color_set_compound, ~ glue::glue_collapse(c(.x, "CC"), sep = ""))
-    
-    ## Palette function for compounds
-    color_pal_compound <- grDevices::colorRampPalette(color_set_compound)
-    
-    return(list(color_set_gene=color_set_gene,
-                color_set_gene_alpha=color_set_gene_alpha,
-                color_pal_gene=color_pal_gene,
-                color_set_protein=color_set_protein,
-                color_set_protein_alpha=color_set_protein_alpha,
-                color_pal_protein=color_pal_protein,
-                color_set_geneprotein=color_set_geneprotein,
-                color_set_geneprotein_alpha=color_set_geneprotein_alpha,
-                color_pal_geneprotein=color_pal_geneprotein,
-                color_set_cell=color_set_cell,
-                color_set_cell_alpha=color_set_cell_alpha,
-                color_pal_cell=color_pal_cell,
-                color_set_compound=color_set_compound,
-                color_set_compound_alpha=color_set_compound_alpha,
-                color_pal_compound=color_pal_compound)
-    )
-  }
-  
-  ddh_colors <- load_colors()
-  list2env(ddh_colors, .GlobalEnv)
-  
-}
-
 
 #MESSAGES-----
 # if needed for testing, send_report_message() is located in ddh package
@@ -218,7 +178,7 @@ render_report <- function(input = list(),
   file.copy(qmd_files_from, qmd_files_to, overwrite = TRUE) #setting wd makes this happen
   
   # set the filename of the qmd file we will use for rendering
-  report_template <- "report_gene.qmd" #glue::glue("report_{input$type}.qmd")
+  report_template <- glue::glue("report_{input$type}.qmd")
   private_var <- if_else(private == TRUE, "true", "false")
   
   #good file names
@@ -267,9 +227,12 @@ render_report <- function(input = list(),
   return(final_zip_path)
 }
 
+#render_report(input = list(type = "gene", subtype = "gene", content = "ROCK2"), private = TRUE)
+
 make_report <- function(input = list(), 
                         private, 
-                        report_dir = NULL){
+                        report_dir = NULL, 
+                        overwrite = FALSE){
   #set report file to NULL
   report_file <- NULL
   good_file_name <- input$content
@@ -288,6 +251,9 @@ make_report <- function(input = list(),
       error = function(e) {
         NULL
       })
+  
+  #overwrite
+  if(overwrite == TRUE){report_file <- NULL} #
   
   if(!is.null(report_file)){ #if report exists on S3
     if(is.null(report_dir)){
@@ -325,7 +291,7 @@ make_report <- function(input = list(),
 }
 
 # make_report(input = list(type = "gene", subtype = "gene", content = "ADCK1"), private = TRUE)
-# make_report(input = list(type = "gene", subtype = "gene", content = "ROCK2"), private = TRUE)
+# make_report(input = list(type = "gene", subtype = "gene", content = "ROCK2"), private = TRUE, overwrite = TRUE)
 
 
 send_email <- function(first_name,
@@ -406,7 +372,7 @@ send_email <- function(first_name,
 
 # send_email(first_name = "Matthew",
 #            email_address = "matthew@hirschey.org",
-#            input = list(type = "gene", subtype = "gene", query = "ROCK1", content = "ROCK1"),
+#            input = list(type = "gene", subtype = "gene", query = "ROCK2", content = "ROCK2"),
 #            private = TRUE)
 
 get_sqs_report <- function(){
