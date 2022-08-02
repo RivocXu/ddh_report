@@ -1,10 +1,24 @@
 ```{r}
-#| label: gene-coessentiality-graph
+#| label: gene-coessentiality-graph-setup
 #| echo: false
 #| message: false
 #| warning: false
 
-make_graph(input = list(type = "gene", content = params$content))
+load_ddh_data(app_data_dir, #defined in setup
+              object_name = c("master_top_table", "cell_line_dep_sim", "cell_line_exp_sim", "master_bottom_table", "prism_cor_nest")) 
+
+fig_legend <- 'make_legend(fun = "make_graph")'
+
+```
+
+```{r}
+#| label: gene-coessentiality-graph
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: !expr fig_legend
+
+make_graph(input = list(type = "gene", content = "ROCK1")) #content = params$content))
 
 ```
 This plot is a...

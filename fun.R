@@ -269,7 +269,7 @@ render_report <- function(input = list(),
   image_files_to <- 
     image_files_from %>% 
     purrr::map_chr(~ stringr::str_replace(string = .x, pattern = glue::glue("{report_image_dir}/figure-html"), replacement = "figures")) %>% 
-    purrr::map_chr(~ stringr::str_replace(string = .x, pattern = "-1", replacement = good_file_name))
+    purrr::map_chr(~ stringr::str_replace(string = .x, pattern = "1", replacement = good_file_name))
   file.copy(image_files_from, image_files_to, overwrite = TRUE)
   unlink(here::here(temp_dir, report_image_dir), recursive = TRUE) #remove so list.files works below
   

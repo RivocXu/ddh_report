@@ -9,6 +9,8 @@ library(tidyverse)
 library(gt)
 
 #LOAD DATA-----
+app_data_dir <- here::here("data")
+
 load_ddh_colors()
 
 load_ddh_data <- function(app_data_dir,
