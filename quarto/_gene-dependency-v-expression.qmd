@@ -1,10 +1,23 @@
 ```{r}
-#| label: gene-dependency-v-expression
+#| label: gene-dependency-v-expression-setup
 #| echo: false
 #| message: false
 #| warning: false
 
-make_expdep(input = list(type = "gene", content = params$content))
+load_ddh_data(app_data_dir = here::here("data"),
+              object_name = c("achilles_long", "expression_long", "expression_names"))
+
+fig_legend <- 'make_legend(fun = "make_expdep")'
+```
+
+```{r}
+#| label: gene-dependency-v-expression
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: !expr fig_legend
+
+make_expdep(input = list(type = params$type, content = params$content))
 
 ```
 This plot is a...

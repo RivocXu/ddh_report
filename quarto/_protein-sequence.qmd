@@ -1,10 +1,13 @@
 ```{r}
-#| label: protein-sequence-legend
+#| label: protein-sequence-setup
 #| echo: false
 #| message: false
 #| warning: false
 
-fig_legend <- "make_sequence(legend = TRUE)"
+load_ddh_data(app_data_dir = here::here("data"),
+              object_name = c("proteins"))
+
+fig_legend <- 'make_legend(fun = "make_sequence")'
 ```
 
 ```{r}
@@ -14,8 +17,7 @@ fig_legend <- "make_sequence(legend = TRUE)"
 #| warning: false
 #| fig-cap: !expr fig_legend
 
-source(here::here("code", "fun_plots.R"))
 make_sequence(input = list(content = params$content))
-make_protein_domain(input = list(content = params$content))
+# make_protein_domain(input = list(content = params$content))
 ```
 The size plot is a ...   

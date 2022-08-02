@@ -1,17 +1,13 @@
 ```{r}
-#| label: protein-size-legend
+#| label: protein-size-setup
 #| echo: false
 #| message: false
 #| warning: false
 
-fig_legend <- "make_proteinsize(legend = TRUE)"
-```
+load_ddh_data(app_data_dir = here::here("data"),
+              object_name = c("proteins"))
 
-```{r}
-#| label: protein-size-height
-#| echo: false
-#| message: false
-#| warning: false
+fig_legend <- 'make_legend(fun = "make_proteinsize")'
 
 h <- length(unique(params$content)) * 1.36 + .9
 ```
@@ -24,7 +20,6 @@ h <- length(unique(params$content)) * 1.36 + .9
 #| fig-height: !expr h
 #| fig-cap: !expr fig_legend
 
-source(here::here("code", "fun_plots.R"))
 make_proteinsize(input = list(content = params$content))
 ```
 The size plot is a ... 

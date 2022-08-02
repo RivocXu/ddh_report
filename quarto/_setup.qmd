@@ -2,30 +2,93 @@
 #| label: setup
 #| include: false
 
+#LOAD LIBRARIES AND FUNCTIONS-----
 library(here)
-#LOAD LIBRARIES-----
-source(here::here("code", "install_libraries.R"))
+library(ddh)
+library(tidyverse)
+library(gt)
 
 #LOAD DATA-----
-source(here::here("code", "app_params.R"))
-source(here::here("code", "generate_colors.R"))
-source(here::here("code", "app_data.R"))
+load_ddh_colors()
 
-#FUNCTIONS-----
-#common functions
-source(here::here("code", "fun_search.R"), local = TRUE)
-source(here::here("code", "fun_helper.R"), local = TRUE)
-source(here::here("code", "fun_tables.R"), local = TRUE)
-source(here::here("code", "fun_plots.R"), local = TRUE)
-source(here::here("code", "fun_graphs.R"), local = TRUE)
-source(here::here("code", "fun_reports.R"), local = TRUE)
-source(here::here("code", "fun_text.R"), local = TRUE)
-source(here::here("code", "fun_colors.R"), local = TRUE)
-source(here::here("code", "fun_ggplot_theme.R"), local = TRUE)
+load_ddh_data <- function(app_data_dir,
+                          object_name = NULL) {
+  
+  # Load .RDS files
+  load_ddh_rds(app_data_dir, 
+               object_name)
+  message("loaded Rds files")
+  if(!is.null(object_name)){ #stop here
+    return(message("done"))
+  }
+  
+  #load DB cons
+  load_ddh_db()
+  message("loaded db connections")
+  
+  # Load colors
+  load_ddh_colors()
+  message("loaded colors")
+  
+  message("finished loaing")
+}
 
-#CURRENT-RELEASE-----
-source(here::here("code", "current_release.R"), local = TRUE) #this gets me data sources
+load_ddh_rds <- function(app_data_dir, 
+                         object_name = NULL) {
+  if(is.null(object_name)){
+    all_objects <- list.files(app_data_dir) %>% 
+      purrr::map_chr(stringr::str_remove, pattern = "\\.Rds")
+  } else {
+    all_objects <- object_name
+  }
+  
+  #file loader constructor
+  load_rds_object <- function(single_object){
+    file_name <- glue::glue("{single_object}.Rds")
+    assign(single_object, readRDS(here::here(app_data_dir, file_name)), 
+           envir = .GlobalEnv)
+    message(glue::glue("loaded {single_object}"))
+  }
+  
+  #walk through to load all files
+  all_objects %>% purrr::walk(load_rds_object)
+  
+  #print done
+  message("finished loading")
+}
+
+load_ddh_db <- function(object_name = NULL) {
+  #fun for db connection
+  #load_db_connection <- function(db_name){}
+  
+  #manually (?) list all dbs to connect to
+  
+  #filter list for those in file_name
+  #db_cons <- 
+  # if(is.null(file_name)){
+  #   db_cons <-  #manually (?) list all dbs to connect to
+  # } else {
+  #   db_cons <- file_name
+  # }
+  
+  #db_cons %>% purrr::walk(load_db_connection)
+  
+  #placeholder for db connections
+  message("placeholder for db connections")
+}
 
 #GET PRIVATE MESSAGES-----
-source(here::here("code", "private.R"))
+private <- function(x, publicValue=NULL) {
+  if (privateMode == TRUE) { x } else { publicValue }
+}
+
+private_message_html <- "This analysis is currently in Beta, and is only available to premium subscribers. If you want to upgrade to support this project and access these data, subscribe at ', a(href = 'http://www.datadrivenhypothesis.com', 'datadrivenhypothesis.com')"
+private_message_md <- "This analysis is currently in Beta, and is only available to premium subscribers. If you want to upgrade to support this project and access these data, subscribe at [datadrivenhypothesis.com](http://www.datadrivenhypothesis.com)"
+
+private_msg <- function() {
+  if (privateMode == FALSE) {
+    htmltools::tagList(private_message_html) 
+  }
+}
+
 ```

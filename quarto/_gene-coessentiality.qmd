@@ -1,10 +1,23 @@
 ```{r}
-#| label: gene-coessentiality
+#| label: gene-coessentiality-setup
 #| echo: false
 #| message: false
 #| warning: false
 
-make_correlation(input = list(type = "gene", content = params$content))
+load_ddh_data(app_data_dir = here::here("data"),
+              object_name = c("achilles_cor_nest", "mean_virtual_achilles", "achilles_upper", "achilles_lower"))
+
+fig_legend <- 'make_legend(fun = "make_correlation")'
+```
+
+```{r}
+#| label: gene-coessentiality
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: !expr fig_legend
+
+make_correlation(input = list(type = params$type, content = params$content))
 
 ```
 This plot is a...

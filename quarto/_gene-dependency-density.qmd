@@ -1,8 +1,14 @@
 ```{r}
-#| label: gene-density-height
+#| label: gene-density-setup
 #| echo: false
 #| message: false
 #| warning: false
+
+load_ddh_data(app_data_dir = here::here("data"),
+             object_name = c("achilles_long", "expression_names"))
+
+fig_legend <- 'make_legend(fun = "make_cellbins")'
+
 h <- length(unique(params$content)) + 3
 ```
 
@@ -12,6 +18,7 @@ h <- length(unique(params$content)) + 3
 #| message: false
 #| warning: false
 #| fig-height: !expr h
+#| fig-cap: !expr fig_legend
 
 make_cellbins(input = list(type = "gene", content = params$content))
 

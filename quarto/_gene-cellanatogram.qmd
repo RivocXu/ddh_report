@@ -1,8 +1,21 @@
 ```{r}
+#| label: gene-cellanatogram-setup
+#| echo: false
+#| message: false
+#| warning: false
+
+load_ddh_data(app_data_dir = here::here("data"),
+              object_name = c("subcell"))
+
+fig_legend <- 'make_legend(fun = "make_cellanatogram")'
+```
+
+```{r}
 #| label: gene-cellanatogram
 #| echo: false
 #| message: false
 #| warning: false
+#| fig-cap: !expr fig_legend
 
 make_cellanatogram(input = list(type = params$type, content = params$content))
 

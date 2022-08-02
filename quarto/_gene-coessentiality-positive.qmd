@@ -1,10 +1,25 @@
 ```{r}
+#| label: gene-coessentiality-positive-setup
+#| echo: false
+#| message: false
+#| warning: false
+
+load_ddh_data(app_data_dir = here::here("data"),
+              object_name = c("master_positive"))
+
+```
+
+```{r}
 #| label: gene-coessentiality-positive
 #| echo: false
 #| message: false
 #| warning: false
 
-make_enrichment_top(input = list(type = "gene", content = params$content))
-
+make_enrichment_top(input = list(type = params$type, content = params$content)) %>% 
+  {if (nrow(.) != 0) dplyr::slice_min(., n = 12, order_by = `Adjusted p-value`) else .} %>%
+  gt::gt() %>% 
+  gt::cols_hide(columns = c("Query", "Combined Score", "Genes")) %>% 
+  gt::fmt_scientific(columns = `Adjusted p-value`, decimals = 2)
 ```
-This plot is a...
+  
+This table shows the top 12 pathways of genes that show similar co-essential profiles as `r params$content`

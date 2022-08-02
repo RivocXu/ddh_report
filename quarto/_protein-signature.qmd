@@ -1,10 +1,13 @@
 ```{r}
-#| label: protein-signature-legends
+#| label: protein-signature-setup
 #| echo: false
 #| message: false
 #| warning: false
 
-radial_legend <- "make_radial(legend = TRUE)"
+load_ddh_data(app_data_dir = here::here("data"),
+              object_name = c("sequence_clusters", "signatures"))
+
+fig_legend <- 'make_legend(fun = "make_radial")'
 
 ```
 
@@ -16,7 +19,7 @@ radial_legend <- "make_radial(legend = TRUE)"
 #| eval: !expr as.logical(params$private)
 #| fig-width: 13
 #| fig-height: 9
-#| fig-cap: !expr radial_legend
+#| fig-cap: !expr fig_legend
 
 make_radial(input = list(content = params$content))
 

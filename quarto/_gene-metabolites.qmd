@@ -1,9 +1,27 @@
 ```{r}
+#| label: gene-metabolites-setup
+#| echo: false
+#| message: false
+#| warning: false
+
+load_ddh_data(app_data_dir = here::here("data"),
+              object_name = c("hmdb_proteins", "hmdb_metabolites"))
+
+```
+
+```{r}
 #| label: gene-metabolites
 #| echo: false
 #| message: false
 #| warning: false
 
-make_metabolite_table(input = list(type = "gene", content = params$content))
+make_metabolite_table(input = list(type = "gene", content = "ROCK2"))  %>% #params$type, content = params$content))
+  gt::gt() %>% 
+  gt::cols_hide(columns = c("gene_name", "gene_accession")) %>% 
+  gt::cols_label(
+    metabolite_name = "Metabolite", 
+    metabolite_accession = "HMDB Accession"
+  ) %>% 
+  gt::tab_options(table.width = gt::pct(100))
 ```
-The metabolite table is a...
+This metabolite table shows metabolites known to associate with `r params$content`.  

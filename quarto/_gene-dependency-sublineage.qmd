@@ -1,12 +1,25 @@
 ```{r}
+#| label: gene-sublineage-setup
+#| echo: false
+#| message: false
+#| warning: false
+
+load_ddh_data(app_data_dir = here::here("data"),
+              object_name = c("achilles_long", "expression_names"))
+
+fig_legend <- 'make_legend(fun = "make_sublineage")'
+```
+
+```{r}
 #| label: gene-sublineage
 #| echo: false
 #| message: false
 #| warning: false
 #| fig-width: 15
 #| fig-height: 20
+#| fig-cap: !expr fig_legend
 
-make_sublineage(input = list(type = "gene", content = params$content))
+make_sublineage(input = list(type = params$type, content = params$content))
 
 ```
 This plot is a...

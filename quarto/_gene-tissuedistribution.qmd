@@ -1,12 +1,22 @@
 ```{r}
+#| label: gene-tissuedistribution-setup
+#| echo: false
+#| message: false
+#| warning: false
+
+load_ddh_data(app_data_dir = here::here("data"),
+              object_name = c("female_tissue"))
+
+fig_legend <- 'make_legend(fun = "make_female_anatogram")'
+```
+
+```{r}
 #| label: gene-tissuedistribution
 #| echo: false
 #| message: false
 #| warning: false
 
-# source(here::here("code", "fun_plots.R"))
-# source(here::here("code", "fun_ggplot_theme.R"))
 make_female_anatogram(input = list(type = params$type, content = params$content))
-make_tissue(input = list(type = params$type, content = params$content))
+# make_tissue(input = list(type = params$type, content = params$content))
 ```
 The gene tissue distribution plot is a ... 

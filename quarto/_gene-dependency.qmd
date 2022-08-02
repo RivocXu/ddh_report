@@ -1,10 +1,22 @@
 ```{r}
+#| label: gene-dependency-setup
+#| echo: false
+#| message: false
+#| warning: false
+
+load_ddh_data(app_data_dir = here::here("data"),
+              object_name = c("achilles_long", "expression_names", "mean_virtual_achilles"))
+
+fig_legend <- 'make_legend(fun = "make_celldeps")'
+```
+
+```{r}
 #| label: gene-dependency
 #| echo: false
 #| message: false
 #| warning: false
 
-make_celldeps(input = list(type = "gene", content = params$content))
+make_celldeps(input = list(type = params$type, content = params$content))
 
 ```
 Understanding the shape of the curve and distribution of the raw data underlying the patterns is important for interpreting the results.  

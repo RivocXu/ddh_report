@@ -1,4 +1,16 @@
 ```{r}
+#| label: literature-setup
+#| echo: false
+#| message: false
+#| warning: false
+
+load_ddh_data(app_data_dir = here::here("data"),
+              object_name = c("pubmed"))
+
+fig_legend <- 'make_legend(fun = "make_pubmed")'
+```
+
+```{r}
 #| label: literature
 #| echo: false
 #| message: false

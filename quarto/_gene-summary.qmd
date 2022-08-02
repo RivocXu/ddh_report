@@ -3,6 +3,9 @@
 #| echo: false
 #| message: false
 #| warning: false
+
+load_ddh_data(app_data_dir = here::here("data"),
+              object_name = "gene_summary")
 ```
 
 ### Summary  
