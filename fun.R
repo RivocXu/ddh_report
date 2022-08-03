@@ -50,7 +50,7 @@ render_report <- function(input = list(),
                           report_dir = NULL){ #removed output_file
   if(is.null(report_dir)){
     #render everything in quarto dir
-    report_base_dir = here::here("quarto")
+    report_base_dir = glue::glue('{getwd()}/quarto') #"./quarto"#here::here("quarto")
     # create a temporary directory
     temp_dir <- tempfile(pattern="tmpdir", tmpdir=report_base_dir)
     dir.create(temp_dir)
@@ -82,29 +82,29 @@ render_report <- function(input = list(),
   output_html_filename <- glue::glue("{good_file_name}_REPORT.html")
   output_zip_filename <- glue::glue("{good_file_name}.zip")
   
-  quarto::quarto_render(input = here::here(temp_dir, report_template),
+  quarto::quarto_render(input = "report_gene_dummy.qmd", #glue::glue('{temp_dir}/{report_template}'),
                         execute_params = list(type = input$type, 
                                               subtype = input$subtype,
                                               query = input$query,
                                               content = input$content, 
                                               private = private_var),
                         cache_refresh = TRUE, 
-                        output_file = here::here(temp_dir, output_html_filename))
+                        output_file = output_html_filename)# glue::glue('{temp_dir}/{output_html_filename}'))
   
   #get report files dir
   report_image_dir <- glue::glue("report_{input$type}_files")
   
   #copy figures into better sub-dir
-  image_files_from <- list.files(path = here::here(temp_dir, report_image_dir), pattern = "\\.png", recursive = TRUE, full.names = TRUE)
+  image_files_from <- list.files(path = glue::glue('{temp_dir}/{report_image_dir}'), pattern = "\\.png", recursive = TRUE, full.names = TRUE)
   image_files_to <- 
     image_files_from %>% 
     purrr::map_chr(~ stringr::str_replace(string = .x, pattern = glue::glue("{report_image_dir}/figure-html"), replacement = "figures")) %>% 
-    purrr::map_chr(~ stringr::str_replace(string = .x, pattern = "1", replacement = good_file_name))
+    purrr::map_chr(~ stringr::str_replace(string = .x, pattern = "1\\.png", replacement = glue::glue('{good_file_name}.png')))
   file.copy(image_files_from, image_files_to, overwrite = TRUE)
-  unlink(here::here(temp_dir, report_image_dir), recursive = TRUE) #remove so list.files works below
+  unlink(glue::glue('{temp_dir}/{report_image_dir}'), recursive = TRUE) #remove so list.files works below
   
   #match pngs
-  images <- list.files(path = here::here(temp_dir),
+  images <- list.files(path = temp_dir,
                        pattern = "\\.png",
                        recursive = TRUE) #
   

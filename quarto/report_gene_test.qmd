@@ -5,6 +5,7 @@ format:
 params:
   type: "gene"
   subtype: "gene"
+  query: "ROCK1"
   content: "ROCK1"
   private: "true"
 title: "`r params$content` Report"
@@ -17,7 +18,7 @@ title: "`r params$content` Report"
   
 ## Project Summary  
 
-Data-driven hypothesis is a resource for identifying novel functions for human genes developed by the [Hirschey Lab](www.hirscheylab.org). This project leverages several high-quality publicly available datasets, including release `r release` of the [Dependency Map](www.depmap.org) from the [Broad Institute](www.broadinstitute.org).  
+Data-driven hypothesis is a resource for identifying novel functions for human genes developed by the [Hirschey Lab](www.hirscheylab.org). This project leverages several high-quality publicly available datasets.  
   
 ## Gene Summary  
 {{< include _gene-summary.qmd >}}  

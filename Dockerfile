@@ -6,7 +6,10 @@ RUN R -e "install.packages(c('blastula', 'glue', 'gt', 'here', 'jsonlite', 'paws
 RUN R -e "devtools::install_github('matthewhirschey/ddh')"
 
 # copy everything from the current directory into the container
-COPY / /
+COPY ./ ./src
+
+#set working directory
+WORKDIR /src
 
 # when the container starts, start the main.R script
 CMD Rscript main.R
