@@ -7,7 +7,7 @@
 load_ddh_data(app_data_dir, #defined in setup
              object_name = c("achilles_long", "expression_names"))
 
-fig_legend <- 'make_legend(fun = "make_cellbins")'
+fig_legend <- make_legend(fun = "make_cellbins")
 
 h <- length(unique(params$content)) + 3
 ```

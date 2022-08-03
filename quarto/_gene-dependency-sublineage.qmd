@@ -7,7 +7,7 @@
 load_ddh_data(app_data_dir, #defined in setup
               object_name = c("achilles_long", "expression_names"))
 
-fig_legend <- 'make_legend(fun = "make_sublineage")'
+fig_legend <- make_legend(fun = "make_sublineage")
 ```
 
 ```{r}
@@ -16,7 +16,7 @@ fig_legend <- 'make_legend(fun = "make_sublineage")'
 #| message: false
 #| warning: false
 #| fig-width: 15
-#| fig-height: 20
+#| fig-height: 22
 #| fig-cap: !expr fig_legend
 
 make_sublineage(input = list(type = params$type, content = params$content))

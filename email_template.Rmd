@@ -41,7 +41,6 @@ Attached is the `r params$type` report you requested for `r params$query`. The a
 
 - `r glue::glue("{good_file_name}_REPORT.html")` 
 - a directory of *figures* for each of the images in the report, to easily include in presentations or manuscripts  
-- graph.html files for dynamic exploration of graphs <- NOT YET  
   
 Also, you can always head back to the data-driven hypothesis website to explore `r params$query` further by clicking the button below.
 

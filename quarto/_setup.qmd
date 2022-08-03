@@ -5,7 +5,8 @@
 #LOAD LIBRARIES AND FUNCTIONS-----
 library(here)
 library(ddh)
-library(tidyverse)
+#library(tidyverse)
+library(ggplot2)
 library(gt)
 
 ddh::load_ddh_colors()

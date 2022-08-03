@@ -7,7 +7,7 @@
 load_ddh_data(app_data_dir, #defined in setup
               object_name = c("achilles_long", "expression_names"))
 
-fig_legend <- 'make_legend(fun = "make_lineage")'
+fig_legend <- make_legend(fun = "make_lineage")
 ```
 
 ```{r}
@@ -15,7 +15,7 @@ fig_legend <- 'make_legend(fun = "make_lineage")'
 #| echo: false
 #| message: false
 #| warning: false
-#| fig-height: 10.5
+#| fig-height: 10
 #| fig-cap: !expr fig_legend
 
 

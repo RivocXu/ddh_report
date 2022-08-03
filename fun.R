@@ -7,7 +7,6 @@ library(here)
 library(jsonlite)
 library(paws)
 library(quarto)
-library(remotes)
 library(ddh)
 
 #remotes::install_github("matthewhirschey/ddh")
@@ -110,10 +109,9 @@ render_report <- function(input = list(),
                        recursive = TRUE) #
   
   # to keep the quarto sub-directory structure we will zip from within /quarto
-  # append filenames relative to /quarto directorybasename
   zip_filenames <- c(output_html_filename)
   zip_filenames <- append(zip_filenames, images) #glue::glue('{report_image_dir}/{images})')
-  print(zip_filenames)
+  message(zip_filenames)
   
   #zip
   final_zip_path <- glue::glue("{temp_dir}/{output_zip_filename}")
