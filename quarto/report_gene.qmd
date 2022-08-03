@@ -30,8 +30,8 @@ knitr:
 {{< pagebreak >}}
 
 ### Ideogram
-{{< include _gene-ideogram.qmd >}}  
-{{< pagebreak >}}  
+{{< include _gene-ideogram.qmd >}}
+{{< pagebreak >}}
 
 ### GO Pathways
 {{< include _gene-pathways.qmd >}}
@@ -50,9 +50,9 @@ knitr:
 {{< include _protein-signature.qmd >}}
 {{< pagebreak >}}
 
-<!-- ### Protein Structure -->
-<!-- {{< include _protein-structure.qmd >}} -->
-<!-- {{< pagebreak >}} -->
+### Protein Structure
+{{< include _protein-structure.qmd >}}
+{{< pagebreak >}}
 
 ## Literature {#sec-literature}
 {{< include _literature.qmd >}}
@@ -80,9 +80,9 @@ knitr:
 {{< include _gene-metabolites.qmd >}}
 {{< pagebreak >}}
 
-<!-- ### Bipartite Graph -->
-<!-- {{< include _gene-bipartite.qmd >}} -->
-<!-- {{< pagebreak >}} -->
+### Bipartite Graph
+{{< include _gene-bipartite.qmd >}}
+{{< pagebreak >}}
 
 ## Dependencies
 ### Dependency Plot
@@ -129,9 +129,9 @@ knitr:
 {{< include _gene-coessentiality-negative.qmd >}}
 {{< pagebreak >}}
 
-<!-- ### Co-essentiality Graph -->
-<!-- {{< include _gene-coessentiality-graph.qmd >}} -->
-<!-- {{< pagebreak >}} -->
+### Co-essentiality Graph
+{{< include _gene-coessentiality-graph.qmd >}}
+{{< pagebreak >}}
 
 ### Co-essential Drugs
 {{< include _gene-coessentiality-drugs.qmd >}}

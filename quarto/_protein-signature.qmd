@@ -4,8 +4,8 @@
 #| message: false
 #| warning: false
 
-load_ddh_data(app_data_dir, #defined in setup
-              object_name = c("sequence_clusters", "signatures"))
+# load_ddh_data(app_data_dir, #defined in setup
+#               object_name = c("sequence_clusters", "signatures"))
 
 fig_legend <- 'make_legend(fun = "make_radial")'
 
@@ -23,7 +23,7 @@ fig_legend <- 'make_legend(fun = "make_radial")'
 
 make_radial(input = list(content = params$content))
 
-description <- "The size plot is a ..."
+description <- glue::glue("The radial plot shows the relative frequency of each amino acid in {params$content} compared to the average of all proteins in the human proteome.")
 
 #how to handle multiple images in a child chunk
 ```

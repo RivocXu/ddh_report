@@ -4,8 +4,8 @@
 #| message: false
 #| warning: false
 
-load_ddh_data(app_data_dir, #defined in setup
-              object_name = c("subcell"))
+# load_ddh_data(app_data_dir, #defined in setup
+#               object_name = c("subcell"))
 
 fig_legend <- make_legend(fun = "make_cellanatogram")
 ```
@@ -20,4 +20,5 @@ fig_legend <- make_legend(fun = "make_cellanatogram")
 make_cellanatogram(input = list(type = params$type, content = params$content))
 
 ```
-The cellanatogram plot is a ... 
+  
+The cellanatogram plot shows the sub-cellular distribution of `r params$content` as reported by the human protein atlas (HPA) project.  

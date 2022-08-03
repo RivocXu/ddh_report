@@ -5,14 +5,12 @@
 #LOAD LIBRARIES AND FUNCTIONS-----
 library(here)
 library(ddh)
-#library(tidyverse)
-library(ggplot2)
+library(ggplot2) #library(tidyverse)
 library(gt)
 
-ddh::load_ddh_colors()
-
 #LOAD DATA-----
-app_data_dir <- here::here("data")
+#app_data_dir <- here::here("data")
+load_ddh_data(app_data_dir = here::here("data"))
 
 #GET PRIVATE MESSAGES-----
 private <- function(x, publicValue=NULL) {
@@ -27,5 +25,9 @@ private_msg <- function() {
     htmltools::tagList(private_message_html) 
   }
 }
+
+#QUERY URL
+base_url <- dplyr::if_else(params$private == "true", paste0("datadrivenhypothesis.com"), paste0("datadrivenhypothesis.org"))
+query_url <- glue::glue('https://www.{base_url}/?show=gene&query={params$content}')
 
 ```

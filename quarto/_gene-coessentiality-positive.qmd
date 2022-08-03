@@ -4,8 +4,8 @@
 #| message: false
 #| warning: false
 
-load_ddh_data(app_data_dir, #defined in setup
-              object_name = c("master_positive"))
+# load_ddh_data(app_data_dir, #defined in setup
+#               object_name = c("master_positive"))
 
 ```
 
@@ -22,4 +22,4 @@ make_enrichment_top(input = list(type = params$type, content = params$content)) 
   gt::fmt_scientific(columns = `Adjusted p-value`, decimals = 2)
 ```
   
-This table shows the top 12 pathways of genes that show similar co-essential profiles as `r params$content`
+This table shows the top 12 pathways of genes that show similar co-essential profiles as `r params$content`. To generate these pathways, gene set enrichment was performed on all genes in the co-essentiality table, and then ranked by p-value.  

@@ -4,8 +4,8 @@
 #| message: false
 #| warning: false
 
-load_ddh_data(app_data_dir, #defined in setup
-             object_name = c("achilles_long", "expression_names"))
+# load_ddh_data(app_data_dir, #defined in setup
+#              object_name = c("achilles_long", "expression_names"))
 
 fig_legend <- make_legend(fun = "make_cellbins")
 
@@ -23,4 +23,5 @@ h <- length(unique(params$content)) + 3
 make_cellbins(input = list(type = "gene", content = params$content))
 
 ```
+  
 The plot is a density plot of dependency scores, showing the distribution of scores for `r params$content`. While the majority of cells have little change in cellular growth when `r params$content` is absent (the density plot is centered around zero), some cells require `r params$content` for growth (cells scoring below -1), whereas in other cells `r params$content` functions as a tumor suppressor (cells with a score above 1).  

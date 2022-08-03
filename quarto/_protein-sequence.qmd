@@ -4,8 +4,8 @@
 #| message: false
 #| warning: false
 
-load_ddh_data(app_data_dir, #defined in setup
-              object_name = c("proteins"))
+# load_ddh_data(app_data_dir, #defined in setup
+#               object_name = c("proteins"))
 
 fig_legend <- 'make_legend(fun = "make_sequence")'
 ```
@@ -20,4 +20,4 @@ fig_legend <- 'make_legend(fun = "make_sequence")'
 make_sequence(input = list(content = params$content))
 # make_protein_domain(input = list(content = params$content))
 ```
-The size plot is a ...   
+The sequence plot shows the first 100 amino acids of `r params$content`. 

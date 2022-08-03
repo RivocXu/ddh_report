@@ -4,8 +4,8 @@
 #| message: false
 #| warning: false
 
-load_ddh_data(app_data_dir, #defined in setup
-              object_name = c("achilles_long", "expression_names", "mean_virtual_achilles"))
+# load_ddh_data(app_data_dir, #defined in setup
+#               object_name = c("achilles_long", "expression_names", "mean_virtual_achilles"))
 
 fig_legend <- make_legend(fun = "make_celldeps")
 ```
@@ -19,6 +19,5 @@ fig_legend <- make_legend(fun = "make_celldeps")
 make_celldeps(input = list(type = params$type, content = params$content))
 
 ```
-Understanding the shape of the curve and distribution of the raw data underlying the patterns is important for interpreting the results.  
   
-The first plot shows the distribution of dependency scores across `r length(unique(achilles_long$X1))` cell lines ranked from lowest (strongest dependencies) to highest (no dependency or inverse). A cell line is represented by a single point on the plot. Generally, values below -1 indicate the gene of interest (`r params$content` in this example) is essential in that cell line; values between -1 and 0, mean that cells lose fitness, but the gene is not essential; values hovering around zero indicate that ablation of `r params$content` has little effect on cell growth; values above 1, indicate that knocking-out the gene leads to a fitness advantage. In the case of `r params$content`, several cells have a fitness advantage in its absence, consistent with its role as a tumor suppressor.  
+Understanding the shape of the curve and distribution of the raw data underlying the patterns is important for interpreting the results. This  plot shows the distribution of dependency scores across `r length(unique(achilles_long$X1))` cell lines ranked from lowest (strongest dependencies) to highest (no dependency or inverse). A cell line is represented by a single point on the plot. Generally, values below -1 indicate the gene of interest (`r params$content` in this example) is essential in that cell line; values between -1 and 0, mean that cells lose fitness, but the gene is not essential; values hovering around zero indicate that ablation of `r params$content` has little effect on cell growth; values above 1, indicate that knocking-out the gene leads to a fitness advantage. In the case of `r params$content`, several cells have a fitness advantage in its absence, consistent with its role as a tumor suppressor.  

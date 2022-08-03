@@ -82,7 +82,7 @@ render_report <- function(input = list(),
   output_html_filename <- glue::glue("{good_file_name}_REPORT.html")
   output_zip_filename <- glue::glue("{good_file_name}.zip")
   
-  quarto::quarto_render(input = "report_gene_dummy.qmd", #glue::glue('{temp_dir}/{report_template}'),
+  quarto::quarto_render(input = report_template, #glue::glue('{temp_dir}/{report_template}'),
                         execute_params = list(type = input$type, 
                                               subtype = input$subtype,
                                               query = input$query,
@@ -174,12 +174,12 @@ make_report <- function(input = list(),
                                  private = private)
     
     #Upload file to s3 so others can use it (i.e. we don't have to make it again)
-    s3$put_object(
-      Body = as.character(report_path),
-      Bucket = Sys.getenv("AWS_REPORT_BUCKET_ID"),
-      Key = as.character(report_filename) #need as.character because of glue::glue
-    )
-    message("uploaded fresh report: nice work")
+    # s3$put_object(
+    #   Body = as.character(report_path),
+    #   Bucket = Sys.getenv("AWS_REPORT_BUCKET_ID"),
+    #   Key = as.character(report_filename) #need as.character because of glue::glue
+    # )
+    # message("uploaded fresh report: nice work")
     return(report_path)
   } else {
     print("something went wrong")

@@ -4,9 +4,11 @@
 #| message: false
 #| warning: false
 
-load_ddh_data(app_data_dir, #defined in setup
-              object_name = c("master_top_table", "cell_line_dep_sim", "cell_line_exp_sim", "master_bottom_table", "prism_cor_nest") #
-              ) 
+# load_ddh_colors()
+# 
+# load_ddh_data(app_data_dir, #defined in setup
+#               object_name = c("master_top_table", "cell_line_dep_sim", "cell_line_exp_sim", "master_bottom_table", "prism_cor_nest", "gene_summary") #
+#               ) 
 
 fig_legend <- 'make_legend(fun = "make_graph")'
 
@@ -22,4 +24,5 @@ fig_legend <- 'make_legend(fun = "make_graph")'
 make_graph(input = list(type = params$type, content = params$content))
 
 ```
+  
 This interactive network graph shows the top 10 genes with similar co-essientiality profiles as `r params$input`, and then fetches each of their top 10. An edge connection is made between two genes when they each are present in the top 10 of eachother's list. This is a way for users to prioritize strong networks of functional relationships.  

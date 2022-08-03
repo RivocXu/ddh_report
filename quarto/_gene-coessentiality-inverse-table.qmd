@@ -4,8 +4,8 @@
 #| message: false
 #| warning: false
 
-load_ddh_data(app_data_dir, #defined in setup
-              object_name = c("master_bottom_table", "achilles_lower"))
+# load_ddh_data(app_data_dir, #defined in setup
+#               object_name = c("master_bottom_table", "achilles_lower"))
 
 ```
 

@@ -4,8 +4,8 @@
 #| message: false
 #| warning: false
 
-load_ddh_data(app_data_dir, #defined in setup
-              object_name = c("hmdb_proteins", "hmdb_metabolites"))
+# load_ddh_data(app_data_dir, #defined in setup
+#               object_name = c("hmdb_proteins", "hmdb_metabolites"))
 
 ```
 
@@ -24,4 +24,5 @@ make_metabolite_table(input = list(type = "gene", content = "ROCK2"))  %>% #para
   ) %>% 
   gt::tab_options(table.width = gt::pct(100))
 ```
-This metabolite table shows metabolites known to associate with `r params$content`.  
+  
+This metabolite table shows metabolites known to associate with `r params$content`, as curated by the Human Metabolome Database (HMDB). 

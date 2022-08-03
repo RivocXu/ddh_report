@@ -4,8 +4,8 @@
 #| message: false
 #| warning: false
 
-load_ddh_data(app_data_dir, #defined in setup
-              object_name = c("pubmed"))
+# load_ddh_data(app_data_dir, #defined in setup
+#               object_name = c("pubmed"))
 
 fig_legend <- make_legend(fun = "make_pubmed")
 ```
@@ -18,4 +18,4 @@ fig_legend <- make_legend(fun = "make_pubmed")
 
 make_pubmed(input = list(type = params$type, content = params$content))
 ```
-The literature plot is a...
+The literature plot shows the increase in literature citations referencing `r params$content` over time.

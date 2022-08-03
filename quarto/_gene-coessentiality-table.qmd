@@ -4,8 +4,8 @@
 #| message: false
 #| warning: false
 
-load_ddh_data(app_data_dir, #defined in setup
-              object_name = c("master_top_table", "achilles_upper"))
+# load_ddh_data(app_data_dir, #defined in setup
+#               object_name = c("master_top_table", "achilles_upper"))
 
 ```
 
@@ -28,4 +28,4 @@ make_top_table(input = list(type = params$type, content = params$content)) %>%
 
 ```
   
-This table shows the genes with the strongest correlations between dependency scores.  
+This table shows the genes with the strongest correlations between dependency scores. The 'co-publication count' column attempts to quantify the co-occurance of `r params$content` and a gene that shows a strong co-essentiality. With this value, positive controls (i.e. genes known to be related) can be easily found. Likewise, opportunities for discovery (i.e. functional relationships not yet described) can also be found. To view raw correlation values or a 'co-publicaiton index', navigate back to the [dependency page on DDH](`r query_url`).  
