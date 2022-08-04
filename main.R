@@ -22,7 +22,10 @@ repeat {
     #send email, in fun.R
     send_email(first_name = attributes$first_name,
                email_address = attributes$email_address,
-               input = list(type = attributes$type, subtype = attributes$subtype, query = attributes$query, content = attributes$content),
+               input = list(type = attributes$type, 
+                            subtype = attributes$subtype, 
+                            query = attributes$query, 
+                            content = attributes$content),
                private = as.logical(attributes$private))
     
     #log reports as csv

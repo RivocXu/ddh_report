@@ -48,9 +48,10 @@ delete_message <- function(receipt_handle){
 render_report <- function(input = list(), 
                           private, 
                           report_dir = NULL){ #removed output_file
+  #render everything in quarto dir
+  report_base_dir = glue::glue('{getwd()}/quarto') #here::here("quarto")
+  
   if(is.null(report_dir)){
-    #render everything in quarto dir
-    report_base_dir = glue::glue('{getwd()}/quarto') #"./quarto"#here::here("quarto")
     # create a temporary directory
     temp_dir <- tempfile(pattern="tmpdir", tmpdir=report_base_dir)
     dir.create(temp_dir)
@@ -75,8 +76,8 @@ render_report <- function(input = list(),
   
   #good file names
   good_file_name <- input$content
-  if (input$subtype == "gene_list" | input$subtype == "compound_list" | input$subtype == "cell_list") {
-    good_file_name <- paste0("custom_", paste0(input$content, collapse=""))
+  if (input$subtype == "gene_list" || input$subtype == "compound_list" || input$subtype == "cell_list") {
+    good_file_name <- paste0("custom_", str_extract(input$content, pattern = "^[:alnum:]+"), "_query")
   }
   
   output_html_filename <- glue::glue("{good_file_name}_REPORT.html")
@@ -111,7 +112,7 @@ render_report <- function(input = list(),
   # to keep the quarto sub-directory structure we will zip from within /quarto
   zip_filenames <- c(output_html_filename)
   zip_filenames <- append(zip_filenames, images) #glue::glue('{report_image_dir}/{images})')
-  message(zip_filenames)
+  message(glue::glue_collapse(zip_filenames, sep = ", "))
   
   #zip
   final_zip_path <- glue::glue("{temp_dir}/{output_zip_filename}")
@@ -130,8 +131,8 @@ make_report <- function(input = list(),
                         overwrite = FALSE){
   
   good_file_name <- input$content
-  if (input$subtype == "gene_list" | input$subtype == "compound_list" | input$subtype == "cell_list") {
-    good_file_name <- paste0("custom_", paste0(input$content, collapse=""))
+  if (input$subtype == "gene_list" || input$subtype == "compound_list" || input$subtype == "cell_list") {
+    good_file_name <- paste0("custom_", str_extract(input$content, pattern = "^[:alnum:]+"), "_query")
   }
   report_filename <- glue::glue('{good_file_name}.zip') #"ADCK1.zip"
   
@@ -147,7 +148,7 @@ make_report <- function(input = list(),
       })
   
   #overwrite
-  if(overwrite == TRUE){report_file <- NULL} #
+  if(overwrite == TRUE || stringr::str_detect(report_filename, pattern = "custom")){report_file <- NULL} #
   
   if(!is.null(report_file)){ #if report exists on S3
     if(is.null(report_dir)){
@@ -170,8 +171,10 @@ make_report <- function(input = list(),
   } else if(is.null(report_file)) { #if report zip doesn't exist
     
     #make report and return path
-    report_path <- render_report(input = input, 
-                                 private = private)
+    report_path <- 
+      render_report(input = input, 
+                    private = private, 
+                    report_dir = report_dir)
     
     #Upload file to s3 so others can use it (i.e. we don't have to make it again)
     # s3$put_object(
@@ -188,7 +191,7 @@ make_report <- function(input = list(),
 
 # make_report(input = list(type = "gene", subtype = "gene", content = "ROCK1"), private = TRUE)
 # make_report(input = list(type = "gene", subtype = "gene", content = "ROCK2"), private = TRUE, overwrite = TRUE)
-
+# make_report(input = list(type = "cell", subtype = "cell", content = "HEPG2"), private = TRUE)
 
 send_email <- function(first_name,
                        email_address,
@@ -207,7 +210,7 @@ send_email <- function(first_name,
   #make pretty https://pkgs.rstudio.com/blastula/reference/index.html#section-email-sending-through-smtp
   email_body <- 
     compose_email( #https://github.com/rstudio/blastula/issues/226
-      header = add_image(file = here::here("ddh YouTube banner.png"), width = "100%"),
+      header = add_image(file = here::here("ddh-banner.png"), width = "100%"),
       body = render_email(input = here::here("email_template.Rmd"), 
                           envir = parent.frame(),
                           render_options = list(params = 
@@ -250,17 +253,20 @@ send_email <- function(first_name,
                                file = report_file)
   
   # email_body #preview it
-  email_body %>% 
+  email_body %>%
     smtp_send(
-      from = "matthew@hirschey.org",
+      from = "hey@datadrivenhypothesis.com",
       to = email_address,
       subject = "DDH report",
       credentials = creds_envvar(
-        provider = "gmail",
-        user = Sys.getenv("SMTP_USERNAME")
+        user = Sys.getenv("SMTP_USERNAME"),
         #pass_envvar = Sys.getenv("SMTP_PASSWORD"), #use default
+        host = "mail.privateemail.com",
+        port = "465",
+        use_ssl = TRUE
       )
     )
+  
   #remove tempdirs
   on.exit(unlink(temp_dir, recursive = TRUE))
 }

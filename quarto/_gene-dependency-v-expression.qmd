@@ -17,7 +17,7 @@ fig_legend <- make_legend(fun = "make_expdep")
 #| warning: false
 #| fig-cap: !expr fig_legend
 
-make_expdep(input = list(type = params$type, content = params$content))
+make_expdep(input = input_report) #defined in setup
 
 ```
   

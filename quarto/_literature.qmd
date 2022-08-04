@@ -15,7 +15,9 @@ fig_legend <- make_legend(fun = "make_pubmed")
 #| echo: false
 #| message: false
 #| warning: false
+#| fig-height: 7.5
+#| fig-width: 12
 
-make_pubmed(input = list(type = params$type, content = params$content))
+make_pubmed(input= input_report) #defined in setup
 ```
 The literature plot shows the increase in literature citations referencing `r params$content` over time.

@@ -19,7 +19,7 @@ fig_legend <- make_legend(fun = "make_sublineage")
 #| fig-height: 22
 #| fig-cap: !expr fig_legend
 
-make_sublineage(input = list(type = params$type, content = params$content))
+make_sublineage(input = input_report) #defined in setup
 
 ```
   

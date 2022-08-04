@@ -16,8 +16,10 @@ fig_legend <- make_legend(fun = "make_correlation")
 #| message: false
 #| warning: false
 #| fig-cap: !expr fig_legend
+#| fig-height: 7.5
+#| fig-width: 12
 
-make_correlation(input = list(type = params$type, content = params$content))
+make_correlation(input = input_report) #defined in setup
 ```
   
 This plot visualizes the distribution of correlation values for `r params$content` compared to all other genes.  

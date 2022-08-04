@@ -16,8 +16,10 @@ fig_legend <- make_legend(fun = "make_cellanatogram")
 #| message: false
 #| warning: false
 #| fig-cap: !expr fig_legend
+#| fig-height: 7.5
+#| fig-width: 12
 
-make_cellanatogram(input = list(type = params$type, content = params$content))
+make_cellanatogram(input = input_report) #defined in setup
 
 ```
   

@@ -16,7 +16,7 @@ fig_legend <- make_legend(fun = "make_celldeps")
 #| message: false
 #| warning: false
 
-make_celldeps(input = list(type = params$type, content = params$content))
+make_celldeps(input = input_report) #defined in setup
 
 ```
   

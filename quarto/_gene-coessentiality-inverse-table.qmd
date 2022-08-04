@@ -15,7 +15,7 @@
 #| message: false
 #| warning: false
 
-make_bottom_table(input = list(type = params$type, content = params$content)) %>% 
+make_bottom_table(input = input_report) %>% #defined in setup
   gt::gt() %>% 
   gt::cols_hide(columns = c("fav_gene", "r2", "concept_index")) %>% 
   gt::cols_label(

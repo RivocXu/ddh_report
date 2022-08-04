@@ -21,7 +21,7 @@ fig_legend <- 'make_legend(fun = "make_graph")'
 #| warning: false
 #| fig-cap: !expr fig_legend
 
-make_graph(input = list(type = params$type, content = params$content))
+make_graph(input = input_report) #defined in setup
 
 ```
   

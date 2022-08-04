@@ -21,7 +21,7 @@ fig_legend <- 'make_legend(fun = "make_radial")'
 #| fig-height: 9
 #| fig-cap: !expr fig_legend
 
-make_radial(input = list(content = params$content))
+make_radial(input = input_report) #defined in setup
 
 description <- glue::glue("The radial plot shows the relative frequency of each amino acid in {params$content} compared to the average of all proteins in the human proteome.")
 

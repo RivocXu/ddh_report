@@ -9,7 +9,7 @@
 
 fig_legend <- make_legend(fun = "make_cellbins")
 
-h <- length(unique(params$content)) + 3
+h <- length(unique(input_report$content)) + 3
 ```
 
 ```{r}
@@ -20,7 +20,7 @@ h <- length(unique(params$content)) + 3
 #| fig-height: !expr h
 #| fig-cap: !expr fig_legend
 
-make_cellbins(input = list(type = "gene", content = params$content))
+make_cellbins(input = input_report) #defined in setup
 
 ```
   

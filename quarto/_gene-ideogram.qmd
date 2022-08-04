@@ -17,7 +17,7 @@ fig_legend <- make_legend(fun = "make_ideogram")
 #| warning: false
 #| fig-cap: !expr fig_legend
 
-make_ideogram(input = list(type = params$type, content = params$content))
+make_ideogram(input = input_report) #defined in setup
 ```
   
 The ideogram plot is a custom image built to show the location of each gene on the human chromosome. The round gray circle depicts the position of centromere and the banding patterns are depicted in their known positions. The location of the queried gene, in this example `r params$content`, is labeled.  

@@ -17,7 +17,7 @@ fig_legend <- 'make_legend(fun = "make_sequence")'
 #| warning: false
 #| fig-cap: !expr fig_legend
 
-make_sequence(input = list(content = params$content))
+make_sequence(input = input_report) #defined in setup
 # make_protein_domain(input = list(content = params$content))
 ```
 The sequence plot shows the first 100 amino acids of `r params$content`. 

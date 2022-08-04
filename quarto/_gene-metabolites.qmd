@@ -15,7 +15,7 @@
 #| message: false
 #| warning: false
 
-make_metabolite_table(input = list(type = "gene", content = "ROCK2"))  %>% #params$type, content = params$content))
+make_metabolite_table(input = input_report) %>% #defined in setup
   gt::gt() %>% 
   gt::cols_hide(columns = c("gene_name", "gene_accession")) %>% 
   gt::cols_label(

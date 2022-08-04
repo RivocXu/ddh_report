@@ -8,17 +8,33 @@
 #               object_name = c("expression_long", "expression_names", "mean_virtual_gene_expression", "gene_expression_upper", "gene_expression_lower"))
 
 fig_legend <- make_legend(fun = "make_cellexpression")
+
+h <- length(unique(input_report$content)) * .7 + .8
 ```
 
 ```{r}
-#| label: gene-cellexpression
+#| label: gene-cellexpression-gene
 #| echo: false
 #| message: false
 #| warning: false
+#| fig-height: !expr h
 #| fig-cap: !expr fig_legend
 
-make_cellexpression(input = list(type = params$type, content = params$content), 
+make_cellexpression(input = input_report, #defined in setup
                     var = "gene")
+
+```
+  
+```{r}
+#| label: gene-cellexpression-protein
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-height: !expr h
+#| fig-cap: !expr fig_legend
+
+make_cellexpression(input = input_report, #defined in setup
+                    var = "protein")
 
 ```
   

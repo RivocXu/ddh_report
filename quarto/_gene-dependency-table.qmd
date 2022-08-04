@@ -15,7 +15,7 @@
 #| message: false
 #| warning: false
 
-make_dep_table(input = list(type = params$type, content = params$content)) %>% 
+make_dep_table(input= input_report) %>% #defined in setup 
   {if (nrow(.) != 0) dplyr::slice_head(., n = 12) else .} %>%
   gt::gt() %>% 
   gt::tab_options(table.width = gt::pct(100))

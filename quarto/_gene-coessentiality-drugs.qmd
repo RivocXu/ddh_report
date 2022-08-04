@@ -18,7 +18,7 @@ fig_legend <- make_legend(fun = "make_gene_drugs_cor_table")
 #| warning: false
 #| eval: !expr as.logical(params$private)
 
-make_gene_drugs_cor_table(input = list(type = params$type, content = params$content)) %>% 
+make_gene_drugs_cor_table(input = input_report) %>% #defined in setup
   gt::gt() %>% 
   gt::cols_hide(columns = c("fav_gene", "r2")) %>% 
     gt::cols_label(

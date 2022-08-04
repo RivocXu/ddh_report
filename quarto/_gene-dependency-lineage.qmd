@@ -18,7 +18,7 @@ fig_legend <- make_legend(fun = "make_lineage")
 #| fig-height: 10
 #| fig-cap: !expr fig_legend
 
-make_lineage(input = list(type = params$type, content = params$content))
+make_lineage(input = input_report) #defined in setup
 ```
   
 This plot shows the dependency scores group by cell lineage. In some cases, specific cell types or lineages will show consistent patterns of dependency on a gene.  

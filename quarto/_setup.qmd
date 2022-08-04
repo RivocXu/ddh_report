@@ -7,10 +7,19 @@ library(here)
 library(ddh)
 library(ggplot2) #library(tidyverse)
 library(gt)
+library(patchwork)
 
 #LOAD DATA-----
 #app_data_dir <- here::here("data")
 load_ddh_data(app_data_dir = here::here("data"))
+
+#CONVERT PARAMS TO LIST----
+input_report = list(
+  type = params$type, 
+  subtype = params$subtype, 
+  query = unlist(stringr::str_split(params$query, pattern = ", ")), 
+  content = unlist(stringr::str_split(params$content, pattern = ", "))
+)
 
 #GET PRIVATE MESSAGES-----
 private <- function(x, publicValue=NULL) {
@@ -27,7 +36,9 @@ private_msg <- function() {
 }
 
 #QUERY URL
+if(length(input_report$content) > 1){content <- stringr::str_replace_all(params$content, pattern = " ", replacement = "%20")} else {content <- params$content}
+
 base_url <- dplyr::if_else(params$private == "true", paste0("datadrivenhypothesis.com"), paste0("datadrivenhypothesis.org"))
-query_url <- glue::glue('https://www.{base_url}/?show=gene&query={params$content}')
+query_url <- glue::glue('https://www.{base_url}/?show=gene&query={content}')
 
 ```

@@ -8,7 +8,7 @@
 #               object_name = c("pathways"))
 
 #pathways
-make_pathway_list(input = list(content = params$content)) %>% 
+make_pathway_list(input = input_report) %>%  #defined in setup
   gt::gt() %>% 
   gt::cols_hide(columns = c(data, count)) %>% 
   gt::cols_label(

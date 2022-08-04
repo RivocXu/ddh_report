@@ -9,7 +9,7 @@
 
 fig_legend <- 'make_legend(fun = "make_proteinsize")'
 
-h <- length(unique(params$content)) * 1.36 + .9
+h <- length(unique(input_report$content)) * 1.36 + .9
 ```
 
 ```{r}
@@ -20,6 +20,6 @@ h <- length(unique(params$content)) * 1.36 + .9
 #| fig-height: !expr h
 #| fig-cap: !expr fig_legend
 
-make_proteinsize(input = list(content = params$content))
+make_proteinsize(input = input_report) #defined in setup
 ```
 The size plot is a ... 

@@ -14,14 +14,12 @@ fig_legend <- make_legend(fun = "make_structure")
 #| warning: false
 #| fig-cap: !expr fig_legend
 
-path <- make_structure(input = list(content = params$content))
+path <- make_structure(input = input_report) #defined in setup
 
 message <- glue::glue('Using AlphaFold structure predictions, we rendered {params$content} as a ribbon diagram. For an interactive version of the protein, navigate back to the [protein structure page on DDH]({query_url})')  
 
-if(is.null(path)){
-  message <- "No render can be displayed."}
+if(is.null(path)){message <- "No render can be displayed."}
 ```
 ![](`r path`)
   
-`r message`
-
+`r message`  
