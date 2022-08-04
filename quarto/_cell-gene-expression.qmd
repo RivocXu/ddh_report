@@ -5,7 +5,7 @@
 #| warning: false
 #| eval: !expr as.logical(params$private)
 
-make_cellexpression(input = list(type = params$type, content = params$content), var = "Gene")
+make_cellexpression(input = list(type = params$type, content = params$content), var = "gene")
 
 description <- "This plot is a ..."
 ```
@@ -18,7 +18,7 @@ description <- "This plot is a ..."
 #| warning: false
 #| eval: !expr as.logical(params$private)
 
-make_expression_table(input = list(type = params$type, content = params$content), var = "Gene")
+make_expression_table(input = list(type = params$type, content = params$content), var = "gene")
 
 table_description <- "This table is a ..."
 ```

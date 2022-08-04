@@ -4,13 +4,18 @@
 #| message: false
 #| warning: false
 
-make_cellexpression(input = list(type = params$type, content = params$content), var = "Protein")
+make_cellexpression(input = list(type = params$type, content = params$content), var = "protein")
 
 ```
 This plot is a...
 
 ```{r}
-make_expression_table(input = list(type = params$type, content = params$content), var = "Protein")
+#| label: cell-protein-expression-table
+#| echo: false
+#| message: false
+#| warning: false
+
+make_expression_table(input = list(type = params$type, content = params$content), var = "protein")
 ```
 This table is a ...
   
