@@ -4,17 +4,6 @@
 #| message: false
 #| warning: false
 
-# load_ddh_data(app_data_dir, #defined in setup
-#               object_name = "gene_summary")
+ddh::summary_list(input = input_report)
 ```
-
-### Summary  
-Querying `r input_report$content` (official gene symbol) generates a short summary of the gene, its name and list of aliases, and an Entrez gene summary paragraph when available.  
-  
-**Gene**: `r summary_gene(input = list(content = input_report$content), var = "approved_symbol")`  
-**Name**: `r summary_gene(input = list(content = input_report$content), var = "approved_name")`  
-**aka**: `r summary_gene(input = list(content = input_report$content), var = "aka")`  
-**Entrez ID**: `r as.integer(summary_gene(input = list(content = input_report$content), var = "ncbi_gene_id"))`
-  
-`r summary_gene(input = list(content = input_report$content), var = "entrez_summary")`  
 

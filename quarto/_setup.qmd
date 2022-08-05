@@ -10,7 +10,6 @@ library(gt)
 library(patchwork)
 
 #LOAD DATA-----
-#app_data_dir <- here::here("data")
 load_ddh_data(app_data_dir = here::here("data"))
 
 #CONVERT PARAMS TO LIST----

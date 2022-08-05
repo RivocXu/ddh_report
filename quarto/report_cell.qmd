@@ -26,7 +26,7 @@ knitr:
 {{< pagebreak >}}  
   
 ## Cell Line Summary  
-<!-- {{< include _cell-summary.qmd >}}   -->
+{{< include _cell-summary.qmd >}}
 {{< pagebreak >}}  
   
 ## Literature {#sec-literature}

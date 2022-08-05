@@ -1,31 +1,15 @@
-```{r}
-#| label: cell-dependency-density-height
-#| echo: false
-#| message: false
-#| warning: false
-#| eval: !expr as.logical(params$private)
-
-if (params$type == "cell") {
-  h <- 5
-} else {
-h <-length(unique(params$content)) + 3
-  ## apply max size threshold in case plot gets higher than 16 to fit on one page
-  if(h > 16) { h <- 16 }
-}
-
-```
 
 ```{r}
 #| label: cell-dependency-density
 #| echo: false
 #| message: false
 #| warning: false
-#| fig-height: !expr h
+#| fig-height: 5
 #| eval: !expr as.logical(params$private)
+#| fig-cap: !expr fig_legend
 
-make_cellbins(input = list(type = params$type, content = params$content))
+fig_legend <- make_legend(fun = "make_cellbins")
 
-description <- glue::glue("The plot is a density plot of dependency scores, showing the distribution of scores for {params$content}. While the majority of gene have little influence on cellular growth when ablated in {params$content}, some genes are required for {params$content} (genes scoring below -1), whereas other genes could function as tumor suppressors (genes with a score above 1).")
+make_cellbins(input = input_report)
 ```
-`r if(params$private == "true"){description} else {private_message_md}`  
 
