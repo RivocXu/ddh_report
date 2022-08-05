@@ -4,12 +4,12 @@
 #| message: false
 #| warning: false
 #| eval: !expr as.logical(params$private)
+#| fig-cap: !expr fig_legend
 
-make_cellexpression(input = list(type = params$type, content = params$content), var = "gene")
+fig_legend <- make_legend(fun = "make_cellexpression")
 
-description <- "This plot is a ..."
+make_cellexpression(input = input_report, var = "gene")
 ```
-`r if(params$private == "true"){description} else {private_message_md}`  
 
 ```{r}
 #| label: cell-gene-expression-table
@@ -17,10 +17,11 @@ description <- "This plot is a ..."
 #| message: false
 #| warning: false
 #| eval: !expr as.logical(params$private)
+#| fig-cap: !expr fig_legend
 
-make_expression_table(input = list(type = params$type, content = params$content), var = "gene")
+fig_legend <- make_legend(fun = "make_expression_table")
 
-table_description <- "This table is a ..."
+make_expression_table(input = input_report, var = "gene") %>% 
+  gt::gt()
 ```
-`r if(params$private == "true"){table_description} else {NULL}`  
   

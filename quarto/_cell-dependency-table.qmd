@@ -4,9 +4,16 @@
 #| message: false
 #| warning: false
 #| eval: !expr as.logical(params$private)
+#| fig-cap: !expr fig_legend
 
-make_dep_table(input = list(type = "cell", content = params$content))
+fig_legend <- make_legend(fun = "make_dep_table")
 
-description <- "To identify the genes at the tails of the plots, a dependency table will show the ranked genes by dependency score."
+make_dep_table(input = input_report) %>% 
+  gt::gt() %>% 
+  gt::cols_label(
+    gene = "Gene",
+    approved_name = "Gene Name",
+    unique_essential = "Unique Essential",
+    common_essential = "Common Essential"
+  )
 ```
-`r if(params$private == "true"){description} else {private_message_md}`  

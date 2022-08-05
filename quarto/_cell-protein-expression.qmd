@@ -3,19 +3,23 @@
 #| echo: false
 #| message: false
 #| warning: false
+#| fig-cap: !expr fig_legend
 
-make_cellexpression(input = list(type = params$type, content = params$content), var = "protein")
+fig_legend <- make_legend(fun = "make_cellexpression")
+
+make_cellexpression(input = input_report, var = "protein")
 
 ```
-This plot is a...
 
 ```{r}
 #| label: cell-protein-expression-table
 #| echo: false
 #| message: false
 #| warning: false
+#| fig-cap: !expr fig_legend
 
-make_expression_table(input = list(type = params$type, content = params$content), var = "protein")
+fig_legend <- make_legend(fun = "make_expression_table")
+
+make_expression_table(input = input_report, var = "protein") %>% 
+  gt::gt()
 ```
-This table is a ...
-  
