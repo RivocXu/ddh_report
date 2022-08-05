@@ -1,8 +1,11 @@
 #load functions
 source("fun.R")
+source("test.R") #checks to make sure that you're not deploying TEST data
 
-#load data
-#load here one time vs. each time in setup?
+#download data
+download_ddh_data(app_data_dir = here::here("data"),
+                  test = as.logical(Sys.getenv("TEST_VAR")),
+                  overwrite = TRUE)
 
 #wait for message
 message("waiting for messages...")

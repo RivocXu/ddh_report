@@ -9,20 +9,6 @@ library(paws)
 library(quarto)
 library(ddh)
 
-#remotes::install_github("matthewhirschey/ddh")
-
-# load_ddh_data(app_data_dir = here::here("data"),
-#               privateMode = TRUE)
-
-# download_ddh_data(app_data_dir = here::here("data"),
-#                   test = TRUE,
-#                   overwrite = FALSE)
-
-# download_ddh_data(app_data_dir = here::here("data"),
-#                   object_name = "achilles_lower",
-#                   test = TRUE,
-#                   overwrite = TRUE)
-
 #MESSAGES-----
 # if needed for testing, send_report_message() is located in ddh package
 
