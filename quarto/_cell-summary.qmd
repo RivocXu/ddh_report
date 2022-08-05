@@ -3,11 +3,6 @@
 #| echo: false
 #| message: false
 #| warning: false
-```
 
-### Summary  
-Querying `r params$content` generates a short summary of the cell line.  
-  
-**Name**: `r summary$identifier`
-**Summary**: `r summary$summary`  
-  
+ddh::summary_list(input = input_report)
+```
