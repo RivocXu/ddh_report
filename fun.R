@@ -9,6 +9,8 @@ library(paws)
 library(quarto)
 library(ddh)
 
+test_var <- TRUE
+
 #MESSAGES-----
 # if needed for testing, send_report_message() is located in ddh package
 

@@ -3,7 +3,7 @@ FROM rocker/tidyverse:4
 
 # install packages
 RUN R -e "install.packages(c('blastula', 'glue', 'gt', 'here', 'jsonlite', 'patchwork', 'paws', 'quarto'))"
-RUN R -e "devtools::install_github('matthewhirschey/ddh', force = TRUE)"
+RUN R -e "devtools::install_github('matthewhirschey/ddh', force = TRUE)" 
 
 # copy everything from the current directory into the container
 COPY ./ ./src
