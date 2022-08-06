@@ -9,8 +9,6 @@ library(ggplot2) #library(tidyverse)
 library(gt)
 library(patchwork)
 
-source('graphs.R')
-
 #LOAD DATA-----
 load_ddh_data(app_data_dir = here::here("data"))
 
