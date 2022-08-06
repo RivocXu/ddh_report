@@ -25,13 +25,13 @@ knitr:
 {{< include _project-summary.qmd >}}  
 {{< pagebreak >}}  
   
-## Cell Line Summary  
+## Cell Line Summary
 {{< include _cell-summary.qmd >}}
-{{< pagebreak >}}  
-  
+{{< pagebreak >}}
+
 ## Literature {#sec-literature}
 {{< include _literature.qmd >}}
-{{< pagebreak >}}  
+{{< pagebreak >}}
   
 ## Expression  
 ### Gene Expression
@@ -39,22 +39,22 @@ knitr:
 {{< pagebreak >}}  
   
 ### Protein Expression
-{{< include _cell-protein-expression.qmd >}}  
-{{< pagebreak >}}  
-  
-### Gene v. Protein Expression  
-{{< include _cell-gene-v-protein-expression.qmd >}}  
-{{< pagebreak >}}  
-  
+{{< include _cell-protein-expression.qmd >}}
+{{< pagebreak >}}
+
+### Gene v. Protein Expression
+{{< include _cell-gene-v-protein-expression.qmd >}}
+{{< pagebreak >}}
+
 ## Dependencies
 ### Dependency Plot
-{{< include _cell-dependency.qmd >}}  
-{{< pagebreak >}} 
-  
-### Dependency Density Plot  
-{{< include _cell-dependency-density.qmd >}}  
-{{< pagebreak >}} 
-  
+{{< include _cell-dependency.qmd >}}
+{{< pagebreak >}}
+
+### Dependency Density Plot
+{{< include _cell-dependency-density.qmd >}}
+{{< pagebreak >}}
+
 ### Dependency Table
-{{< include _cell-dependency-table.qmd >}}  
-{{< pagebreak >}} 
+{{< include _cell-dependency-table.qmd >}}
+{{< pagebreak >}}

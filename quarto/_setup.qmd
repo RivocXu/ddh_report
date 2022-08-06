@@ -8,6 +8,7 @@ library(ddh)
 library(ggplot2) #library(tidyverse)
 library(gt)
 library(patchwork)
+library(knitr)
 
 #LOAD DATA-----
 load_ddh_data(app_data_dir = here::here("data"))
@@ -40,4 +41,11 @@ if(length(input_report$content) > 1){content <- stringr::str_replace_all(params$
 base_url <- dplyr::if_else(params$private == "true", paste0("datadrivenhypothesis.com"), paste0("datadrivenhypothesis.org"))
 query_url <- glue::glue('https://www.{base_url}/?show=gene&query={content}')
 
+#DEFINE KNITR HOOKS
+knit_hooks$set(`ddh-legend` = function(before, options, envir) {
+  if (!before) {
+    sprintf(options$comment)
+  }
+})
 ```
+

@@ -3,6 +3,7 @@
 #| echo: false
 #| message: false
 #| warning: false
+#| eval: !expr as.logical(params$private)
 
 ddh::summary_list(input = input_report)
 ```

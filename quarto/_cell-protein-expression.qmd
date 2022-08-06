@@ -1,14 +1,35 @@
+#### Protein Expression Plot
+
+```{r}
+#| label: cell-protein-expression-legend
+#| echo: false
+#| message: false
+#| warning: false
+
+fig_legend <- make_legend(fun = "make_cellexpression")
+```
+
 ```{r}
 #| label: cell-protein-expression
 #| echo: false
 #| message: false
 #| warning: false
-#| fig-cap: !expr fig_legend
-
-fig_legend <- make_legend(fun = "make_cellexpression")
+#| ddh-legend: true
+#| eval: !expr as.logical(params$private)
+#| comment: !expr if(params$private == "true"){fig_legend} else {private_message_md}
 
 make_cellexpression(input = input_report, var = "protein")
+```
 
+#### Protein Expression Table
+
+```{r}
+#| label: cell-protein-expression-table-legend
+#| echo: false
+#| message: false
+#| warning: false
+
+fig_legend <- make_legend(fun = "make_expression_table")
 ```
 
 ```{r}
@@ -16,10 +37,11 @@ make_cellexpression(input = input_report, var = "protein")
 #| echo: false
 #| message: false
 #| warning: false
-#| fig-cap: !expr fig_legend
-
-fig_legend <- make_legend(fun = "make_expression_table")
+#| ddh-legend: true
+#| eval: !expr as.logical(params$private)
+#| comment: !expr if(params$private == "true"){fig_legend} else {private_message_md}
 
 make_expression_table(input = input_report, var = "protein") %>% 
   gt::gt()
 ```
+
