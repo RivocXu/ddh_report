@@ -3,7 +3,9 @@
 #| echo: false
 #| message: false
 #| warning: false
+#| fig-cap: !expr fig_legend
 
-make_pubmed(input = list(type = "gene", content = params$content))
+fig_legend <- make_legend(fun = "make_pubmed")
+
+make_pubmed(input = input_report)
 ```
-The literature plot is a...
