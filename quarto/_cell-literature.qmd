@@ -1,11 +1,23 @@
+
 ```{r}
-#| label: gene-literature
+#| label: cell-literature-setup
 #| echo: false
 #| message: false
 #| warning: false
-#| fig-cap: !expr fig_legend
 
 fig_legend <- make_legend(fun = "make_pubmed")
+```
+
+```{r}
+#| label: cell-literature
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-height: 7.5
+#| fig-width: 12
+#| eval: !expr as.logical(params$private)
 
 make_pubmed(input = input_report)
 ```
+
+`r if(params$private == "true"){fig_legend} else {private_message_md}`

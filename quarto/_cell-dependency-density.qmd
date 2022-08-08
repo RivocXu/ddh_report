@@ -1,15 +1,22 @@
 
 ```{r}
+#| label: cell-dependency-density-setup
+#| echo: false
+#| message: false
+#| warning: false
+
+fig_legend <- make_legend(fun = "make_cellbins")
+```
+
+```{r}
 #| label: cell-dependency-density
 #| echo: false
 #| message: false
 #| warning: false
 #| fig-height: 5
 #| eval: !expr as.logical(params$private)
-#| fig-cap: !expr fig_legend
-
-fig_legend <- make_legend(fun = "make_cellbins")
 
 make_cellbins(input = input_report)
 ```
 
+`r if(params$private == "true"){fig_legend} else {private_message_md}`

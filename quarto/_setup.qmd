@@ -10,8 +10,8 @@ library(gt)
 library(patchwork)
 
 #LOAD DATA-----
-# load_ddh_data(app_data_dir = here::here("data"))
-load_ddh_data(app_data_dir = "/Users/pol/Dropbox/ddh_data/")
+load_ddh_data(app_data_dir = here::here("data"))
+
 #CONVERT PARAMS TO LIST----
 input_report = list(
   type = params$type, 
