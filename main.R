@@ -5,7 +5,7 @@ source("fun.R")
 #download data
 download_ddh_data(app_data_dir = here::here("data"),
                   test = test_var,
-                  overwrite = TRUE)
+                  overwrite = FALSE)
 
 #wait for message
 message("waiting for messages...")
