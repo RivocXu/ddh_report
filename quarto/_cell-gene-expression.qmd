@@ -1,14 +1,36 @@
+
+#### Gene Expression Plot
+
+```{r}
+#| label: cell-gene-expression-setup
+#| echo: false
+#| message: false
+#| warning: false
+
+fig_legend <- make_legend(fun = "make_cellexpression")
+```
+
 ```{r}
 #| label: cell-gene-expression
 #| echo: false
 #| message: false
 #| warning: false
 #| eval: !expr as.logical(params$private)
-#| fig-cap: !expr fig_legend
-
-fig_legend <- make_legend(fun = "make_cellexpression")
 
 make_cellexpression(input = input_report, var = "gene")
+```
+
+`r if(params$private == "true"){fig_legend} else {private_message_md}`
+
+#### Gene Expression Table
+
+```{r}
+#| label: cell-gene-expression-table-setup
+#| echo: false
+#| message: false
+#| warning: false
+
+fig_legend <- make_legend(fun = "make_expression_table")
 ```
 
 ```{r}
@@ -17,11 +39,10 @@ make_cellexpression(input = input_report, var = "gene")
 #| message: false
 #| warning: false
 #| eval: !expr as.logical(params$private)
-#| fig-cap: !expr fig_legend
-
-fig_legend <- make_legend(fun = "make_expression_table")
 
 make_expression_table(input = input_report, var = "gene") %>% 
   gt::gt()
 ```
-  
+
+`r if(params$private == "true"){fig_legend} else {private_message_md}`
+

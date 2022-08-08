@@ -1,12 +1,19 @@
+
+```{r}
+#| label: cell-dependency-table-setup
+#| echo: false
+#| message: false
+#| warning: false
+
+fig_legend <- make_legend(fun = "make_dep_table")
+```
+
 ```{r}
 #| label: cell-dependency-table
 #| echo: false
 #| message: false
 #| warning: false
 #| eval: !expr as.logical(params$private)
-#| fig-cap: !expr fig_legend
-
-fig_legend <- make_legend(fun = "make_dep_table")
 
 make_dep_table(input = input_report) %>% 
   gt::gt() %>% 
@@ -17,3 +24,5 @@ make_dep_table(input = input_report) %>%
     common_essential = "Common Essential"
   )
 ```
+
+`r if(params$private == "true"){fig_legend} else {private_message_md}`
