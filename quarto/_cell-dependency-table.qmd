@@ -1,20 +1,10 @@
-```{r}
-#| label: cell-dependency-table-legend
-#| echo: false
-#| message: false
-#| warning: false
-
-fig_legend <- make_legend(fun = "make_dep_table")
-```
 
 ```{r}
 #| label: cell-dependency-table
 #| echo: false
 #| message: false
 #| warning: false
-#| ddh-legend: true
-#| eval: !expr as.logical(params$private)
-#| comment: !expr if(params$private == "true"){fig_legend} else {private_message_md}
+#| fig-cap: !expr fig_legend
 
 fig_legend <- make_legend(fun = "make_dep_table")
 

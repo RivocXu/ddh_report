@@ -1,20 +1,13 @@
-```{r}
-#| label: cell-gene-v-protein-expression-legend
-#| echo: false
-#| message: false
-#| warning: false
-
-fig_legend <- make_legend(fun = "make_cellgeneprotein")
-```
 
 ```{r}
 #| label: cell-gene-v-protein-expression
 #| echo: false
 #| message: false
 #| warning: false
-#| ddh-legend: true
 #| eval: !expr as.logical(params$private)
-#| comment: !expr if(params$private == "true"){fig_legend} else {private_message_md}
+ #| fig-cap: !expr fig_legend
+
+fig_legend <- make_legend(fun = "make_cellgeneprotein")
 
 make_cellgeneprotein(input = input_report)
 ```
