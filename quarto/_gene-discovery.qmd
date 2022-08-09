@@ -1,5 +1,3 @@
-{{< include _setup.qmd >}}  
-
 ```{r}
 #| label: pubmed
 #| fig-cap: "Number of publications per human gene"
@@ -7,10 +5,6 @@
 #| cache: true
 #| message: false
 #| warning: false
-
-source(here::here("code", "current_release.R"))
-gene_summary <- readRDS(here::here("data", paste0(release, "_gene_summary.Rds"))) #overwrite gene_summary below
-
 
 gene2pubmed <- 
   read_tsv(gene2pubmed_url, col_names = TRUE) %>% #gene2pubmed_url read from current_release.R

@@ -19,7 +19,7 @@ book:
         - gene-pathway-query.qmd
         - gene-custom-query.qmd
     - part: cell-line-query.qmd
-      chapters: 
+      chapters:
         - cell-information.qmd
         - cell-expression.qmd
         - cell-compounds.qmd
@@ -27,7 +27,7 @@ book:
         - cell-lineage-query.qmd
         - custom-cells-query.qmd
     - part: compound-query.qmd
-      chapters: 
+      chapters:
         - compound-information.qmd
         - compound-expression.qmd
         - compound-metabolites.qmd
@@ -60,9 +60,10 @@ execute:
   echo: false
   message: false
   warning: false
-
+  
 params:
   type: "gene"
   subtype: "gene"
+  query: "ROCK1"
   content: "ROCK1"
   private: "true"

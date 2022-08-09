@@ -1,3 +1,12 @@
+```{r}
+#| label: index
+
+library(tidyverse)
+library(janitor)
+library(ggrepel)
+library(ddh)
+```
+
 # Introduction {.unnumbered}
 ![](https://source.unsplash.com/y41FEMqdJ3A/800x600)  
 
@@ -9,7 +18,43 @@ Imagine interrogating 100s of GBs of data by simply querying your gene of intere
 Identifying the key functions of human genes is a major biomedical research goal. While some genes are very well-studied, most human genes we know little about. Mapping a broad set of gene functions *en masse* is currently not possible, and therefore most scientific research proceeds with a one-gene-at-a-time approach. While this reductionist approach has guided the scientific methods for hundreds of years, the volume, complexity, and sophistication of modern science necessitate alternative approaches.
   
 Current incentives in science encourage study of a few genes, where many of the ~20,000 genes remain understudied.  
-{{< include _gene-discovery.qmd >}}  
+
+```{r}
+#| label: pubmed
+#| fig-cap: "Number of publications per human gene"
+#| code-fold: true
+#| cache: true
+#| message: false
+#| warning: false
+
+gene_summary <- readRDS(file = here::here("data", "gene_summary.Rds"))
+gene2pubmed_url <- "ftp://ftp.ncbi.nlm.nih.gov/gene/DATA/gene2pubmed.gz"
+  
+gene2pubmed <- 
+  read_tsv(gene2pubmed_url, col_names = TRUE) %>% #gene2pubmed_url read from current_release.R
+  janitor::clean_names() %>%
+  dplyr::filter(number_tax_id == 9606) %>%  #only the rows corresponding to humans (#tax_id = 9606) 
+  dplyr::group_by(gene_id) %>% 
+  dplyr::count(sort = TRUE) %>% 
+  dplyr::left_join(gene_summary, by = c("gene_id" = "ncbi_gene_id")) %>% 
+  dplyr::select(gene_id, approved_symbol, n, approved_name) %>% 
+  dplyr::filter(!is.na(approved_symbol))
+
+gene2pubmed %>% 
+  # ungroup() %>% 
+  # slice(1:100) %>% 
+  ggplot() +
+  geom_point(aes(x = fct_reorder(approved_symbol, n), y = n), alpha = 0.5) +
+  ggrepel::geom_text_repel(data = subset(gene2pubmed, n > 3000),
+                  aes(x = fct_reorder(approved_symbol, n), y = n, label = approved_symbol)) +
+  coord_cartesian(xlim = c(0, 33000)) +
+  labs(x = "Human Gene", 
+       y = "Number of Publications") +
+  theme_ddh(grid = "y",
+            axistext = "y", 
+            panelbackground = FALSE) +
+  NULL
+```
   
 ## What is data-driven hypothesis?  
 New tools in Data Science -- a combination of computer programming, math & statistics, and topical expertise -- combined with the rapid adoption of open science and data sharing allow scientists to access publicly available datasets and interrogate these data *before* performing any experiments.
@@ -25,8 +70,6 @@ This project began as an extension of a simple and common concept called pattern
 ```{r}
 #| label: gene_coexpression
 #| fig-cap: "Heatmap label"
-
-library(tidyverse)
 
 # Dummy data
 x <- paste0("CTL ", seq(1,3))
@@ -60,15 +103,11 @@ while (j < 3) {
 data$Z <- c(A,B)
 
 # Heatmap 
-heatmap_gene <- 
-  ggplot(data, aes(X, fct_rev(Y), fill= Z)) + 
+ggplot(data, aes(X, forcats::fct_rev(Y), fill= Z)) + 
   geom_tile() +
   labs(x = "", y = "", fill = "Expression \nCorrelation", subtitle = "Gene Coexpression Example*", caption = "*simulated data") +
-  theme_minimal_grid(color = "white") +
+  theme_ddh() +
   scale_x_discrete(position = "top")
-
-heatmap_gene
-##ggsave(here::here("results", "fig1a_heatmap_gene.png"), plot = heatmap_gene, dpi = 300)
 ```
 
 Beyond this simple example, we aim to leverage several different types of data glean information about known and unknown genes. We present here a comprehensive resource for mapping the structure or function of thousands of genes across the human genome. Importantly, this method integrates several data types, including gene essentiality, gene expression, and literature mining to identify candidate functions of known or unknown genes. The DDH project holds tremendous promise to generate hypotheses, data, and knowledge in order to provide a deep understanding of the dynamic properties of an organism. We provide this resource via an intuitive online interface, which will provide the scientific community a platform to query and prioritize experimental hypotheses to test in the lab.

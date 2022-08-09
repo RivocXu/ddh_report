@@ -2,21 +2,33 @@
 #| label: setup
 #| include: false
 
+# THIS SETUP CHUNK IS FOR BOTH REPORTS AND FOR METHODS
+
 #LOAD LIBRARIES AND FUNCTIONS-----
 library(here)
 library(ddh)
+library(htmltools)
 library(ggplot2) #library(tidyverse)
+library(glue)
 library(gt)
 library(patchwork)
 
 #LOAD DATA-----
-load_ddh_data(app_data_dir = here::here("data"))
+ddh::download_ddh_data(app_data_dir = here::here("data"),
+                  test = TRUE,
+                  overwrite = FALSE)
 
-#CONVERT PARAMS TO LIST----
+params <- list(type="gene", 
+               subtype="gene", 
+               query="ROCK1", 
+               content="ROCK1", 
+               private="true")
+  
+# CONVERT PARAMS TO LIST----
 input_report = list(
-  type = params$type, 
-  subtype = params$subtype, 
-  query = unlist(stringr::str_split(params$query, pattern = ", ")), 
+  type = params$type,
+  subtype = params$subtype,
+  query = unlist(stringr::str_split(params$query, pattern = ", ")),
   content = unlist(stringr::str_split(params$content, pattern = ", "))
 )
 
@@ -34,8 +46,8 @@ private_msg <- function() {
   }
 }
 
-#QUERY URL
-if(length(input_report$content) > 1){content <- stringr::str_replace_all(params$content, pattern = " ", replacement = "%20")} else {content <- params$content}
+#QUERY URL #length(input_report$content) > 1
+if(stringr::str_detect(params$content, ", ")){content <- stringr::str_replace_all(params$content, pattern = " ", replacement = "%20")} else {content <- params$content}
 
 base_url <- dplyr::if_else(params$private == "true", paste0("datadrivenhypothesis.com"), paste0("datadrivenhypothesis.org"))
 query_url <- glue::glue('https://www.{base_url}/?show=gene&query={content}')

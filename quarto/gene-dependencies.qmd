@@ -1,3 +1,13 @@
+```{r}
+#| label: gene-dependency-libraries
+library(tidyverse)
+library(ddh)
+library(viridis)
+
+#data
+ddh::load_ddh_data(app_data_dir = here::here("data"))
+```
+
 # Gene Dependencies {#sec-gene-dependencies}  
 ## Rationale
 Following on the idea of looking for patterns in data, we set out to map genes to common functional pathways based on functional genomic data. Functional genomics is a field of molecular biology that aims to understand the function of all genes and proteins in a genome -- a stated goal of much basic science research. In functional genomics, experimental strategies generally involve high-throughput, genome-wide approaches rather than a more traditional "gene-by-gene" approach.  
@@ -46,7 +56,7 @@ heatmap_dep <-
   ggplot(data, aes(X, fct_rev(Y), fill= Z)) + 
   geom_tile() +
   labs(x = "", y = "", fill = "Dependency \nCorrelation", subtitle = "Dependency Score Example*", caption = "*simulated data") +
-  theme_minimal_grid(color = "white") + 
+  theme_ddh() + 
   scale_fill_viridis() + 
   scale_x_discrete(position = "top")
 
@@ -59,10 +69,8 @@ heatmap_dep
 #| message: false
 #| warning: false
 
-#get data dir
-source(here::here("code", "app_params.R"))
 #get data
-achilles_long <- readRDS(file=here::here(app_data_dir, paste0(release, "_achilles_long.Rds")))
+ #readRDS(file=here::here("data", "achilles_long.Rds"))
 ```
 
 Essential gene data from Project Achilles were downloaded from the DepMap portal at: [depmap.org](https://depmap.org/portal/download/). This release contains gene essentiality scores for `r length(unique(achilles_long$gene))` genes across `r length(unique(achilles_long$X1))` cell lines, and was used for this project.

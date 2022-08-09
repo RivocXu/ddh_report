@@ -27,10 +27,15 @@ A compound search consists of either a drug or metabolite. This unique search ty
 ## Example Searches
 ```{r}
 #| label: examples
+#| eval: false
+
+library(ddh)
 library(shiny)
-source(here::here("code", "examples.R"))
+
+# ddh::make_example()
+#`r shiny::HTML(examples)`
 ```
-`r shiny::HTML(examples)`
+
 
 ## Read the manual
 
