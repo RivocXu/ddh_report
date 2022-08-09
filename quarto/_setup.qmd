@@ -51,5 +51,5 @@ if(stringr::str_detect(params$content, ", ")){content <- stringr::str_replace_al
 
 base_url <- dplyr::if_else(params$private == "true", paste0("datadrivenhypothesis.com"), paste0("datadrivenhypothesis.org"))
 query_url <- glue::glue('https://www.{base_url}/?show=gene&query={content}')
-
 ```
+
