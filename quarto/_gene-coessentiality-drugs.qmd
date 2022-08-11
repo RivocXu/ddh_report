@@ -4,9 +4,6 @@
 #| message: false
 #| warning: false
 
-# load_ddh_data(app_data_dir, #defined in setup
-#               object_name = c("gene_drugs_cor_table"))
-
 fig_legend <- make_legend(fun = "make_gene_drugs_cor_table")
 ```
 
@@ -16,7 +13,7 @@ fig_legend <- make_legend(fun = "make_gene_drugs_cor_table")
 #| echo: false
 #| message: false
 #| warning: false
-#| eval: !expr as.logical(params$private)
+#| eval: !expr private_report
 
 make_gene_drugs_cor_table(input = input_report) %>% #defined in setup
   gt::gt() %>% 
@@ -28,7 +25,7 @@ make_gene_drugs_cor_table(input = input_report) %>% #defined in setup
   ) %>% 
   gt::tab_options(table.width = gt::pct(100))
 
-description <- glue::glue("This table shows drugs correlated with similar cell dependency profiles as {params$content}.")
+description <- glue::glue("This table shows drugs correlated with similar cell dependency profiles as {input_report$content}.")
 ```
   
-`r if(params$private == "true"){description} else {private_message_md}`  
+`r if(private_report == TRUE){description} else {private_message_md}`  

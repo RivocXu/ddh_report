@@ -1,21 +1,11 @@
 ```{r}
-#| label: gene-coessentiality-inverse-table-setup
-#| echo: false
-#| message: false
-#| warning: false
-
-# load_ddh_data(app_data_dir, #defined in setup
-#               object_name = c("master_bottom_table", "achilles_lower"))
-
-```
-
-```{r}
 #| label: gene-coessentiality-inverse-table
 #| echo: false
 #| message: false
 #| warning: false
 
-make_bottom_table(input = input_report) %>% #defined in setup
+dep_bottom <- #name here for use in methods
+  make_bottom_table(input = input_report) %>% #defined in setup
   gt::gt() %>% 
   gt::cols_hide(columns = c("fav_gene", "r2", "concept_index")) %>% 
   gt::cols_label(
@@ -25,6 +15,8 @@ make_bottom_table(input = input_report) %>% #defined in setup
     concept_count = "Co-Publication Count"
   ) %>% 
   gt::tab_options(table.width = gt::pct(100))
+
+dep_bottom
 ```
   
 This table shows the genes with the strongest inverse correlations between dependency scores.  

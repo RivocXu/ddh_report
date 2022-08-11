@@ -1,0 +1,18 @@
+---
+params:
+  type: "compound"
+  subtype: "moa"
+  query: "cyclooxygenase inhibitor"
+  content: "cyclooxygenase inhibitor"
+  private: "true"
+knitr:
+  opts_chunk: 
+    cache.lazy: false #fixes "Error in lazyLoadDBinsertVariable; long vectors not supported yet"
+---
+
+{{< include _setup.qmd >}}
+
+# MOA Query {#sec-moa-query}
+  
+The purpose of this page is to provide...  
+The data comes from...  

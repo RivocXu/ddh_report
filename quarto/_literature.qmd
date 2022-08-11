@@ -9,4 +9,4 @@
 
 make_pubmed(input = input_report) #defined in setup
 ```
-The literature plot shows the increase in literature citations referencing `r params$content` over time.
+The literature plot shows the increase in literature citations referencing `r input_report$content` over time.

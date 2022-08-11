@@ -16,17 +16,17 @@ fig_legend <- 'make_legend(fun = "make_radial")'
 #| echo: false
 #| message: false
 #| warning: false
-#| eval: !expr as.logical(params$private)
+#| eval: !expr private_report
 #| fig-width: 13
 #| fig-height: 9
 #| fig-cap: !expr fig_legend
 
 make_radial(input = input_report) #defined in setup
 
-description <- glue::glue("The radial plot shows the relative frequency of each amino acid in {params$content} compared to the average of all proteins in the human proteome.")
+description <- glue::glue("The radial plot shows the relative frequency of each amino acid in {input_report$content} compared to the average of all proteins in the human proteome.")
 
 #how to handle multiple images in a child chunk
 ```
-`r if(params$private == "true"){description} else {private_message_md}`  
+`r if(private_report == TRUE){description} else {private_message_md}`  
 
 

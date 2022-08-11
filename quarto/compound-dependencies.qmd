@@ -1,3 +1,17 @@
+---
+params:
+  type: "compound"
+  subtype: "compound"
+  query: "aspirin"
+  content: "aspirin"
+  private: "true"
+knitr:
+  opts_chunk: 
+    cache.lazy: false #fixes "Error in lazyLoadDBinsertVariable; long vectors not supported yet"
+---
+
+{{< include _setup.qmd >}}
+
 # Compound Dependencies {#sec-compound-dependencies}
   
 The purpose of this page is to provide...  

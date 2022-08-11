@@ -4,12 +4,7 @@
 #| message: false
 #| warning: false
 
-# load_ddh_data(app_data_dir#, #defined in setup
-#               # object_name = c("master_top_table","master_bottom_table", "hmdb_proteins", "hmdb_metabolites", "gene_summary", "cell_line_dep_sim", "cell_line_exp_sim", "prism_cor_nest", "gene_summary")
-# ) 
-
 fig_legend <- make_legend(fun = "make_bipartite_graph")
-
 ```
 
 ```{r}
@@ -20,7 +15,6 @@ fig_legend <- make_legend(fun = "make_bipartite_graph")
 #| fig-cap: !expr fig_legend
 
 make_bipartite_graph(input = input_report) #defined in setup
-
 ```
   
 The gene bipartite graph is a special type of network graph showing the relationship between genes and metabolites or drugs associated with them. The genes shown in the network are those in the top 10 of similar essentiality profiles; the metabolites shown are those that are associated with each of the genes. This network helps prioritize functional relationships between genes and compounds for further study.  

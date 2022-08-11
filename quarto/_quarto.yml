@@ -1,6 +1,14 @@
+params:
+  type: "gene"
+  subtype: "gene"
+  query: "ROCK1"
+  content: "ROCK1"
+  private: "true"
+  
 project:
   type: book
   output-dir: methods #this puts the entire book in a methods dir
+  #pre-render: prepare.R
 
 book:
   title: "Data-driven Hypothesis"
@@ -25,15 +33,15 @@ book:
         - cell-compounds.qmd
         - cell-dependencies.qmd
         - cell-lineage-query.qmd
-        - custom-cells-query.qmd
+        - cell-custom-query.qmd
     - part: compound-query.qmd
       chapters:
         - compound-information.qmd
         - compound-expression.qmd
         - compound-metabolites.qmd
         - compound-dependencies.qmd
-        - moa-query.qmd
-        - custom-compound-query.qmd
+        - compound-moa-query.qmd
+        - compound-custom-query.qmd
     - downloads.qmd
     - validation.qmd
   appendices:
@@ -60,10 +68,3 @@ execute:
   echo: false
   message: false
   warning: false
-  
-params:
-  type: "gene"
-  subtype: "gene"
-  query: "ROCK1"
-  content: "ROCK1"
-  private: "true"

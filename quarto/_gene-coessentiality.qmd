@@ -4,9 +4,6 @@
 #| message: false
 #| warning: false
 
-# load_ddh_data(app_data_dir, #defined in setup
-#               object_name = c("achilles_cor_nest", "mean_virtual_achilles", "achilles_upper", "achilles_lower"))
-
 fig_legend <- make_legend(fun = "make_correlation")
 ```
 
@@ -22,4 +19,4 @@ fig_legend <- make_legend(fun = "make_correlation")
 make_correlation(input = input_report) #defined in setup
 ```
   
-This plot visualizes the distribution of correlation values for `r params$content` compared to all other genes.  
+This plot visualizes the distribution of correlation values for `r input_report$content` compared to all other genes.  

@@ -4,10 +4,6 @@
 #| message: false
 #| warning: false
 
-# load_ddh_data(app_data_dir, #defined in setup
-#               object_name = c("pathways"))
-
-#pathways
 make_pathway_list(input = input_report) %>%  #defined in setup
   gt::gt() %>% 
   gt::cols_hide(columns = c(data, count)) %>% 
@@ -19,4 +15,4 @@ make_pathway_list(input = input_report) %>%  #defined in setup
 
 ```
   
-The pathway list shows Gene Ontoloty (GO) pathways that are annoated as containing `r params$content`.  
+The pathway list shows Gene Ontoloty (GO) pathways that are annoated as containing `r input_report$content`.  

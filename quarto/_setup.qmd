@@ -4,27 +4,21 @@
 
 # THIS SETUP CHUNK IS FOR BOTH REPORTS AND FOR METHODS
 
-#LOAD LIBRARIES AND FUNCTIONS-----
+#LOAD LIBRARIES AND FUNCTIONS REQUIRED FOR REPORTS-----
+library(corrr)
 library(here)
 library(ddh)
 library(htmltools)
-library(ggplot2) #library(tidyverse)
 library(glue)
 library(gt)
 library(patchwork)
+library(paws)
+library(tidyverse)
 
 #LOAD DATA-----
-ddh::download_ddh_data(app_data_dir = here::here("data"),
-                  test = TRUE,
-                  overwrite = FALSE)
+ddh::load_ddh_data(app_data_dir = here::here("data"))
 
-params <- list(type="gene", 
-               subtype="gene", 
-               query="ROCK1", 
-               content="ROCK1", 
-               private="true")
-  
-# CONVERT PARAMS TO LIST----
+# CONVERT PARAMS TO OBJECTS----
 input_report = list(
   type = params$type,
   subtype = params$subtype,
@@ -32,24 +26,31 @@ input_report = list(
   content = unlist(stringr::str_split(params$content, pattern = ", "))
 )
 
+private_report <- as.logical(params$private)
+
 #GET PRIVATE MESSAGES-----
-private <- function(x, publicValue=NULL) {
-  if (privateMode == TRUE) { x } else { publicValue }
-}
+# private <- function(x, publicValue=NULL) {
+#   if (privateMode == TRUE) { x } else { publicValue }
+# }
 
 private_message_html <- "This analysis is currently in Beta, and is only available to premium subscribers. If you want to upgrade to support this project and access these data, subscribe at ', a(href = 'http://www.datadrivenhypothesis.com', 'datadrivenhypothesis.com')"
 private_message_md <- "This analysis is currently in Beta, and is only available to premium subscribers. If you want to upgrade to support this project and access these data, subscribe at [datadrivenhypothesis.com](http://www.datadrivenhypothesis.com)"
 
-private_msg <- function() {
-  if (privateMode == FALSE) {
-    htmltools::tagList(private_message_html) 
-  }
+# private_msg <- function() {
+#   if (privateMode == FALSE) {
+#     htmltools::tagList(private_message_html)
+#   }
+# }
+
+#QUERY URL 
+if(length(input_report$content) > 1){ #stringr::str_detect(input_report$content, ", "
+  url_content <- glue::glue_collapse(input_report$content, sep = ",") #%>%
+    #stringr::str_replace_all(pattern = " ", replacement = "%20")
+} else {
+  url_content <- input_report$content
 }
 
-#QUERY URL #length(input_report$content) > 1
-if(stringr::str_detect(params$content, ", ")){content <- stringr::str_replace_all(params$content, pattern = " ", replacement = "%20")} else {content <- params$content}
-
-base_url <- dplyr::if_else(params$private == "true", paste0("datadrivenhypothesis.com"), paste0("datadrivenhypothesis.org"))
-query_url <- glue::glue('https://www.{base_url}/?show=gene&query={content}')
+base_url <- dplyr::if_else(private_report == TRUE, paste0("datadrivenhypothesis.com"), paste0("datadrivenhypothesis.org"))
+query_url <- glue::glue('https://www.{base_url}/?show=gene&query={url_content}')
 ```
 

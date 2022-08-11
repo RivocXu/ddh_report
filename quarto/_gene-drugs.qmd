@@ -4,9 +4,6 @@
 #| message: false
 #| warning: false
 
-# load_ddh_data(app_data_dir, #defined in setup
-#               object_name = c("gene_drugs_table"))
-
 make_gene_drugs_table(input = input_report) %>% #defined in setup
   gt::gt() %>% 
   gt::cols_hide(columns = c("fav_gene")) %>% 
@@ -18,4 +15,4 @@ make_gene_drugs_table(input = input_report) %>% #defined in setup
 
 ```
   
-This table shows drugs that are known to target `r params$content`, as annotated by the Human Metabolome Database (HMDB).  
+This table shows drugs that are known to target `r input_report$content`, as annotated by the Human Metabolome Database (HMDB).  

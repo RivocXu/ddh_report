@@ -27,16 +27,16 @@ A compound search consists of either a drug or metabolite. This unique search ty
 ## Example Searches
 ```{r}
 #| label: examples
-#| eval: false
+#| echo: false
+#| message: false
 
 library(ddh)
-library(shiny)
+library(htmltools)
 
-# ddh::make_example()
-#`r shiny::HTML(examples)`
+examples <- ddh::make_example()
 ```
-
-
+`r htmltools::HTML(examples)`  
+  
 ## Read the manual
 
 This manual serves as a guide to queries, and provides deeper context and more robust statistical descriptions of data analysis workflows. This manual can be navigated like the website, focusing on a specific type of query, and then exploring the pre-computed analyses presented to the user.

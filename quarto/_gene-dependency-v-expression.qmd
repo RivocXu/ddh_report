@@ -4,9 +4,6 @@
 #| message: false
 #| warning: false
 
-# load_ddh_data(app_data_dir, #defined in setup
-#               object_name = c("achilles_long", "expression_long", "expression_names"))
-
 fig_legend <- make_legend(fun = "make_expdep")
 ```
 
@@ -18,7 +15,6 @@ fig_legend <- make_legend(fun = "make_expdep")
 #| fig-cap: !expr fig_legend
 
 make_expdep(input = input_report) #defined in setup
-
 ```
   
 This plot shows the relationship between gene expression and gene dependency in the same cell lines. Each point represents a single cell line and it's corresponding expression and dependency score.  

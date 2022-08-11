@@ -1,3 +1,17 @@
+---
+params:
+  type: "gene"
+  subtype: "gene"
+  query: "ROCK1"
+  content: "ROCK1"
+  private: "true"
+knitr:
+  opts_chunk: 
+    cache.lazy: false #fixes "Error in lazyLoadDBinsertVariable; long vectors not supported yet"
+---
+
+{{< include _setup.qmd >}}
+
 # Custom Gene Query {#sec-custom-gene-query}
   
 The purpose of this page is to provide...  

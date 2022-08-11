@@ -1,15 +1,4 @@
 ```{r}
-#| label: gene-metabolites-setup
-#| echo: false
-#| message: false
-#| warning: false
-
-# load_ddh_data(app_data_dir, #defined in setup
-#               object_name = c("hmdb_proteins", "hmdb_metabolites"))
-
-```
-
-```{r}
 #| label: gene-metabolites
 #| echo: false
 #| message: false
@@ -25,4 +14,4 @@ make_metabolite_table(input = input_report) %>% #defined in setup
   gt::tab_options(table.width = gt::pct(100))
 ```
   
-This metabolite table shows metabolites known to associate with `r params$content`, as curated by the Human Metabolome Database (HMDB). 
+This metabolite table shows metabolites known to associate with `r input_report$content`, as curated by the Human Metabolome Database (HMDB). 

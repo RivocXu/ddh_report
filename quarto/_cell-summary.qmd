@@ -1,3 +1,17 @@
+---
+params:
+  type: "cell"
+  subtype: "cell"
+  query: "HEPG2"
+  content: "HEPG2"
+  private: "true"
+knitr:
+  opts_chunk: 
+    cache.lazy: false #fixes "Error in lazyLoadDBinsertVariable; long vectors not supported yet"
+---
+
+{{< include _setup.qmd >}}
+
 ```{r}
 #| label: cell-summary
 #| echo: false

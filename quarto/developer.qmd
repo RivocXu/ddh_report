@@ -5,8 +5,11 @@ Dev resources go here
 General org of code
   
 ### Raw Functions
+DDH package
+repo: ddh
 
 ### Shiny Function
+repo: private
   
 ## Data Generation
 Notes on data generation (link to vidoe?)

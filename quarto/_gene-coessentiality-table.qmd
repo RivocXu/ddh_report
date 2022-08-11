@@ -1,21 +1,11 @@
 ```{r}
-#| label: gene-coessentiality-table-setup
-#| echo: false
-#| message: false
-#| warning: false
-
-# load_ddh_data(app_data_dir, #defined in setup
-#               object_name = c("master_top_table", "achilles_upper"))
-
-```
-
-```{r}
 #| label: gene-coessentiality-table
 #| echo: false
 #| message: false
 #| warning: false
 
-make_top_table(input = input_report) %>% #defined in setup
+dep_top <- #name here so we can reuse in methods
+  make_top_table(input = input_report) %>% #defined in setup
   gt::gt() %>% 
   gt::cols_hide(columns = c("fav_gene", "r2", "concept_index")) %>% 
   gt::cols_label(
@@ -26,6 +16,7 @@ make_top_table(input = input_report) %>% #defined in setup
   ) %>% 
   gt::tab_options(table.width = gt::pct(100))
 
+dep_top
 ```
   
-This table shows the genes with the strongest correlations between dependency scores. The 'co-publication count' column attempts to quantify the co-occurance of `r params$content` and a gene that shows a strong co-essentiality. With this value, positive controls (i.e. genes known to be related) can be easily found. Likewise, opportunities for discovery (i.e. functional relationships not yet described) can also be found. To view raw correlation values or a 'co-publicaiton index', navigate back to the [dependency page on DDH](`r query_url`).  
+This table shows the genes with the strongest correlations between dependency scores. The 'co-publication count' column attempts to quantify the co-occurance of `r input_report$content` and a gene that shows a strong co-essentiality. With this value, positive controls (i.e. genes known to be related) can be easily found. Likewise, opportunities for discovery (i.e. functional relationships not yet described) can also be found. To view raw correlation values or a 'co-publicaiton index', navigate back to the [dependency page on DDH](`r query_url`).  

@@ -4,9 +4,6 @@
 #| message: false
 #| warning: false
 
-# load_ddh_data(app_data_dir, #defined in setup
-#               object_name = c("proteins"))
-
 fig_legend <- 'make_legend(fun = "make_proteinsize")'
 
 h <- length(unique(input_report$content)) * 1.36 + .9
@@ -22,4 +19,5 @@ h <- length(unique(input_report$content)) * 1.36 + .9
 
 make_proteinsize(input = input_report) #defined in setup
 ```
-The size plot is a ... 
+  
+The size plot shows the mass of the protein.  

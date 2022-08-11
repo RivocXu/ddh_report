@@ -1,0 +1,18 @@
+---
+params:
+  type: "compound"
+  subtype: "custom_compound_list"
+  query: "aspirin, ibuprofen"
+  content: "aspirin, ibuprofen"
+  private: "true"
+knitr:
+  opts_chunk: 
+    cache.lazy: false #fixes "Error in lazyLoadDBinsertVariable; long vectors not supported yet"
+---
+
+{{< include _setup.qmd >}}
+
+# Custom Compound Query {#sec-custom-compound-query}
+  
+The purpose of this page is to provide...  
+The data comes from...  

@@ -3,10 +3,6 @@
 #| echo: false
 #| message: false
 #| warning: false
-
-# load_ddh_data(app_data_dir, #defined in setup
-#               object_name = c("achilles_long", "expression_names"))
-
 ```
 
 ```{r}

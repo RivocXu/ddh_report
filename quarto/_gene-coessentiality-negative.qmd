@@ -1,26 +1,17 @@
 ```{r}
-#| label: gene-coessentiality-negative-setup
-#| echo: false
-#| message: false
-#| warning: false
-
-# load_ddh_data(app_data_dir, #defined in setup
-#               object_name = c("master_negative"))
-
-```
-
-```{r}
 #| label: gene-coessentiality-negative
 #| echo: false
 #| message: false
 #| warning: false
 
-make_enrichment_bottom(input = input_report) %>% #defined in setup
+enrichment_bottom <- #name here for use in methods
+  make_enrichment_bottom(input = input_report) %>% #defined in setup
   {if (nrow(.) != 0) dplyr::slice_min(., n = 12, order_by = `Adjusted p-value`) else .} %>%
   gt::gt() %>% 
   gt::cols_hide(columns = c("Query", "Combined Score", "Genes")) %>% 
   gt::fmt_scientific(columns = `Adjusted p-value`, decimals = 2)
 
+enrichment_bottom
 ```
   
-This table shows the top 12 pathways of genes that show inverse co-essential profiles as `r params$content`. To generate these pathways, gene set enrichment was performed on all genes in the co-essentiality table, and then ranked by p-value.  
+This table shows the top 12 pathways of genes that show inverse co-essential profiles as `r input_report$content`. To generate these pathways, gene set enrichment was performed on all genes in the co-essentiality table, and then ranked by p-value.  

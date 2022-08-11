@@ -12,11 +12,13 @@ Code is available on the [Hirschey Lab github account](https://github.com/matthe
 #| label: packages
 #| include: false
 
-library(here)
-library(glue)
-source(here::here("code", "install_libraries.R"))
-libs <- sort(c(cran_pkgs, bioc_pkgs, github_pkgs)) #alphabetical
-library_list <- glue_collapse(libs, sep = ", ", last = ", and ")
+# library(here)
+# library(glue)
+# source(here::here("code", "install_libraries.R"))
+# libs <- sort(c(cran_pkgs, bioc_pkgs, github_pkgs)) #alphabetical
+# library_list <- glue_collapse(libs, sep = ", ", last = ", and ")
+
+library_list <- "how do we get package dependencies out of ddh package?"
 ```
 The following libraries are used in this project:  
 `r library_list` 

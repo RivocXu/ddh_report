@@ -5,7 +5,7 @@ FROM rocker/tidyverse:4
 RUN apt-get update && apt-get install -y libglpk-dev && rm -rf /var/lib/apt/lists/*
 
 # install packages
-RUN R -e "install.packages(c('blastula', 'ggrepel', 'glue', 'gt', 'here', 'htmltools', 'jsonlite', 'patchwork', 'paws', 'quarto', 'viridis'))"
+RUN R -e "install.packages(c('blastula', 'corrr', 'ggrepel', 'glue', 'gt', 'here', 'htmltools', 'jsonlite', 'patchwork', 'paws', 'quarto'))"
 RUN R -e "devtools::install_github('matthewhirschey/ddh', force = TRUE)" 
 
 # copy everything from the current directory into the container

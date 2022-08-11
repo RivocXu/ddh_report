@@ -1,3 +1,17 @@
+---
+params:
+  type: "gene"
+  subtype: "gene"
+  query: "ROCK1"
+  content: "ROCK1"
+  private: "true"
+knitr:
+  opts_chunk: 
+    cache.lazy: false #fixes "Error in lazyLoadDBinsertVariable; long vectors not supported yet"
+---
+
+{{< include _setup.qmd >}}
+
 # Gene Expression {#sec-gene-expression}  
 ## Subcellular Location {#sec-subcellular-location}
 {{< include _gene-cellanatogram.qmd >}}  

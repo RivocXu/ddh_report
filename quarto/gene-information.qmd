@@ -1,3 +1,17 @@
+---
+params:
+  type: "gene"
+  subtype: "gene"
+  query: "ROCK1"
+  content: "ROCK1"
+  private: "true"
+knitr:
+  opts_chunk: 
+    cache.lazy: false #fixes "Error in lazyLoadDBinsertVariable; long vectors not supported yet"
+---
+
+{{< include _setup.qmd >}}
+
 # Gene Information {#sec-gene-information}  
 ## Gene {#sec-gene}
 {{< include _gene-summary.qmd >}}
@@ -19,7 +33,7 @@
 {{< include _protein-signature.qmd >}}  
   
 ### Structure
-{{< include _protein-structure.qmd >}}  
+<!-- {{< include _protein-structure.qmd >}} -->
   
 ## Literature {#sec-literature}
 {{< include _literature.qmd >}}  

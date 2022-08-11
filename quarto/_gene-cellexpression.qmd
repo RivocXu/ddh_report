@@ -4,9 +4,6 @@
 #| message: false
 #| warning: false
 
-# load_ddh_data(app_data_dir, #defined in setup
-#               object_name = c("expression_long", "expression_names", "mean_virtual_gene_expression", "gene_expression_upper", "gene_expression_lower"))
-
 fig_legend <- make_legend(fun = "make_cellexpression")
 
 h <- length(unique(input_report$content)) * .7 + .8
@@ -38,4 +35,4 @@ make_cellexpression(input = input_report, #defined in setup
 
 ```
   
-The cell expression plot shows the expression of `r params$content` across `r length(unique(expression_long$gene))` cell lines from the cancer cell line encyclopedia (CCLE) project.  
+The cell expression plot shows the expression of `r input_report$content` across `r length(unique(expression_long$gene))` cell lines from the cancer cell line encyclopedia (CCLE) project.  

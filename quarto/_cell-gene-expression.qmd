@@ -15,7 +15,8 @@ fig_legend <- make_legend(fun = "make_cellexpression")
 #| echo: false
 #| message: false
 #| warning: false
-#| eval: !expr as.logical(params$private)
+#| fig-cap: !expr fig_legend
+#| eval: !expr private_report
 
 make_cellexpression(input = input_report, var = "gene")
 ```
@@ -38,11 +39,12 @@ fig_legend <- make_legend(fun = "make_expression_table")
 #| echo: false
 #| message: false
 #| warning: false
-#| eval: !expr as.logical(params$private)
+#| fig-cap: !expr fig_legend
+#| eval: !expr private_report
 
 make_expression_table(input = input_report, var = "gene") %>% 
   gt::gt()
 ```
 
-`r if(params$private == "true"){fig_legend} else {private_message_md}`
+`r if(private_report == TRUE){fig_legend} else {private_message_md}`
 

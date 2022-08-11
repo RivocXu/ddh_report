@@ -13,9 +13,10 @@ fig_legend <- make_legend(fun = "make_celldeps")
 #| echo: false
 #| message: false
 #| warning: false
-#| eval: !expr as.logical(params$private)
+#| fig-cap: !expr fig_legend
+#| eval: !expr private_report
 
 make_celldeps(input = input_report)
 ```
 
-`r if(params$private == "true"){fig_legend} else {private_message_md}`
+`r if(private_report == TRUE){fig_legend} else {private_message_md}`
