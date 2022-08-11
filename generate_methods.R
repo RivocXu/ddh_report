@@ -1,22 +1,38 @@
-#CREATE METHODS.HTML DOCUMENT
+generate_methods <- function(){
+  #render everything in quarto dir
+  report_base_dir = glue::glue('{getwd()}/quarto') #here::here("quarto")
 
-#generate methods via quarto
-quarto::quarto_render(input = here::here("quarto"), #expecting a dir to render
-                      #output_file = "methods.html", 
-                      output_format = "html", #output dir is set in _quarto.yml
-                      cache_refresh = TRUE)
-
-#make methods dir in www
-if(!dir.exists(here::here("code", "www", "methods"))) {dir.create(here::here("code", "www", "methods"), recursive = TRUE)}
-
-#move methods from output to www (cannot do this in render call) ## look into this.
-file.rename(from = here::here("code", "quarto", "methods"), 
-            to = here::here("code", "www", "methods"))
-
-#zip
-
-#move to S3 as www/methods.zip
-
+  #make tempdir our working directory
+  owd <- getwd()
+  setwd(report_base_dir) #for methods zipping
+  on.exit(setwd(owd))
+  
+  #generate methods via quarto
+  quarto::quarto_render(input = report_base_dir, #expecting a dir to render
+                        output_format = "html", #output dir is set in _quarto.yml
+                        cache_refresh = TRUE)
+  
+  #ZIP
+  methods_files <- list.files(here::here("quarto", "methods"), 
+                              recursive = TRUE, 
+                              include.dirs = TRUE)
+  
+  message(glue::glue_collapse(methods_files, sep = ", ")) #just for confirmation
+  
+  #zip
+  final_zip_path <- glue::glue("{owd}/methods.zip")
+  zip(zipfile = final_zip_path, 
+      files = glue::glue("methods/{methods_files}"))
+  
+  #move to S3 as www/methods.zip
+  s3 <- paws::s3()
+  s3$put_object(
+    Body = as.character(final_zip_path),
+    Bucket = Sys.getenv("AWS_DATA_BUCKET_ID"),
+    Key = "www/methods.zip"
+  )
+  message("uploaded fresh methods to S3; nice work")
+}
 
 
 
