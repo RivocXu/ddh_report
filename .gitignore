@@ -10,3 +10,4 @@ tmp/
 /site_libs/
 fun.R
 /data
+*.zip

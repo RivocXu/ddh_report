@@ -1,7 +1,7 @@
 generate_methods <- function(){
   #render everything in quarto dir
   report_base_dir = glue::glue('{getwd()}/quarto') #here::here("quarto")
-
+  
   #make tempdir our working directory
   owd <- getwd()
   setwd(report_base_dir) #for methods zipping
@@ -31,7 +31,25 @@ generate_methods <- function(){
     Bucket = Sys.getenv("AWS_DATA_BUCKET_ID"),
     Key = "www/methods.zip"
   )
-  message("uploaded fresh methods to S3; nice work")
+  complete_message <- "Hey, you just uploaded fresh methods to S3...nice work!"
+  message(complete_message)
+  
+  #send email to spin down container
+  compose_email(
+    header = add_image(file = here::here("ddh-banner.png"), width = "100%"), 
+    body = complete_message) %>%
+    smtp_send(
+      from = "hey@datadrivenhypothesis.com",
+      to = "matthew@hirschey.org",
+      subject = "Methods completed",
+      credentials = creds_envvar(
+        user = Sys.getenv("SMTP_USERNAME"),
+        #pass_envvar = Sys.getenv("SMTP_PASSWORD"), #use default
+        host = "mail.privateemail.com",
+        port = "465",
+        use_ssl = TRUE
+      )
+    )
 }
 
 
