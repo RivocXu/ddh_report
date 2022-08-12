@@ -1,18 +1,18 @@
+source("fun_libraries.R") #used by fun.R too
+Sys.setenv(VROOM_CONNECTION_SIZE = "1310720") #10x bigger; errors out otherwise
+
 generate_methods <- function(){
-  #render everything in quarto dir
-  report_base_dir = glue::glue('{getwd()}/quarto') #here::here("quarto")
-  
-  #make tempdir our working directory
-  owd <- getwd()
-  setwd(report_base_dir) #for methods zipping
-  on.exit(setwd(owd))
-  
   #generate methods via quarto
-  quarto::quarto_render(input = report_base_dir, #expecting a dir to render
+  quarto::quarto_render(input = here::here("quarto"), #expecting a dir to render
                         output_format = "html", #output dir is set in _quarto.yml
                         cache_refresh = TRUE)
   
   #ZIP
+  #make tempdir our working directory
+  owd <- getwd()
+  setwd(here::here("quarto")) #for methods zipping
+  on.exit(setwd(owd))
+  
   methods_files <- list.files(here::here("quarto", "methods"), 
                               recursive = TRUE, 
                               include.dirs = TRUE)
@@ -35,9 +35,14 @@ generate_methods <- function(){
   message(complete_message)
   
   #send email to spin down container
-  compose_email(
+  email_body <- compose_email(
     header = add_image(file = here::here("ddh-banner.png"), width = "100%"), 
-    body = complete_message) %>%
+    body = complete_message)
+  
+  email_body <- add_attachment(email = email_body,
+                               file = final_zip_path)
+  
+  email_body %>%
     smtp_send(
       from = "hey@datadrivenhypothesis.com",
       to = "matthew@hirschey.org",
@@ -51,6 +56,8 @@ generate_methods <- function(){
       )
     )
 }
+
+generate_methods()
 
 
 

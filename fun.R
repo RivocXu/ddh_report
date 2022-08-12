@@ -1,15 +1,5 @@
 #LOAD-----
-library(tidyverse)
-
-library(blastula)
-library(glue)
-library(here)
-library(jsonlite)
-library(paws)
-library(quarto)
-library(ddh)
-
-test_var <- TRUE
+source("fun_libraries.R") #used by generate_methods.R too
 
 #MESSAGES-----
 # if needed for testing, send_report_message() is located in ddh package
