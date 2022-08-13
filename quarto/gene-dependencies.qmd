@@ -11,7 +11,8 @@ knitr:
 ---
 
 {{< include _setup.qmd >}}
-
+  
+# Gene Dependencies {#sec-gene-dependencies}  
 ```{r}
 #| echo: false
 #| message: false
@@ -41,8 +42,6 @@ sd_threshold <- get_rds("sd_threshold.Rds")
 
 fraction_cutoff <- 0.05 #~5% FDR
 ```
-  
-# Gene Dependencies {#sec-gene-dependencies}  
 ## Rationale
 Following on the idea of looking for patterns in data, we set out to map genes to common functional pathways based on functional genomic data. Functional genomics is a field of molecular biology that aims to understand the function of all genes and proteins in a genome -- a stated goal of much basic science research. In functional genomics, experimental strategies generally involve high-throughput, genome-wide approaches rather than a more traditional "gene-by-gene" approach.  
 
