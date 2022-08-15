@@ -1,6 +1,8 @@
 source("fun_libraries.R") #used by fun.R too
 Sys.setenv(VROOM_CONNECTION_SIZE = "1310720") #10x bigger; errors out otherwise
 
+generate_methods <- function(email_address, 
+                             email_zip = FALSE){
 #generate methods via quarto
 quarto::quarto_render(input = here::here("quarto"), #expecting a dir to render
                       output_format = "html", #output dir is set in _quarto.yml
@@ -38,13 +40,15 @@ email_body <- compose_email(
   header = add_image(file = here::here("ddh-banner.png"), width = "100%"), 
   body = complete_message)
 
+if(email_zip == TRUE){
 email_body <- add_attachment(email = email_body,
                              file = final_zip_path)
+}
 
 email_body %>%
   smtp_send(
     from = "hey@datadrivenhypothesis.com",
-    to = "matthew.hirschey@duke.edu",
+    to = email_address,
     subject = "Methods completed",
     credentials = creds_envvar(
       user = Sys.getenv("SMTP_USERNAME"),
@@ -54,7 +58,8 @@ email_body %>%
       use_ssl = TRUE
     )
   )
+}
 
-
+generate_methods(email_address = "matthew.hirschey@duke.edu") #"matthew@hirschey.org"
 
 
