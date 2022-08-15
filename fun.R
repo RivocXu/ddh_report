@@ -112,7 +112,8 @@ make_report <- function(input = list(),
   if (input$subtype == "gene_list" || input$subtype == "compound_list" || input$subtype == "cell_list") {
     good_file_name <- paste0("custom_", str_extract(input$content, pattern = "^[:alnum:]+"), "_query")
   }
-  report_filename <- glue::glue('{good_file_name}.zip') #"ADCK1.zip"
+  report_type <- dplyr::if_else(private == TRUE, "private", "public")
+  report_filename <- glue::glue('{good_file_name}_{report_type}.zip') #"ADCK1.zip"
   
   #checks to see if report exists by trying to update report_file with path
   s3 <- paws::s3()
