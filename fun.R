@@ -105,71 +105,79 @@ render_report <- function(input = list(),
 
 make_report <- function(input = list(), 
                         private, 
-                        report_dir = NULL, 
-                        overwrite = FALSE){
-  
-  good_file_name <- input$content
-  if (input$subtype == "gene_list" || input$subtype == "compound_list" || input$subtype == "cell_list") {
-    good_file_name <- paste0("custom_", str_extract(input$content, pattern = "^[:alnum:]+"), "_query")
-  }
+                        report_dir = NULL){
+  #report type
   report_type <- dplyr::if_else(private == TRUE, "private", "public")
-  report_filename <- glue::glue('{good_file_name}_{report_type}.zip') #"ADCK1.zip"
   
-  #checks to see if report exists by trying to update report_file with path
-  s3 <- paws::s3()
-  report_file <- 
-    tryCatch({
-      s3$head_object(Bucket = Sys.getenv("AWS_REPORT_BUCKET_ID"),
-                     Key = report_filename) %>% 
-        purrr::pluck("ContentType")}, #"application/zip"
-      error = function(e) {
-        NULL #set report file to NULL
-      })
-  
-  #overwrite
-  if(overwrite == TRUE || stringr::str_detect(report_filename, pattern = "custom")){report_file <- NULL} #
-  
-  if(!is.null(report_file)){ #if report exists on S3
-    if(is.null(report_dir)){
-      #make temp dir
-      report_base_dir = here::here("quarto")
-      temp_dir <- tempfile(pattern="tmpdir", tmpdir=report_base_dir)
-      dir.create(temp_dir)
-    } else {
-      temp_dir <- report_dir
-    }
-    
-    #download file into temp dir
-    report_path <- glue::glue("{temp_dir}/{report_filename}")
-    s3$download_file(Bucket = Sys.getenv("AWS_REPORT_BUCKET_ID"),
-                     Key = report_filename, 
-                     Filename = report_path)
-    message("grabbed old report: way to be efficient")
-    return(report_path)
-    
-  } else if(is.null(report_file)) { #if report zip doesn't exist
-    
-    #make report and return path
-    report_path <- 
-      render_report(input = input, 
-                    private = private, 
-                    report_dir = report_dir)
-    
-    #Upload file to s3 so others can use it (i.e. we don't have to make it again)
-    # s3$put_object(
-    #   Body = as.character(report_path),
-    #   Bucket = Sys.getenv("AWS_REPORT_BUCKET_ID"),
-    #   Key = as.character(report_filename) #need as.character because of glue::glue
-    # )
-    # message("uploaded fresh report: nice work")
-    return(report_path)
+  #make dir
+  if(is.null(report_dir)){
+    #make temp dir
+    report_base_dir = here::here("quarto")
+    temp_dir <- tempfile(pattern="tmpdir", tmpdir=report_base_dir)
+    dir.create(temp_dir)
   } else {
-    print("something went wrong")
+    temp_dir <- report_dir
   }
-}
+  
+  #for single reports, do some checks for whitelist and for previous report
+  if(length(input$content) == 1){
+    #good file names
+    good_file_name <- input$content
+    
+    #whitelist
+    if(good_file_name %in% public_reports){report_type <- "private"}
+    
+    #name report
+    report_filename <- glue::glue('{good_file_name}_{report_type}.zip') #"ROCK1_private.zip"
+    
+    #checks to see if report exists by trying to update report_file
+    #reports for whitelist will always exist
+    s3 <- paws::s3()
+    report_file <- 
+      tryCatch({
+        s3$head_object(Bucket = Sys.getenv("AWS_REPORT_BUCKET_ID"),
+                       Key = report_filename) %>% 
+          purrr::pluck("ContentType")}, #"application/zip"
+        error = function(e) {
+          NULL #set report file to NULL
+        })
+    
+    #overwrite if(overwrite == TRUE) {report_file <- NULL} 
+    
+    #if report exists on S3
+    if(!is.null(report_file)){ 
+      #download file into temp dir
+      report_path <- glue::glue("{temp_dir}/{report_filename}")
+      s3$download_file(Bucket = Sys.getenv("AWS_REPORT_BUCKET_ID"),
+                       Key = report_filename, 
+                       Filename = report_path)
+      message(glue::glue("grabbed old report for {input$content}: way to be efficient"))
+      return(report_path)
+    }
+    #for multi reports, skip checks
+  } else { 
+    good_file_name <- paste0("custom_", str_extract(input$content, pattern = "^[:alnum:]+"), "_query")
+    report_filename <- glue::glue('{good_file_name}_{report_type}.zip')
+  } 
+  #if multi-query or report zip doesn't exist, make report and return path
+  report_path <- 
+    render_report(input = input, 
+                  private = private, 
+                  report_dir = report_dir)
+  
+  #Upload file to s3 so we don't have to make it again
+  if(length(input$content) == 1){
+    s3$put_object(
+      Body = as.character(report_path),
+      Bucket = Sys.getenv("AWS_REPORT_BUCKET_ID"),
+      Key = as.character(report_filename) #need as.character because of glue::glue
+    )
+    message(glue::glue("uploaded fresh report for {input$content}: nice work"))}
+  return(report_path)
+} 
 
 # make_report(input = list(type = "gene", subtype = "gene", content = "ROCK1"), private = TRUE)
-# make_report(input = list(type = "gene", subtype = "gene", content = "ROCK2"), private = TRUE, overwrite = TRUE)
+# make_report(input = list(type = "gene", subtype = "gene", content = "ROCK2"), private = TRUE)
 # make_report(input = list(type = "cell", subtype = "cell", content = "HEPG2"), private = TRUE)
 
 send_email <- function(first_name,

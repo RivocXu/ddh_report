@@ -6,6 +6,9 @@ download_ddh_data(app_data_dir = here::here("data"),
                   test = TRUE,
                   overwrite = FALSE)
 
+#load reports
+public_reports <- readRDS(here::here("data", "public_reports.Rds"))
+
 #wait for message
 message("waiting for messages...")
 repeat {

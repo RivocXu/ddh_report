@@ -11,3 +11,4 @@ tmp/
 fun.R
 /data
 *.zip
+.DS_Store
