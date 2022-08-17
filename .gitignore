@@ -12,3 +12,5 @@ fun.R
 /data
 *.zip
 .DS_Store
+methods/
+*tmpdir/

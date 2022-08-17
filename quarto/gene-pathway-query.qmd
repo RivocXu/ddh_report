@@ -2,8 +2,8 @@
 params:
   type: "gene"
   subtype: "gene"
-  query: "ROCK1"
-  content: "ROCK1"
+  query: "1902965"
+  content: "RDX, ROCK2, DTX3L, MSN, SORL1, EZR"
   private: "true"
 knitr:
   opts_chunk: 

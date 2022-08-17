@@ -311,22 +311,17 @@ achilles_url <- "https://ndownloader.figshare.com/files/34989889"
 achilles_raw <- 
   readr::read_csv(achilles_url, col_names = TRUE) %>%
   dplyr::rename_with(~ str_remove_all(., "\\s\\(\\d+\\)")) %>% 
-  dplyr::rename(X1 = 1)
+  dplyr::rename(X1 = 1) %>%
+  ddh::clean_colnames()
 
-achilles_raw <- clean_colnames(achilles_raw)
-
-achilles_cor_raw <- achilles_raw %>% 
-  dplyr::select(-X1) %>% 
-  corrr::correlate() 
-
-#shave to reduce redundancies
-achilles_cor_raw_shave <- shave(achilles_cor_raw)
-
-#pivot both longer, but use shaved dataset to plot only one gene-gene pair
 achilles_cor_raw_shave_long <- 
-  achilles_cor_raw_shave %>% 
+  achilles_raw %>% 
+  dplyr::select(-X1) %>% 
+  corrr::correlate() %>%
+  corrr::shave() %>%  #shave to reduce redundancies
+  dplyr::mutate(across(where(is.numeric), ~ round(., digits = 4))) %>% #reduce memory use points
   dplyr::rename(rowname = 1) %>% 
-  tidyr::pivot_longer(-rowname, names_to = "achilles_gene", values_to = "achilles_correlation_raw") %>% 
+  tidyr::pivot_longer(-rowname, names_to = "achilles_gene", values_to = "achilles_correlation_raw") %>% #pivot both longer, but use shaved dataset to plot only one gene-gene pair
   dplyr::filter(!is.na(achilles_correlation_raw))
 
 achilles_joined <- 
@@ -422,7 +417,7 @@ A new machine learning (ML)-based resource developed by the Computational Biolog
 
 Positive correlations of dependency scores are ranked for each gene. Recall that these genes show similar patterns of dependencies in the same cell lines. More simply, the cells that care about `r input_report$content` deletion also care about deletion of these genes, implying a functional relationship. In the Dependency Score Example heatmap schematic above, `r input_report$content` is gene X, and genes with similar patterns would be genes A, B, and C. The genes that show a  similar genetic dependencies as `r input_report$content` and are above `r sd_threshold` standard deviations away from the resampled mean are displayed.  
 
-One data source that can help prioritize genes for study is to compare gene-gene associations to known gene-gene relationships based on previous literature. By counting the number of times a p53 was published with each of these top ranked genes, the Relaxin family peptide receptor 2 (RXFP2) emerges as an unexpected connection, based on current literature.  
+One data source that can help prioritize genes for study is to compare gene-gene associations to known gene-gene relationships based on previous literature.
 
 {{< include _gene-coessentiality-table.qmd >}}  
 
