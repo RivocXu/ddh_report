@@ -7,6 +7,7 @@ params:
   query: "ROCK1"
   content: "ROCK1"
   private: TRUE
+  greeting: "default"
 title: "`r params$content` Report"
 ---
 ```{r setup, include=FALSE}
@@ -17,7 +18,6 @@ library(blastula)
 library(htmltools)
 
 #load functions
-
 search_button <- function(private, 
                           type, 
                           query){
@@ -30,21 +30,42 @@ search_button <- function(private,
   return(cta_button)
 }
 
+# CONVERT PARAMS TO OBJECTS----
+input_report = list(
+  type = params$type,
+  subtype = params$subtype,
+  query = unlist(stringr::str_split(params$query, pattern = ", ")),
+  content = unlist(stringr::str_split(params$content, pattern = ", "))
+)
+
+private_report <- as.logical(params$private)
+
 #good file name
-  good_file_name <- params$content
-  if (params$subtype == "gene_list" | params$subtype == "compound_list" | params$subtype == "cell_list") {
-    good_file_name <- paste0("custom_", paste0(params$content, collapse="_"))
-  }
+good_file_name <- good_file_namer(input = input_report)
+
+#greeting
+make_greeting <- function(input = list(), 
+                          greeting_type){
+  switch (greeting_type,
+    default = glue::glue("Here is the {input$type} report you requested for {input$content}."), 
+    seminar = glue::glue("Matt just heard your seminar and thought you'd like this report on {input$content}. The data-driven hypothesis project from the Hirschey Lab integrates data from several sources to enable scientists to identify novel functions for any gene. The project is publicly available, but also has some early analyses that are private while we are beta testing. This report contains all of the private data."), 
+    paper = glue::glue("Matt just read your paper and thought you'd like this report on {input$content}. The data-driven hypothesis project from the Hirschey Lab integrates data from several sources to enable scientists to identify novel functions for any gene. The project is publicly available, but also has some early analyses that are private while we are beta testing. This report contains all of the private data.")
+  )
+}
+#email_greeting <- make_greeting(input = list(type = "gene", content = "ROCK1"), "default")
+#email_greeting <- make_greeting(input = list(type = "gene", content = "ROCK1"), "paper")
+email_greeting <- make_greeting(input = input_report, greeting_type = params$greeting)
+
 ```
 #### Hey `r params$name`,  
-Attached is the `r params$type` report you requested for `r params$query`. The attached report file contains a zipped directory of:  
+`r email_greeting` Attached you will find a zipped file containing:  
 
 - `r glue::glue("{good_file_name}_REPORT.html")` 
 - a directory of *figures* for each of the images in the report, to easily include in presentations or manuscripts  
   
-Also, you can always head back to the data-driven hypothesis website to explore `r params$query` further by clicking the button below.
+Also, you can always head back to the data-driven hypothesis website to explore `r input_report$query` further by clicking the button below.
 
-`r search_button(private = params$private, type = params$type, query = params$query)`
+`r search_button(private = private_report, type = input_report$type, query = input_report$query)`
 
 
 Stay curious,  

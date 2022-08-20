@@ -6,11 +6,11 @@
 
 make_metabolite_table(input = input_report) %>% #defined in setup
   gt::gt() %>% 
-  gt::cols_hide(columns = c("gene_name", "gene_accession")) %>% 
-  gt::cols_label(
-    metabolite_name = "Metabolite", 
-    metabolite_accession = "HMDB Accession"
-  ) %>% 
+  # gt::cols_hide(columns = c("gene_name", "gene_accession")) %>% 
+  # gt::cols_label(
+  #   metabolite_name = "Metabolite", 
+  #   metabolite_accession = "HMDB Accession"
+  # ) %>% 
   gt::tab_options(table.width = gt::pct(100))
 ```
   

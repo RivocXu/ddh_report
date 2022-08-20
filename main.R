@@ -31,7 +31,8 @@ repeat {
                             subtype = attributes$subtype, 
                             query = attributes$query, 
                             content = attributes$content),
-               private = as.logical(attributes$private))
+               private = as.logical(attributes$private), 
+               greeting = attributes$greeting)
     
     #log reports as csv
     csv_path <- tempfile(fileext = '.csv')

@@ -183,7 +183,8 @@ make_report <- function(input = list(),
 send_email <- function(first_name,
                        email_address,
                        input = list(), 
-                       private){
+                       private, 
+                       greeting){
   
   #make temp dir
   report_base_dir = here::here("quarto")
@@ -206,7 +207,8 @@ send_email <- function(first_name,
                                                        subtype = input$subtype,
                                                        query = input$query,
                                                        content = input$content,
-                                                       private = private)
+                                                       private = private, 
+                                                       greeting = greeting)
                           ))$html_html,
       footer = blocks(
         #block_text("Thanks for reading! Find us here:"),
