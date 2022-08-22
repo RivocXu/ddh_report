@@ -305,6 +305,7 @@ To quantify the effect of these cleaning step on the data, we compared the corre
 #| echo: false
 #| message: false
 #| warning: false
+#| eval: false
 
 achilles_url <- "https://ndownloader.figshare.com/files/34989889"
 
@@ -314,21 +315,37 @@ achilles_raw <-
   dplyr::rename(X1 = 1) %>%
   ddh::clean_colnames()
 
+message("you downloaded the data")
+
 achilles_cor_raw_shave_long <- 
   achilles_raw %>% 
   dplyr::select(-X1) %>% 
-  corrr::correlate() %>%
+  corrr::correlate() 
+
+message("you correlated the data")
+
+achilles_cor_raw_shave_long <- 
+  achilles_cor_raw_shave_long %>%
   corrr::shave() %>%  #shave to reduce redundancies
+  
+message("you shaved the data")
+
+achilles_cor_raw_shave_long <- 
+  achilles_cor_raw_shave_long %>%
   dplyr::mutate(across(where(is.numeric), ~ round(., digits = 4))) %>% #reduce memory use points
   dplyr::rename(rowname = 1) %>% 
   tidyr::pivot_longer(-rowname, names_to = "achilles_gene", values_to = "achilles_correlation_raw") %>% #pivot both longer, but use shaved dataset to plot only one gene-gene pair
   dplyr::filter(!is.na(achilles_correlation_raw))
+
+message("you pivoted the data")
 
 achilles_joined <- 
   achilles_cor_nest %>%
   tidyr::unnest(cols = c(data)) %>% 
   dplyr::filter(!is.na(r2)) %>% 
   dplyr::left_join((achilles_cor_raw_shave_long), by = c("fav_gene" = "rowname", "gene" = "achilles_gene"))
+
+message("you joined the data")
 
 log_breaks10M <- c(1, 10, 100, 1000, 10000, 100000, 1000000, 10000000)
 log_labels10M <-c("1", "10", "100", "1,000", "10,000", "100,000", "1,000,000", "10,000,000")
