@@ -6,12 +6,11 @@
 
 make_metabolite_table(input = input_report) %>% #defined in setup
   gt::gt() %>% 
-  # gt::cols_hide(columns = c("gene_name", "gene_accession")) %>% 
-  # gt::cols_label(
-  #   metabolite_name = "Metabolite", 
-  #   metabolite_accession = "HMDB Accession"
-  # ) %>% 
-  gt::tab_options(table.width = gt::pct(100))
+  gt::tab_options(table.width = gt::pct(100)) %>% 
+  gt::cols_hide(columns = c("gene_name", "gene_accession")) %>%
+  gt::cols_label(
+    metabolite_name = "Metabolite",
+    metabolite_accession = "HMDB Accession"
+  )
 ```
-  
 This metabolite table shows metabolites known to associate with `r input_report$content`, as curated by the Human Metabolome Database (HMDB). 

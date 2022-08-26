@@ -10,13 +10,22 @@ repo: ddh
 
 ### Shiny Function
 repo: private
+
+### Shiny modules
+Notes on shiny modules
   
 ## Data Generation
 Notes on data generation (link to vidoe?)
   
 ## Data Serving
 Notes on site
-  
-## Shiny modules
-Notes on shiny modules
+
+### Search {#sec-dev-search}
+{{< include _dev-search.qmd >}}
+
+### Reports {#sec-dev-reports}
+{{< include _dev-reports.qmd >}}
+
+### Methods {#sec-dev-methods}
+{{< include _dev-methods.qmd >}}
   

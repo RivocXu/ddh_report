@@ -6,7 +6,7 @@ generate_methods <- function(email_address = NULL,
   #generate methods via quarto
   quarto::quarto_render(input = here::here("quarto"), #expecting a dir to render
                         output_format = "html", #output dir is set in _quarto.yml
-                        cache_refresh = TRUE)
+                        cache_refresh = FALSE)
   
   #ZIP
   methods_files <- list.files(here::here("quarto", "methods"), 

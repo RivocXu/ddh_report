@@ -1,0 +1,17 @@
+```{r}
+#| label: dev-methods
+#| echo: false
+#| message: false
+#| warning: false
+
+```
+
+The methods section of DDH is a detailed accounting of the organization, the computational details, and the rationale of the components of the app. This section contains many more details than a report contains, but includes several of the components of the report. Thus, we set out to develop a methods generator that reused several of the report's components.
+
+Methods generation lives in the report generator container. Report generation lives in a standalone application separate from the main app. While method generation might intuitively live in the data generation container, all of the sections of the report that we want to include in the methods live in the report container, therefore methods generation should also live in this container.
+
+Methods organization. To make a complex methods section intuitive, we chose to organize the methods using the same layout as the app. The methods start with some high-level rationale for the project. And then detail the types of information that can be generated for each of the query types. Importantly, these are laid out just as if you were navigating the main app.
+
+The methods document leverages a Quarto book layout, with a standalone YAML document that sets the parameters of how the book will be rendered, its layout, and importantly its sections and subsections. Each section is a standalone QMD document. A subsection can be a standalone document or be called within that document. The organization of the DDH methods has level one sections are standalone documents, and level two sections are include documents.
+
+One of the important distinctions between RMD renders and Quarto renders is that Quarto will knit then merge, whereas RMD will merge then knit. What this means in practice is that each Quarto document is knitted as a standalone document: it needs its own parameters, its own setup chunks, and its own data.

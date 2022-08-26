@@ -1,0 +1,14 @@
+```{r}
+#| label: dev-search
+#| echo: false
+#| message: false
+#| warning: false
+
+```
+
+The way search works in the app:\
+1. A user enters a gene (or cell, compound) into a usual input search query\
+2. Search looks through a few different dataframes (for different search types) and returns URLs  
+3. The URL is then built with the search terms  
+4. The page is built with values in the URL  
+5. The user can navigate to various elements on that page
