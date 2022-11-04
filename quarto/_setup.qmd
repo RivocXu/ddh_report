@@ -15,9 +15,6 @@ library(patchwork)
 library(paws)
 library(tidyverse)
 
-#LOAD DATA-----
-ddh::load_ddh_data(app_data_dir = here::here("data"))
-
 # CONVERT PARAMS TO OBJECTS----
 input_report = list(
   type = params$type,
@@ -27,6 +24,10 @@ input_report = list(
 )
 
 private_report <- as.logical(params$private)
+
+#LOAD DATA-----
+ddh::load_ddh_data(app_data_dir = here::here("data"), 
+                   object_name = type) #param into type
 
 #GET PRIVATE MESSAGES-----
 # private <- function(x, publicValue=NULL) {
