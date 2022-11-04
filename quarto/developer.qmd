@@ -14,9 +14,9 @@ repo: private
 ### Shiny modules
 Notes on shiny modules
   
-## Data Generation
-Notes on data generation (link to vidoe?)
-  
+## Data Generation {#sec-dev-datageneration}
+{{< include _dev-datageneration.qmd >}}
+
 ## Data Serving
 Notes on site
 
