@@ -184,7 +184,7 @@ send_email <- function(first_name,
                        email_address,
                        input = list(), 
                        private, 
-                       greeting){
+                       greeting = "default"){
   
   #make temp dir
   report_base_dir = here::here("quarto")
@@ -262,8 +262,15 @@ send_email <- function(first_name,
 
 # send_email(first_name = "Matthew",
 #            email_address = "matthew@hirschey.org",
-#            input = list(type = "gene", subtype = "gene", query = "ROCK2", content = "ROCK2"),
-#            private = TRUE)
+#            input = list(type = "gene", subtype = "gene", query = "MUSK", content = "MUSK"),
+#            private = TRUE,
+#            greeting = "seminar")
+
+# send_email(first_name = "Ope",
+#            email_address = "opeyemi.olabisi@duke.edu",
+#            input = list(type = "gene", subtype = "gene", query = "APOL1", content = "APOL1"),
+#            private = TRUE,
+#            greeting = "seminar")
 
 get_sqs_report <- function(){
   s3 <- paws::s3()
