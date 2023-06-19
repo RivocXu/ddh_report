@@ -2,12 +2,17 @@
 source("fun.R")
 
 #download data 1 time
-download_ddh_data(app_data_dir = here::here("data"),
-                  test = TRUE,
-                  overwrite = FALSE)
+# ddh::download_ddh_data(app_data_dir = here::here("data"),
+#                        test = FALSE,
+#                        overwrite = TRUE)
 
-#load reports
-public_reports <- readRDS(here::here("data", "public_reports.Rds"))
+#load public reports
+public_reports_file <- here::here("data", "public_reports.Rds")
+if(file.exists(public_reports_file)){
+  public_reports <- readRDS(public_reports_file)
+} else {
+  public_reports <- c("ROCK1", "ROCK2")
+}
 
 #wait for message
 message("waiting for messages...")

@@ -1,0 +1,236 @@
+---
+params:
+  type: "gene"
+  subtype: "gene"
+  query: "ROCK1"
+  content: "ROCK1"
+  private: "true"
+knitr:
+  opts_chunk: 
+    cache.lazy: false #fixes "Error in lazyLoadDBinsertVariable; long vectors not supported yet"
+---
+```{r}
+#| label: setup
+#| include: false
+
+# THIS SETUP CHUNK IS FOR BOTH REPORTS AND FOR METHODS
+
+#LOAD LIBRARIES AND FUNCTIONS REQUIRED FOR REPORTS-----
+library(corrr)
+library(here)
+library(ddh)
+library(htmltools)
+library(glue)
+library(gt)
+library(patchwork)
+library(paws)
+library(tidyverse)
+
+#LOAD DATA-----
+ddh::load_ddh_data(app_data_dir = here::here("data"))
+
+# CONVERT PARAMS TO OBJECTS----
+input_report = list(
+  type = params$type,
+  subtype = params$subtype,
+  query = unlist(stringr::str_split(params$query, pattern = ", ")),
+  content = unlist(stringr::str_split(params$content, pattern = ", "))
+)
+
+private_report <- as.logical(params$private)
+
+#GET PRIVATE MESSAGES-----
+# private <- function(x, publicValue=NULL) {
+#   if (privateMode == TRUE) { x } else { publicValue }
+# }
+
+private_message_html <- "This analysis is currently in Beta, and is only available to premium subscribers. If you want to upgrade to support this project and access these data, subscribe at ', a(href = 'http://www.datadrivenhypothesis.com', 'datadrivenhypothesis.com')"
+private_message_md <- "This analysis is currently in Beta, and is only available to premium subscribers. If you want to upgrade to support this project and access these data, subscribe at [datadrivenhypothesis.com](http://www.datadrivenhypothesis.com)"
+
+# private_msg <- function() {
+#   if (privateMode == FALSE) {
+#     htmltools::tagList(private_message_html)
+#   }
+# }
+
+#QUERY URL 
+if(length(input_report$content) > 1){ #stringr::str_detect(input_report$content, ", "
+  url_content <- glue::glue_collapse(input_report$content, sep = ",") #%>%
+    #stringr::str_replace_all(pattern = " ", replacement = "%20")
+} else {
+  url_content <- input_report$content
+}
+
+base_url <- dplyr::if_else(private_report == TRUE, paste0("datadrivenhypothesis.com"), paste0("datadrivenhypothesis.org"))
+query_url <- glue::glue('https://www.{base_url}/?show=gene&query={url_content}')
+```
+
+
+
+
+# Gene Information {#sec-gene-information}  
+## Gene {#sec-gene}
+```{r}
+#| label: gene-summary
+#| echo: false
+#| message: false
+#| warning: false
+
+ddh::summary_list(input = input_report)
+```
+
+
+
+  
+### Ideogram
+```{r}
+#| label: gene-ideogram-setup
+#| echo: false
+#| message: false
+#| warning: false
+
+fig_legend <- make_legend(fun = "make_ideogram")
+```
+
+```{r}
+#| label: gene-ideogram
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: !expr fig_legend
+
+make_ideogram(input = input_report) #defined in setup
+```
+  
+The ideogram plot is a custom image built to show the location of each gene on the human chromosome. The round gray circle depicts the position of centromere and the banding patterns are depicted in their known positions. The location of the queried gene, in this example `r input_report$content`, is labeled.  
+
+
+  
+### GO Pathways  
+```{r}
+#| label: gene-pathways
+#| echo: false
+#| message: false
+#| warning: false
+
+make_pathway_list(input = input_report) %>%  #defined in setup
+  gt::gt() %>% 
+  gt::cols_hide(columns = c(data, count)) %>% 
+  gt::cols_label(
+    pathway = "Pathway", 
+    go = "GO", 
+    def = "Description"
+  )
+
+```
+  
+The pathway list shows Gene Ontoloty (GO) pathways that are annoated as containing `r input_report$content`.  
+
+
+  
+## Protein {#sec-protein}
+### Size
+```{r}
+#| label: protein-size-setup
+#| echo: false
+#| message: false
+#| warning: false
+
+fig_legend <- 'make_legend(fun = "make_proteinsize")'
+
+h <- length(unique(input_report$content)) * 1.36 + .9
+```
+
+```{r}
+#| label: protein-size
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-height: !expr h
+#| fig-cap: !expr fig_legend
+
+make_proteinsize(input = input_report) #defined in setup
+```
+  
+The size plot shows the mass of the protein.  
+
+
+  
+### Sequence
+```{r}
+#| label: protein-sequence-setup
+#| echo: false
+#| message: false
+#| warning: false
+
+fig_legend <- 'make_legend(fun = "make_sequence")'
+```
+
+```{r}
+#| label: protein-sequence
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: !expr fig_legend
+
+make_sequence(input = input_report) #defined in setup
+# make_protein_domain(input = list(content = params$content))
+```
+The sequence plot shows the first 100 amino acids of `r input_report$content`. 
+
+
+  
+### Signature
+```{r}
+#| label: protein-signature-setup
+#| echo: false
+#| message: false
+#| warning: false
+
+# load_ddh_data(app_data_dir, #defined in setup
+#               object_name = c("sequence_clusters", "signatures"))
+
+fig_legend <- 'make_legend(fun = "make_radial")'
+
+```
+
+```{r}
+#| label: protein-signature
+#| echo: false
+#| message: false
+#| warning: false
+#| eval: !expr private_report
+#| fig-width: 13
+#| fig-height: 9
+#| fig-cap: !expr fig_legend
+
+make_radial(input = input_report) #defined in setup
+
+description <- glue::glue("The radial plot shows the relative frequency of each amino acid in {input_report$content} compared to the average of all proteins in the human proteome.")
+
+#how to handle multiple images in a child chunk
+```
+`r if(private_report == TRUE){description} else {private_message_md}`  
+
+
+
+
+  
+### Structure
+<!-- {{< include _protein-structure.qmd >}} -->
+  
+## Literature {#sec-literature}
+
+```{r}
+#| label: literature
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-height: 7.5
+#| fig-width: 12
+
+make_pubmed(input = input_report) #defined in setup
+```
+The literature plot shows the increase in literature citations referencing `r input_report$content` over time.
+
+

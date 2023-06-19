@@ -313,3 +313,29 @@ get_sqs_report <- function(){
   
 }
 # query_table <- get_sqs_report()
+
+purge_reports <- function(){
+  s3 <- paws::s3()
+  #initial list images
+  object_list <-
+    s3$list_objects_v2(Bucket = Sys.getenv("AWS_REPORT_BUCKET_ID")) %>%
+    purrr::pluck("Contents") %>%
+    map(function(x) keep(x, str_detect(string = x, pattern = "zip")))
+  
+  while (length(object_list) > 0) { #loops until ALL images are deleted
+    s3$delete_objects(
+      Bucket = Sys.getenv("AWS_REPORT_BUCKET_ID"),
+      Delete = list(
+        Objects = object_list,
+        Quiet = FALSE)
+    )
+    
+    #get new object_list
+    object_list <-
+      s3$list_objects_v2(Bucket = Sys.getenv("AWS_REPORT_BUCKET_ID")) %>%
+      purrr::pluck("Contents") %>%
+      map(function(x) keep(x, str_detect(string = x, pattern = "zip")))
+  }
+  message("all reports removed from bucket")
+}
+# purge_reports()
