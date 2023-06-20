@@ -11,18 +11,18 @@ generate_and_email_report <- function(details) {
   #message(details['greeting'])
 
   # Put this back in to test email integration
-  #email <- compose_email(body=md(paste0("Hello", details['first_name'], details['last_name'])))
-  #smtp_send(
-  #    email = email,
-  #    from =  Sys.getenv("SMTP_FROM")
-  #    to = details['email_address'],
-  #    subject = "DDH report",
-  #    credentials = creds_envvar(
-  #      user = Sys.getenv("SMTP_USER"),
-  #      host = Sys.getenv("SMTP_HOST"),
-  #      port = Sys.getenv("SMTP_PORT"),
-  #    )
-  #)
+  email <- compose_email(body=md(paste0("Hello", details['first_name'], details['last_name'])))
+  smtp_send(
+      email = email,
+      from =  Sys.getenv("SMTP_FROM")
+      to = details['email_address'],
+      subject = "DDH report",
+      credentials = creds_envvar(
+        user = Sys.getenv("SMTP_USER"),
+        host = Sys.getenv("SMTP_HOST"),
+        port = Sys.getenv("SMTP_PORT"),
+      )
+  )
   # SMTP_PASSWORD
 }
 
