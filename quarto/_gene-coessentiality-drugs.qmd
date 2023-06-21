@@ -15,15 +15,22 @@ fig_legend <- make_legend(fun = "make_gene_drugs_cor_table")
 #| warning: false
 #| eval: !expr private_report
 
-make_gene_drugs_cor_table(input = input_report) %>% #defined in setup
+gene_drugs_cor_table <- 
+  ddh::make_gene_drugs_cor_table(input = input_report) #defined in setup
+
+if(nrow(gene_drugs_cor_table) > 0){
+  gene_drugs_cor_table %>% #defined in setup
   gt::gt() %>% 
   gt::tab_options(table.width = gt::pct(100)) %>% 
-  gt::cols_hide(columns = c("fav_gene", "r2")) %>% 
+  gt::cols_hide(columns = c("id", "r2")) %>% 
   gt::cols_label(
     drug = "Drug", 
     moa = "Mechansims", 
     z_score = "Z-score"
   )
+} else{
+  glue::glue("No data available")
+}
 
 description <- glue::glue("This table shows drugs correlated with similar cell dependency profiles as {input_report$content}.")
 ```

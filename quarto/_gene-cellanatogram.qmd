@@ -16,7 +16,7 @@ fig_legend <- make_legend(fun = "make_cellanatogram")
 #| fig-height: 7.5
 #| fig-width: 12
 
-make_cellanatogram(input = input_report) #defined in setup
+ddh::make_cellanatogram(input = input_report) #defined in setup
 ```
   
 The cellanatogram plot shows the sub-cellular distribution of `r input_report$content` as reported by the human protein atlas (HPA) project.  

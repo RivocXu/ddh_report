@@ -1,15 +1,15 @@
 ```{r}
-#| label: gene-coessentiality-positive
+#| label: gene-coessentiality-enrichment
 #| echo: false
 #| message: false
 #| warning: false
 
 enrichment_top <- #name here for use in methods
-  make_enrichment_top(input = input_report) %>%  #defined in setup
-  {if (nrow(.) != 0) dplyr::slice_min(., n = 12, order_by = `Adjusted p-value`) else .} %>%
+  ddh::make_gene_dependency_enrichment_table(input = input_report) %>%  #defined in setup
+  {if (nrow(.) != 0) dplyr::slice_min(., n = 12, order_by = `P-value`) else .} %>%
   gt::gt() %>% 
-  gt::cols_hide(columns = c("Query", "Combined Score", "Genes")) %>% 
-  gt::fmt_scientific(columns = `Adjusted p-value`, decimals = 2)
+  gt::cols_hide(columns = c("Query", "FDR")) %>% 
+  gt::fmt_scientific(columns = `P-value`, decimals = 2)
 
 enrichment_top
 ```

@@ -17,7 +17,7 @@ h <- length(unique(input_report$content)) + 3
 #| fig-height: !expr h
 #| fig-cap: !expr fig_legend
 
-make_cellbins(input = input_report) #defined in setup
+ddh::make_cellbins(input = input_report) #defined in setup
 ```
   
 The plot is a density plot of dependency scores, showing the distribution of scores for `r input_report$content`. While the majority of cells have little change in cellular growth when `r input_report$content` is absent (the density plot is centered around zero), some cells require `r input_report$content` for growth (cells scoring below -1), whereas in other cells `r input_report$content` functions as a tumor suppressor (cells with a score above 1).  

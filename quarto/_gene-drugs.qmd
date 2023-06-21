@@ -5,13 +5,13 @@
 #| warning: false
 
 gene_drugs_table <- 
-  make_gene_drugs_table(input = input_report) 
+  ddh::make_gene_drugs_table(input = input_report) 
 
 if(nrow(gene_drugs_table) > 0){
   gene_drugs_table %>% #defined in setup
   gt::gt() %>% 
   gt::tab_options(table.width = gt::pct(100)) %>% 
-  gt::cols_hide(columns = c("fav_gene")) %>% 
+  gt::cols_hide(columns = c("id")) %>% 
   gt::cols_label(
     fav_drug = "Drug", 
     moa = "Mechanism of Action"
