@@ -1,18 +1,8 @@
 #load functions
 source("fun.R")
 
-#download data 1 time
-# ddh::download_ddh_data(app_data_dir = here::here("data"),
-#                        test = FALSE,
-#                        overwrite = TRUE)
-
-#load public reports
-public_reports_file <- here::here("data", "public_reports.Rds")
-if(file.exists(public_reports_file)){
-  public_reports <- readRDS(public_reports_file)
-} else {
-  public_reports <- c("ROCK1", "ROCK2")
-}
+#load public reports as character vec
+get_public_reports()
 
 #wait for message
 message("waiting for messages...")

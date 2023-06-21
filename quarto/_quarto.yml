@@ -5,8 +5,6 @@ project:
 book:
   title: "Data-driven Hypothesis"
   search: true
-  toc: 1
-  number-depth: 1
   chapters:
     - index.qmd
     - start-here.qmd

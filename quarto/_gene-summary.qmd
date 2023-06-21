@@ -4,6 +4,6 @@
 #| message: false
 #| warning: false
 
-ddh::summary_list(input = input_report)
+ddh::make_summary_text(input = input_report)
 ```
 

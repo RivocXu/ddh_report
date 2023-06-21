@@ -10,7 +10,6 @@ get_message <- function(){
   sqs$receive_message(
     QueueUrl = Sys.getenv("AWS_SQS_SERVICE_URL")
   )
-  
 }
 
 delete_message <- function(receipt_handle){
@@ -19,10 +18,11 @@ delete_message <- function(receipt_handle){
     QueueUrl = Sys.getenv("AWS_SQS_SERVICE_URL"),
     ReceiptHandle = receipt_handle
   )
-  message(glue::glue('Message {str_sub(receipt_handle, 1, 6)} deleted'))
+  message(glue::glue('Message {stringr::str_sub(receipt_handle, 1, 6)} deleted'))
 }
 
 #REPORTS-----
+# input = list(type = "gene", subtype = "gene", query = "ROCK1", content = "ROCK1")
 render_report <- function(input = list(), 
                           private, 
                           report_dir = NULL){ #removed output_file
@@ -117,6 +117,10 @@ make_report <- function(input = list(),
     dir.create(temp_dir)
   } else {
     temp_dir <- report_dir
+  }
+  #check for public_reports, mostly for testing
+  if(!exists("public_reports")) {
+    get_public_reports()
   }
   
   #for single reports, do some checks for whitelist and for previous report
@@ -243,15 +247,15 @@ send_email <- function(first_name,
   
   # email_body #preview it
   email_body %>%
-    smtp_send(
-      from = "hey@datadrivenhypothesis.com",
+    blastula::smtp_send(
+      from = Sys.getenv("SMTP_FROM"),
       to = email_address,
       subject = "DDH report",
       credentials = creds_envvar(
-        user = Sys.getenv("SMTP_USERNAME"),
-        #pass_envvar = Sys.getenv("SMTP_PASSWORD"), #use default
-        host = "mail.privateemail.com",
-        port = "465",
+        user = Sys.getenv("SMTP_USER"),
+        pass_envvar = "SMTP_PASSWORD", #The name of the environment variable that holds the value for an email account password
+        host = Sys.getenv("SMTP_HOST"),
+        port = Sys.getenv("SMTP_PORT"),
         use_ssl = TRUE
       )
     )
@@ -262,7 +266,7 @@ send_email <- function(first_name,
 
 # send_email(first_name = "Matthew",
 #            email_address = "matthew@hirschey.org",
-#            input = list(type = "gene", subtype = "gene", query = "MUSK", content = "MUSK"),
+#            input = list(type = "gene", subtype = "gene", query = "ROCK2", content = "ROCK2"),
 #            private = TRUE,
 #            greeting = "seminar")
 
@@ -339,3 +343,70 @@ purge_reports <- function(){
   message("all reports removed from bucket")
 }
 # purge_reports()
+
+#PUBLIC----
+generate_public_reports <- function(public_reports = c("ROCK1", "ROCK2")){ #define public report genes
+  # create a temporary directory
+  temp_dir <- tempfile(pattern="tmpdir", tmpdir=here::here())
+  dir.create(temp_dir)
+  
+  #save temp Rds object
+  public_report_filename <- "public_reports.Rds"
+  public_report_path <- glue::glue("{temp_dir}/{public_report_filename}")
+  saveRDS(public_reports, public_report_path)
+  
+  #upload to S3 data & test data
+  s3 <- paws::s3()
+  s3$put_object(
+    Body = as.character(public_report_path),
+    Bucket = Sys.getenv("AWS_REPORT_BUCKET_ID"),
+    Key = as.character(public_report_filename) #need as.character because of glue::glue
+  )
+  message("uploaded public reports list to your reports dir: way to share")
+  
+  #render and upload reports for public_report_list genes
+  for (i in public_reports) {
+    #make report and return path
+    report_path <- 
+      render_report(input = list(
+        type = "gene", 
+        subtype = "gene", 
+        query = i, 
+        content = i
+      ), 
+      private = TRUE)
+    
+    #Upload file to s3 so others can use it (i.e. we don't have to make it again)
+    s3$put_object(
+      Body = as.character(report_path),
+      Bucket = Sys.getenv("AWS_REPORT_BUCKET_ID"),
+      Key = as.character(glue::glue("{i}_private.zip")) #need as.character because of glue::glue
+    )
+    message(glue::glue("uploaded {i} report"))
+  }
+  
+  #delete temp_dir
+  unlink(temp_dir, recursive = TRUE)
+  
+}
+# generate_public_reports()
+
+get_public_reports <- function(){
+  #download data from public reports generation
+  s3 <- paws::s3()
+  s3_download <- s3$get_object(
+    Bucket = Sys.getenv("AWS_REPORT_BUCKET_ID"),
+    Key = "public_reports.Rds")
+  
+  public_reports <-
+    s3_download$Body %>%
+    rawConnection() %>%
+    gzcon %>%
+    readRDS
+  
+  assign("public_reports",
+         public_reports,
+         envir = .GlobalEnv)
+  
+  return(public_reports)
+}

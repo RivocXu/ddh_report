@@ -117,16 +117,12 @@ knitr:
 {{< include _gene-coessentiality-table.qmd >}}
 {{< pagebreak >}}
 
-### Co-essentiality Positive Enrichment
-{{< include _gene-coessentiality-positive.qmd >}}
-{{< pagebreak >}}
-
 ### Co-essentiality Inverse Table
 {{< include _gene-coessentiality-inverse-table.qmd >}}
 {{< pagebreak >}}
 
-### Co-essentiality Negative Enrichment
-{{< include _gene-coessentiality-negative.qmd >}}
+### Co-essentiality Enrichment
+{{< include _gene-coessentiality-enrichment.qmd >}}
 {{< pagebreak >}}
 
 ### Co-essentiality Graph
