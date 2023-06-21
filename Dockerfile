@@ -15,6 +15,7 @@ ENV PATH="${PATH}:/opt/R/${R_VERSION}/bin/"
 RUN yum -y install openssl-devel
 
 RUN Rscript -e "install.packages(c('httr', 'jsonlite', 'logger', 'remotes', 'lambdr', 'blastula'), repos = 'https://packagemanager.rstudio.com/all/__linux__/centos7/latest')"
+RUN R -e "devtools::install_github('matthewhirschey/ddh', force = TRUE)"
 
 RUN mkdir /lambda
 COPY runtime.R /lambda
