@@ -5,12 +5,12 @@
 #| warning: false
 
 dep_bottom <- #name here for use in methods
-  make_bottom_table(input = input_report) %>% #defined in setup
+  ddh::make_bottom_table(input = input_report) %>% #defined in setup
   gt::gt() %>% 
-  gt::cols_hide(columns = c("fav_gene", "r2", "concept_index")) %>% 
+  gt::cols_hide(columns = c("id", "r2", "concept_index")) %>% 
   gt::cols_label(
     gene = "Symbol", 
-    name = "Gene Name", 
+    gene_name = "Gene Name", 
     z_score = "Z-score", 
     concept_count = "Co-Publication Count"
   ) %>% 

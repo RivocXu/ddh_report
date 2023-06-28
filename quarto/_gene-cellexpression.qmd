@@ -35,4 +35,4 @@ make_cellexpression(input = input_report, #defined in setup
 
 ```
   
-The cell expression plot shows the expression of `r input_report$content` across `r length(unique(expression_long$gene))` cell lines from the cancer cell line encyclopedia (CCLE) project.  
+The cell expression plot shows the expression of `r input_report$content` across **r length(unique(expression_long$gene))** cell lines from the cancer cell line encyclopedia (CCLE) project.  

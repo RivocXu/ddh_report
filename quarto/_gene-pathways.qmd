@@ -5,14 +5,13 @@
 #| warning: false
 
 make_pathway_list(input = input_report) %>%  #defined in setup
+  dplyr::select(tidyselect::any_of(c("gs_name", "gs_description"))) %>% 
   gt::gt() %>% 
-  gt::cols_hide(columns = c(data, count)) %>% 
   gt::cols_label(
-    pathway = "Pathway", 
-    go = "GO", 
-    def = "Description"
+    gs_name = "Gene Set Name", 
+    gs_description = "Description"
   )
 
 ```
-  
+
 The pathway list shows Gene Ontoloty (GO) pathways that are annoated as containing `r input_report$content`.  
