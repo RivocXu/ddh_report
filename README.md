@@ -5,8 +5,10 @@
 - [Requirements](#Requirements)
 - [Design Overview](#Design-Overview)
   - [System Architecture](#system-architecture)
-  - [UML Diagram](#UML-Diagram)
-- [Details](#Game-Detail)
+  - [Local Environment](#local-environment)
+  - [AWS Environment](#aws-environment)
+- [Details](#Details)
+  - [Email Generator](#email-generator)
 - [Reference](#reference)
 
 ## Introduction
@@ -53,8 +55,6 @@ The arrows in the figure represent the flow of data and dependencies between the
 
 It also receives trigger events from the Lambda function when messages arrive in the SQS. 
 
-## Details
-
 ### Local Environment
 In the local environment, you can write the code in R or RStudio, which interacts with the SQS and SES services in AWS. Additionally, you have the option to use Docker for containerization, allowing you to package the code and its dependencies into a portable and reproducible container.
 
@@ -64,5 +64,9 @@ Dockerfile defines the configuration and dependencies required to run the code i
 The SQS receives messages that need to be processed. These messages trigger the Lambda function, which executes the code written in R or RStudio. 
 
 The code processes the details in the SQS message and generates a report. The report is then sent via SES (Simple Email Service) for emailing purposes.
+
+## Details
+
+### Email Generator
 
 ## Reference
