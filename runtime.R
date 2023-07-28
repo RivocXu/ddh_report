@@ -14,7 +14,7 @@ generate_and_email_report <- function(details) {
   email <- compose_email(body=md(paste0("Hello", details['first_name'], details['last_name'])))
   smtp_send(
       email = email,
-      from =  Sys.getenv("SMTP_FROM")
+      from =  Sys.getenv("SMTP_FROM"),
       to = details['email_address'],
       subject = "DDH report",
       credentials = creds_envvar(
