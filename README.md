@@ -65,8 +65,3 @@ The SQS receives messages that need to be processed. These messages trigger the 
 
 The code processes the details in the SQS message and generates a report. The report is then sent via SES (Simple Email Service) for emailing purposes.
 
-## Details
-
-### Email Generator
-
-## Reference
