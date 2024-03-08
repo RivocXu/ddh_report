@@ -1,18 +1,26 @@
-# start from the rocker/tidyverse:latest image, not a base r-ver:3.5.0 image
-FROM rocker/tidyverse:4
+FROM public.ecr.aws/lambda/provided
 
-#install libglpk for igraph deps, and libxt for x11
-RUN apt-get update && apt-get install -y libxt-dev libglpk-dev && rm -rf /var/lib/apt/lists/*
+ENV R_VERSION=4.3.0
 
-# install packages
-RUN R -e "install.packages(c('blastula', 'corrr', 'ggrepel', 'glue', 'gt', 'here', 'htmltools', 'jsonlite', 'patchwork', 'paws', 'quarto'))"
-RUN R -e "devtools::install_github('matthewhirschey/ddh', force = TRUE)" 
+RUN yum -y install wget git tar
 
-# copy everything from the current directory into the container
-COPY ./ ./src
+RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm \
+  && wget https://cdn.rstudio.com/r/centos-7/pkgs/R-${R_VERSION}-1-1.x86_64.rpm \
+  && yum -y install R-${R_VERSION}-1-1.x86_64.rpm \
+  && rm R-${R_VERSION}-1-1.x86_64.rpm
 
-#set working directory
-WORKDIR /src
+ENV PATH="${PATH}:/opt/R/${R_VERSION}/bin/"
 
-# when the container starts, start the main.R script
-CMD Rscript main.R
+# System requirements for R packages
+RUN yum -y install openssl-devel
+
+RUN Rscript -e "install.packages(c('httr', 'jsonlite', 'logger', 'remotes', 'lambdr', 'blastula'), repos = 'https://packagemanager.rstudio.com/all/__linux__/centos7/latest')"
+
+RUN mkdir /lambda
+COPY runtime.R /lambda
+RUN chmod 755 -R /lambda
+
+RUN printf '#!/bin/sh\ncd /lambda\nRscript runtime.R' > /var/runtime/bootstrap \
+  && chmod +x /var/runtime/bootstrap
+
+CMD ["process_sqs"]
